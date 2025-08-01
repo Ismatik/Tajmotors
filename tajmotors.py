@@ -45,8 +45,8 @@ async def cmd_start(message: Message):
         one_time_keyboard=True # Hides the keyboard after a button is pressed
     )
 
-    await message.reply(
-        "Hello, Please register before you start. We will need your phone number, name and email.",
+    await message.answer(
+        "Hello, Please register before you start. We will need your phone number and name.\nClick 'Share My Phone Number', we will fetch automatically",
         reply_markup=keyboard    
     )
     
@@ -58,23 +58,22 @@ async def contact_handler(message: Message):
     name = contact.first_name + contact.last_name
     user_id = contact.user_id
     
-    await message.reply(
-        f"Thank you for sharing number!I've received this info:\nYour name:{name}\n{id}\nPhone number:{phone_number}",
+    await message.answer(
+        f"Thank you for sharing number!I've received this info:\nYour name:{name}\nPhone number:{phone_number}",
         reply_markup=ReplyKeyboardRemove()        
     )    
 
 @dp.message(Command("options"))
 async def any_message(message: Message):
     # Create the text content for the message
-    content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!"
-    # content = Text(
-    #     "Hello, " , 
-    #     Bold(message.from_user.full_name) ,
-    #     " ,Welcome to ",
-    #     Bold(Italic("TajMotors"))
-    # )
+    if message.from_user.full_name == "" or message.from_user.full_name == " ":
+        content = f"Hello, Welcome to TajMotors Bot!"
+    elif("<" in message.from_user.full_name or ">" in message.from_user.full_name):
+        content = f"Hello, {message.from_user.full_name}, Welcome to TajMotors Bot!"
+    else:
+        content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!"
     
-    #Adding a callback data - it helps to know whic button is clicked.
+    #Adding a callback data - it helps to know which button is clicked.
     kb = [
         [InlineKeyboardButton(text = "Test Drive" , callback_data = "Test Drive" , url="https://tjm.toyota-centralasia.com/") , InlineKeyboardButton(text="Service" , callback_data="Service" , url="https://tjm.toyota-centralasia.com/vladeltsam/service?trade_source=menu")],
         [InlineKeyboardButton(text = "About us" , callback_data="About us" , url = "https://tjm.toyota-centralasia.com/about/dealerships?trade_source=menu")]
@@ -87,13 +86,6 @@ async def any_message(message: Message):
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
-
-    # the **content.as_kwargs() construct will return the text, 
-    # entities, parse_mode arguments and substitute them into the answer() call.
-
-    # await message.answer(
-    #     **content.as_kwargs()
-    # )
 
 @dp.callback_query(F.data == "test_drive")
 async def process_test_drive(callback: types.CallbackQuery):
@@ -116,38 +108,3 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
         
-
-    # await message.answer(
-    #     f"Hello, welcome to *TajMotors*\!",
-    #     parse_mode=ParseMode.MARKDOWN_V2
-    # )
-    
-#Start process of polling new proccesses
-
-
-
-#Using entities to fetch info of user
-# @dp.message(F.text)
-# async def extract_data(message: Message):
-#     data = {
-#         "name" : "N/A",
-#         "phone" : "N/A",
-#         "email" : "N/A"
-#     }    
-#     entities = message.entities or []
-#     for item in entities:
-#         if item.type in data.keys():
-#             data[item.type] = item.extract_from(message.text)
-    
-#     await message.reply(
-#         "Found this\n"
-#         f"Name: {html.quote(data['name'])}\n",
-#         f"Phone: {html.quote(data['phone'])}\n",
-#         f"E-mail: {html.quote(data['email'])}"
-#     )
-    
-# #Handler for command /start
-# @dp.message(Command("start"))
-# async def cmd_start(message: types.Message):
-#     await message.answer("Welcome to TajMotors Bot! Please select option you would like to have:")
-
