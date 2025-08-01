@@ -1,0 +1,25 @@
+﻿While you are making the bot, you shall use State to avoid:
+
+Imagine you just add a new handler like @dp.message(). After you get the phone number, the user sends their email. 
+It works! But what if the user sends /start, gets the phone number prompt, and then just types "hello"? Y
+our new handler would fire and try to save "hello" as an email, which is wrong.
+You need a way for your bot to know that it is specifically waiting for an email. This "waiting for" status is called a state.
+
+**The Solution: Finite State Machine (FSM)**
+
+Think of FSM as giving your bot a short-term memory. You define a set of states for your conversation, and you can move the user from one state to another.
+Here’s the process:
+Define States: Create a class that lists all the steps in your conversation (e.g., WaitingForEmail).
+Enter a State: After getting the phone number, you'll tell the bot, "Now, enter the WaitingForEmail state for this user."
+Create a State-Specific Handler: Create a new handler that only triggers if the user is in the WaitingForEmail state.
+Process Data and Exit State: Once you receive the email, you save it and then clear the state, bringing the conversation back to normal.
+
+
+First, you need to import FSMContext for managing the state and State, StatesGroup for defining them. 
+Then, create a class for your registration process.
+
+
+
+While you are pushing to github, use hiding or .env to hid the token of your bot.
+
+When you make handlers, do not forget make function async!

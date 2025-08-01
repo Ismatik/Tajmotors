@@ -16,9 +16,17 @@ from aiogram.enums import ParseMode
 
 from aiogram import html
 
+#Imports to Create a class 
+# that lists all the steps in your conversation (e.g., WaitingForEmail).
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import State, StatesGroup
+
 #Turn on logging, not to miss important messages
 logging.basicConfig(level=logging.INFO)
 
+class Registration(StatesGroup):
+    waiting_for_email = State()
+    
 #Bot as an object(hide token#)
 # For entries with type Secret* you need to
 # call the get_secret_value() method,
@@ -28,7 +36,6 @@ bot = Bot(token= config.bot_token.get_secret_value())
 # The dispatcher receives updates from Telegram, which can include various types of interactions like messages, commands, or other events.
 #Dispatcher
 dp = Dispatcher()
-# dp["started_at"] = datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
 
 
 #/start handler to ask the number
@@ -50,21 +57,61 @@ async def cmd_start(message: Message):
         reply_markup=keyboard    
     )
     
-#Handler to catch the contact of user
+#--------------Handler to catch the contact of user--------------------------------
 @dp.message(F.contact)
-async def contact_handler(message: Message):
+async def contact_handler(message: Message , state: FSMContext):
+    
+    #Fetching info of the user
     contact = message.contact
+    global phone_number 
     phone_number = contact.phone_number
     name = contact.first_name + contact.last_name
     user_id = contact.user_id
     
+    #Save the phone number in the bot's memory for this user
+    await state.update_data(phone_number = contact.phone_number)
+    
+    
+    #Here we remove the Reply Keyboard after fetching
     await message.answer(
         f"Thank you for sharing number!I've received this info:\nYour name:{name}\nPhone number:{phone_number}",
         reply_markup=ReplyKeyboardRemove()        
     )    
+    
+    # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
+    await message.answer("Great! Now, please enter your email address.")
+    
+    await state.set_state(Registration.waiting_for_email)
 
-@dp.message(Command("options"))
-async def any_message(message: Message):
+#------------------------------- This handler will only work when the bot is in the 'waiting_for_email' state-------------------------------
+@dp.message(Registration.waiting_for_email)
+async def email_handler(message: Message, state:FSMContext):
+    #Need to make a validation for email entry
+    if '@' not in message.text:
+        await message.reply("This doesn't look like e-mail, please check again.")
+        return
+    
+    await state.update_data(email = message.text)
+    
+    # Retrieve all the stored data
+    user_data = await state.get_data()
+    # phone = user_data.get('phone number')
+    email = user_data.get('email')
+    
+    await message.answer(
+        "Registration complete! Thanks for providing information.\n\n"
+        f"<b>Phone</b>:{phone_number}\n"
+        f"<b>Email</b>:{email}",
+        parse_mode=ParseMode.HTML
+    )
+    
+    # await state.update_data(Registration.waiting_for_register)
+    
+    await state.clear() #End the FSM Session
+
+
+@dp.message(Registration.waiting_for_email)
+async def any_message(message: Message , state:FSMContext):
     # Create the text content for the message
     if message.from_user.full_name == "" or message.from_user.full_name == " ":
         content = f"Hello, Welcome to TajMotors Bot!"
@@ -86,6 +133,8 @@ async def any_message(message: Message):
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
+    
+    await state.clear()
 
 @dp.callback_query(F.data == "test_drive")
 async def process_test_drive(callback: types.CallbackQuery):
