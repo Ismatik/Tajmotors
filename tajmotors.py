@@ -10,7 +10,7 @@ from datetime import datetime
 
 from aiogram import F
 #Added Inline buttons and Markups
-from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from aiogram.filters import Command
 from aiogram.enums import ParseMode 
 
@@ -29,8 +29,41 @@ bot = Bot(token= config.bot_token.get_secret_value())
 #Dispatcher
 dp = Dispatcher()
 # dp["started_at"] = datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
-    
+
+
+#/start handler to ask the number
 @dp.message(Command("start"))
+async def cmd_start(message: Message):
+
+    but = [
+        [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
+    ]
+    
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=but,
+        resize_keyboard=True, # Makes the keyboard smaller
+        one_time_keyboard=True # Hides the keyboard after a button is pressed
+    )
+
+    await message.reply(
+        "Hello, Please register before you start. We will need your phone number, name and email.",
+        reply_markup=keyboard    
+    )
+    
+#Handler to catch the contact of user
+@dp.message(F.contact)
+async def contact_handler(message: Message):
+    contact = message.contact
+    phone_number = contact.phone_number
+    name = contact.first_name + contact.last_name
+    user_id = contact.user_id
+    
+    await message.reply(
+        f"Thank you for sharing number!I've received this info:\nYour name:{name}\n{id}\nPhone number:{phone_number}",
+        reply_markup=ReplyKeyboardRemove()        
+    )    
+
+@dp.message(Command("options"))
 async def any_message(message: Message):
     # Create the text content for the message
     content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!"
@@ -43,8 +76,7 @@ async def any_message(message: Message):
     
     #Adding a callback data - it helps to know whic button is clicked.
     kb = [
-        [InlineKeyboardButton(text = "Test Drive" , callback_data = "Test Drive" , url="https://tjm.toyota-centralasia.com/")],
-        [InlineKeyboardButton(text="Service" , callback_data="Service" , url="https://tjm.toyota-centralasia.com/vladeltsam/service?trade_source=menu")],
+        [InlineKeyboardButton(text = "Test Drive" , callback_data = "Test Drive" , url="https://tjm.toyota-centralasia.com/") , InlineKeyboardButton(text="Service" , callback_data="Service" , url="https://tjm.toyota-centralasia.com/vladeltsam/service?trade_source=menu")],
         [InlineKeyboardButton(text = "About us" , callback_data="About us" , url = "https://tjm.toyota-centralasia.com/about/dealerships?trade_source=menu")]
     ]
     
@@ -55,7 +87,6 @@ async def any_message(message: Message):
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
-    print(content)
 
     # the **content.as_kwargs() construct will return the text, 
     # entities, parse_mode arguments and substitute them into the answer() call.
