@@ -7,6 +7,11 @@ from aiogram.filters.command import Command
 
 from datetime import datetime
 
+from aiogram import F
+from aiogram.types import Message
+from aiogram.filters import Command
+from aiogram.enums import ParseMode 
+
 #Turn on logging, not to miss important messages
 logging.basicConfig(level=logging.INFO)
 
@@ -19,38 +24,28 @@ bot = Bot(token= config.bot_token.get_secret_value())
 # The dispatcher receives updates from Telegram, which can include various types of interactions like messages, commands, or other events.
 #Dispatcher
 dp = Dispatcher()
-dp["started_at"] = datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
-
-#Handler for command /start
+# dp["started_at"] = datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
+    
 @dp.message(Command("start"))
-async def cmd_start(message: types.Message):
-    await message.answer("Welcome to TajMotors Bot! Please select option you would like to have:")
+async def any_message(message: Message):
+    await message.answer(
+        f"Hello, <b>{message.from_user.full_name}</b> , welcome to <em><b>TajMotors</b></em>!", 
+        parse_mode=ParseMode.HTML
+    )
+    # await message.answer(
+    #     f"Hello, welcome to *TajMotors*\!",
+    #     parse_mode=ParseMode.MARKDOWN_V2
+    # )
     
 #Start process of polling new proccesses
 async def main():
     await dp.start_polling(bot)
     
     
-#Test1 Handler
-@dp.message(Command("test1"))
-async def cmd_test1(message: types.Message):
-    await message.reply("Test 1")
-    
-#Test2 Handler
-@dp.message(Command("test2"))
-async def cmd_test2(message: types.Message):
-    await message.answer("Test2")
-    
-#Dice to play    
-@dp.message(Command("dice"))
-async def cmd_dice(message: types.Message):
-    await message.answer_dice(emoji='🎲')
-    
-#Registration time
-@dp.message(Command("register"))
-async def cmd_register(message: types.Message, info_list: list[str]):
-    pass
-
+# #Handler for command /start
+# @dp.message(Command("start"))
+# async def cmd_start(message: types.Message):
+#     await message.answer("Welcome to TajMotors Bot! Please select option you would like to have:")
 
 if __name__ == "__main__":
     asyncio.run(main())
