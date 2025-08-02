@@ -19,56 +19,103 @@ from aiogram import html
 #Adding info to Excel(for now)
 import pandas as pd
 
-#Imports to Create a class 
-# that lists all the steps in your conversation (e.g., WaitingForEmail).
+#Library for validating email
+import re
+
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+
+EXCEL_FILE = 'Registered_users.xlsx'
 
 #Turn on logging, not to miss important messages
 logging.basicConfig(level=logging.INFO)
 
 class Registration(StatesGroup):
     waiting_for_email = State()
+    email = State()
+    phone = State()
+    name = State()
+
     
-#Bot as an object(hide token#)
-# For entries with type Secret* you need to
-# call the get_secret_value() method,
-# to get the real content instead of '*******'
 bot = Bot(token= config.bot_token.get_secret_value())
 
-# The dispatcher receives updates from Telegram, which can include various types of interactions like messages, commands, or other events.
-#Dispatcher
+
 dp = Dispatcher()
+
+def check_registered(user_id) -> bool:
+    """Enter User_ID to check, if he was registered already. 
+    To proceed for further steps."""
+    try: 
+        
+        #Reading excel file using pd.read_excel
+        df = pd.read_excel(EXCEL_FILE)
+
+        return user_id in df["User_ID"].tolist()
+    
+    except FileNotFoundError:
+        return False
+    
+
+def register_user(user_id , name , phone, email) -> None:
+    """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
+    As he finished registration, initialize the function."""
+    
+    try:
+        df = pd.read_excel(EXCEL_FILE)
+    except FileNotFoundError:
+        df = pd.DataFrame(
+            columns=['User_ID' , 'Name' , 'Phone' , 'Email']
+        )
+        
+    new_df = pd.DataFrame([{
+        'User_ID':user_id,
+        'Name': name,
+        'Phone' : phone,
+        'Email' : email
+        }])
+    
+    #Append new user to the existing DataFrame, fetching from excel file.
+    df = pd.concat([df , new_df] , ignore_index=True)
+    
+    #Save the updated 
+    df.to_excel(EXCEL_FILE , index=False)
 
 
 #/start handler to ask the number
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
-
-    but = [
-        [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
-    ]
+    #Checking if he was registered
+    if check_registered(message.chat.id):
+        await show_new_menu(message)
     
-    #Adding dict for getting all info there, starting from chat.id
-    global user_info
-    user_info = {
-        "User_ID" : [],
-        "Name" : [],
-        "Phone" : [],
-        "Email" : []
-    }
-    user_info["User_ID"].append(message.chat.id)
-    # print(message.chat.id)
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=but,
-        resize_keyboard=True, # Makes the keyboard smaller
-        one_time_keyboard=True # Hides the keyboard after a button is pressed
-    )
+    else:
+        but = [
+            [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
+        ]
+        
+        #Adding dict for getting all info there, starting from chat.id
+        # global user_info
+        # user_info = {
+        #     "User_ID" : [],
+        #     "Name" : [],
+        #     "Phone" : [],
+        #     "Email" : []
+        # }
+        # user_info["User_ID"].append(message.chat.id)
+        # print(message.chat.id)
+        global userid
+        userid = message.chat.id
+        
+        keyboard = ReplyKeyboardMarkup(
+            keyboard=but,
+            resize_keyboard=True, # Makes the keyboard smaller
+            one_time_keyboard=True # Hides the keyboard after a button is pressed
+        )
 
-    await message.answer(
-        "Hello, Please register before you start. We will need your phone number and name.\nClick 'Share My Phone Number', we will fetch automatically",
-        reply_markup=keyboard    
-    )
+        await message.answer(
+            "Hello, Please register before you start. We will need your phone number and name.\nClick 'Share My Phone Number', we will fetch automatically",
+            reply_markup=keyboard    
+        )
     
 #--------------Handler to catch the contact of user--------------------------------
 @dp.message(F.contact)
@@ -80,7 +127,6 @@ async def contact_handler(message: Message , state: FSMContext):
     phone_number = contact.phone_number
     global name
     name = contact.first_name + contact.last_name
-    user_id = contact.user_id
     
     #Save the phone number in the bot's memory for this user
     await state.update_data(phone_number = contact.phone_number)
@@ -93,8 +139,8 @@ async def contact_handler(message: Message , state: FSMContext):
     )
     
     #Adding phone number and name to dictionary
-    user_info["Phone"].append(phone_number)    
-    user_info["Name"].append(name)
+    # user_info["Phone"].append(phone_number)    
+    # user_info["Name"].append(name)
     
     # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
     await message.answer("Great! Now, please enter your email address.")
@@ -105,7 +151,8 @@ async def contact_handler(message: Message , state: FSMContext):
 @dp.message(Registration.waiting_for_email)
 async def email_handler(message: Message, state:FSMContext):
     #Need to make a validation for email entry
-    if '@' not in message.text:
+    valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' , message.text)
+    if not valid:
         await message.reply("This doesn't look like e-mail, please check again.")
         return
     
@@ -125,15 +172,17 @@ async def email_handler(message: Message, state:FSMContext):
     )
     
     #Adding email to dictionary
-    user_info["Email"].append(message.text)
-    df = pd.DataFrame(data=user_info)
-    df.to_excel('Registered_users.xlsx' , index=False)
+    # user_info["Email"].append(message.text)
+    # df = pd.DataFrame(data=user_info)
+    # df.to_excel(EXCEL_FILE , index=False)
+    register_user(user_id=message.chat.id , name=name , phone=phone_number , email = email)
     await state.clear() #End the FSM Session
 
+    #Start showind the menu with orders
+    await show_new_menu(message)
 
 
-@dp.message(Registration.waiting_for_email)
-async def any_message(message: Message , state:FSMContext):
+async def show_new_menu(message: Message):
     # Create the text content for the message
     if message.from_user.full_name == "" or message.from_user.full_name == " ":
         content = f"Hello, Welcome to TajMotors Bot!"
@@ -156,8 +205,6 @@ async def any_message(message: Message , state:FSMContext):
         parse_mode=ParseMode.HTML
     )
     
-    await state.clear()
-
 @dp.callback_query(F.data == "test_drive")
 async def process_test_drive(callback: types.CallbackQuery):
     await callback.message.answer("You chose 'Test Drive'. When are you available?")
