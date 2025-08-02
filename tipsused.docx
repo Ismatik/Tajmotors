@@ -22,4 +22,15 @@ Then, create a class for your registration process.
 
 While you are pushing to github, use hiding or .env to hid the token of your bot.
 
+
+#Bot as an object(hide token#)
+For entries with type Secret* you need to
+call the get_secret_value() method,
+to get the real content instead of '*******'
+bot = Bot(token= config.bot_token.get_secret_value())
+The dispatcher receives updates from Telegram, which can include various types of interactions like messages, commands, or other events.
+
+
 When you make handlers, do not forget make function async!
+
+

@@ -16,6 +16,9 @@ from aiogram.enums import ParseMode
 
 from aiogram import html
 
+#Adding info to Excel(for now)
+import pandas as pd
+
 #Imports to Create a class 
 # that lists all the steps in your conversation (e.g., WaitingForEmail).
 from aiogram.fsm.context import FSMContext
@@ -46,6 +49,16 @@ async def cmd_start(message: Message):
         [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
     ]
     
+    #Adding dict for getting all info there, starting from chat.id
+    global user_info
+    user_info = {
+        "User_ID" : [],
+        "Name" : [],
+        "Phone" : [],
+        "Email" : []
+    }
+    user_info["User_ID"].append(message.chat.id)
+    # print(message.chat.id)
     keyboard = ReplyKeyboardMarkup(
         keyboard=but,
         resize_keyboard=True, # Makes the keyboard smaller
@@ -65,6 +78,7 @@ async def contact_handler(message: Message , state: FSMContext):
     contact = message.contact
     global phone_number 
     phone_number = contact.phone_number
+    global name
     name = contact.first_name + contact.last_name
     user_id = contact.user_id
     
@@ -76,7 +90,11 @@ async def contact_handler(message: Message , state: FSMContext):
     await message.answer(
         f"Thank you for sharing number!I've received this info:\nYour name:{name}\nPhone number:{phone_number}",
         reply_markup=ReplyKeyboardRemove()        
-    )    
+    )
+    
+    #Adding phone number and name to dictionary
+    user_info["Phone"].append(phone_number)    
+    user_info["Name"].append(name)
     
     # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
     await message.answer("Great! Now, please enter your email address.")
@@ -101,13 +119,17 @@ async def email_handler(message: Message, state:FSMContext):
     await message.answer(
         "Registration complete! Thanks for providing information.\n\n"
         f"<b>Phone</b>:{phone_number}\n"
-        f"<b>Email</b>:{email}",
+        f"<b>Email</b>:{email}\n"
+        f"<b>Name</b>:{name}",
         parse_mode=ParseMode.HTML
     )
     
-    # await state.update_data(Registration.waiting_for_register)
-    
+    #Adding email to dictionary
+    user_info["Email"].append(message.text)
+    df = pd.DataFrame(data=user_info)
+    df.to_excel('Registered_users.xlsx' , index=False)
     await state.clear() #End the FSM Session
+
 
 
 @dp.message(Registration.waiting_for_email)
