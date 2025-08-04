@@ -6,15 +6,11 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 from aiogram.utils.formatting import Bold, Text,Italic
 
-from datetime import datetime
-
 from aiogram import F
 #Added Inline buttons and Markups
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from aiogram.filters import Command
 from aiogram.enums import ParseMode 
-
-from aiogram import html
 
 #Adding info to Excel(for now)
 import pandas as pd
@@ -27,18 +23,6 @@ from aiogram.fsm.state import State, StatesGroup
 
 EXCEL_FILE = 'Registered_users.xlsx'
 
-class color:
-   PURPLE = '\033[95m'
-   CYAN = '\033[96m'
-   DARKCYAN = '\033[36m'
-   BLUE = '\033[94m'
-   GREEN = '\033[92m'
-   YELLOW = '\033[93m'
-   RED = '\033[91m'
-   BOLD = '\033[1m'
-   UNDERLINE = '\033[4m'
-   END = '\033[0m'
-
 #Turn on logging, not to miss important messages
 logging.basicConfig(level=logging.INFO)
 
@@ -49,7 +33,6 @@ class Registration(StatesGroup):
     name = State()
     username = State()
     iduser = State()
-
     
 bot = Bot(token= config.bot_token.get_secret_value())
 
@@ -70,7 +53,7 @@ def check_registered(user_id) -> bool:
         return False
     
 
-def register_user(user_id , name , phone, email) -> None:
+def register_user(user_id , name , phone, email, username,) -> None:
     """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
     As he finished registration, initialize the function."""
     
@@ -78,14 +61,15 @@ def register_user(user_id , name , phone, email) -> None:
         df = pd.read_excel(EXCEL_FILE)
     except FileNotFoundError:
         df = pd.DataFrame(
-            columns=['User_ID' , 'Name' , 'Phone' , 'Email']
+            columns=['User_ID' , 'Name' , 'Phone' , 'Email', 'Username']
         )
         
     new_df = pd.DataFrame([{
         'User_ID':user_id,
         'Name': name,
         'Phone' : phone,
-        'Email' : email
+        'Email' : email,
+        'Username' : username
         }])
     
     #Append new user to the existing DataFrame, fetching from excel file.
@@ -104,6 +88,7 @@ async def cmd_start(message: Message, state: FSMContext):
         await show_new_menu(message)
     
     else:
+        await state.set_state(Registration.iduser)
         but = [
             [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
         ]
@@ -122,31 +107,24 @@ async def cmd_start(message: Message, state: FSMContext):
             reply_markup=keyboard    
         )
         
-        # await state.set_state(Registration.waiting_for_email)
+        await state.set_state(Registration.phone)
     
 #--------------Handler to catch the contact of user--------------------------------
-@dp.message(F.contact)
+@dp.message(Registration.phone)
 async def contact_handler(message: Message , state: FSMContext):
 
     await state.update_data(phone = message.contact.phone_number)        
-    #Fetching info of the user
-    contact = message.contact
-    
-    await state.update_data(username = (contact.first_name + contact.last_name))
-    await state.update_data(phone = contact.phone_number)
-    
-    #Save the phone number in the bot's memory for this user
-    # await state.update_data(phone_number = contact.phone_number)
-    
+    await state.update_data(username = (message.contact.first_name + message.contact.last_name))
+       
     data = await state.get_data()
     #Here we remove the Reply Keyboard after fetching
     await message.answer(
-        f"Thank you for sharing number!I've received this info:\nYour username:{data['username']}\nPhone number:{data['phone']}",
+        f"Thank you for sharing number!I've received this info:\nYour username:{data["username"]}\nPhone number:{data['phone']}",
         reply_markup=ReplyKeyboardRemove()        
     )
     
     # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
-    await message.answer("Great! Now, please enter your name.")
+    await message.answer(f"Great! Now, please enter your name.")
     
     await state.set_state(Registration.name)
     
@@ -158,7 +136,7 @@ async def name_handler(message:Message , state:FSMContext):
     
     await state.update_data(name = message.text)
     
-    await message.answer("Great! Now, please enter your email address.")
+    await message.answer(f"Wonderful! Now, please enter your email address.")
     
     await state.set_state(Registration.waiting_for_email)
 
@@ -178,17 +156,18 @@ async def email_handler(message: Message, state:FSMContext):
     
     # Retrieve all the stored data
     data = await state.get_data()
+
+    register_user(user_id=data['iduser'] , name=data['name'] , phone=data["phone"] , email = data["email"], username= data['username'])
     
     await message.answer(
         "Registration complete! Thanks for providing information.\n\n"
         f"<b>Phone</b>:{data['phone']}\n"
         f"<b>Email</b>:{data['email']}\n"
-        f"<b>Name</b>:{data['username']}",
+        f"<b>Name</b>:{data['name']}",
         parse_mode=ParseMode.HTML
     )
     
     #Registration of user
-    register_user(user_id=message.chat.id , name=data['name'] , phone=data["phone"] , email = data["email"])
     await state.clear() #End the FSM Session
 
     #Start showind the menu with orders
