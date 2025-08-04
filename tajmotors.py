@@ -114,17 +114,8 @@ async def cmd_start(message: Message, state: FSMContext):
         ]
         
         keyboard = InlineKeyboardMarkup(inline_keyboard = but)
-        # but = [
-        #     [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
-        # ]
         
         await state.update_data(iduser = message.chat.id)
-        
-        # keyboard = ReplyKeyboardMarkup(
-        #     keyboard=but,
-        #     resize_keyboard=True, # Makes the keyboard smaller
-        #     one_time_keyboard=True # Hides the keyboard after a button is pressed
-        # )
 
         await message.answer(
             f"Hello, Please register before you start. We will need your phone number,name and " 
@@ -164,12 +155,12 @@ async def contact_handler(message: Message , state: FSMContext):
     data = await state.get_data()
     #Here we remove the Reply Keyboard after fetching
     await message.answer(
-        f"Thank you for sharing number!I've received this info:\nPhone number:{data['phone']}",
+        f"Thank you for sharing number!I've received this info:\n\nPhone number:{data['phone']}",
         reply_markup= ReplyKeyboardRemove()        
     )
     
     # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
-    await message.answer(f"Great! Now, please enter your name.")
+    await message.answer(f"Great! Now, please enter your full name.")
     
     await state.set_state(Registration.name)
     
@@ -181,7 +172,7 @@ async def name_handler(message:Message , state:FSMContext):
     
     await state.update_data(name = message.text)
     
-    await message.answer(f"Wonderful! Now, please enter your email address.")
+    await message.answer(f"Wonderful! Please enter your email address.")
     
     await state.set_state(Registration.waiting_for_email)
 
@@ -206,9 +197,9 @@ async def email_handler(message: Message, state:FSMContext):
     
     await message.answer(
         "Registration complete! Thanks for providing information.\n\n"
-        f"<b>Phone</b>:{data['phone']}\n"
-        f"<b>Email</b>:{data['email']}\n"
-        f"<b>Name</b>:{data['name']}",
+        f"<b>Phone</b>: {data['phone']}\n"
+        f"<b>Email</b>: {data['email']}\n"
+        f"<b>Name</b>: {data['name']}",
         parse_mode=ParseMode.HTML
     )
     
@@ -220,22 +211,9 @@ async def email_handler(message: Message, state:FSMContext):
 
 
 async def show_new_menu(message: Message):
-    # Create the text content for the message
-    # if message.from_user.full_name == "" or message.from_user.full_name == " ":
-    #     content = f"Hello, Welcome to TajMotors Bot!\n"
-    #     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\n"
-    #     "Компания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
-        
-    # elif("<" in message.from_user.full_name or ">" in message.from_user.full_name):
-    #     content = f"Hello, {message.from_user.full_name}, Welcome to TajMotors Bot!"
-    #     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\n"
-    #     "Компания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
-    # else:
-    #     content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!"
-    #     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\n"
-    #     "Компания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
-    #Can use from_user or chat(message.chat.id)
+
     name = fetch_name(message.from_user.id)
+    
     if name:
         content = f"Hello, <b>{name}</b>, Welcome to TajMotors Bot!\n"
     else:
