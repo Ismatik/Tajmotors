@@ -79,6 +79,26 @@ def register_user(user_id , name , phone, email, username,) -> None:
     df.to_excel(EXCEL_FILE , index=False)
 
 
+def fetch_name(user_id)-> str:
+    
+    try:
+        df = pd.read_excel(EXCEL_FILE)
+        # 1. Filter the DataFrame to find the row(s) matching the user_id
+         
+        user_row = df[df["User_ID"] == user_id]
+        
+        # 2. Check if any rows were found. .empty is the correct way to do this.
+        if not user_row.empty:
+            # 3. Get the value from the 'Name' column of the found row.
+            # .item() is perfect for extracting a single value from a Series.
+            return user_row["Name"].item()
+        else:
+            # 4. Nothing found, no such user
+            return None
+            
+    except FileExistsError:
+        return None
+
 #/start handler to ask the number
 @dp.message(Command("start"))
 async def cmd_start(message: Message, state: FSMContext):
@@ -90,16 +110,21 @@ async def cmd_start(message: Message, state: FSMContext):
     else:
         await state.set_state(Registration.iduser)
         but = [
-            [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
+            [InlineKeyboardButton(text="▶️ Begin Registration" , callback_data="start_registration")]
         ]
+        
+        keyboard = InlineKeyboardMarkup(inline_keyboard = but)
+        # but = [
+        #     [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
+        # ]
         
         await state.update_data(iduser = message.chat.id)
         
-        keyboard = ReplyKeyboardMarkup(
-            keyboard=but,
-            resize_keyboard=True, # Makes the keyboard smaller
-            one_time_keyboard=True # Hides the keyboard after a button is pressed
-        )
+        # keyboard = ReplyKeyboardMarkup(
+        #     keyboard=but,
+        #     resize_keyboard=True, # Makes the keyboard smaller
+        #     one_time_keyboard=True # Hides the keyboard after a button is pressed
+        # )
 
         await message.answer(
             f"Hello, Please register before you start. We will need your phone number,name and " 
@@ -107,7 +132,27 @@ async def cmd_start(message: Message, state: FSMContext):
             reply_markup=keyboard    
         )
         
-        await state.set_state(Registration.phone)
+
+@dp.callback_query(F.data == "start_registration")
+async def start_register(callback: types.CallbackQuery , state: State):
+    # First, acknowledge the button press to remove the "loading" icon
+    await callback.answer()
+    
+    # Now, send the Reply Keyboard with the contact request button.
+    but = [
+        [KeyboardButton(text="Share phone number", request_contact=True)]
+    ]
+    
+    # Send the message asking for the contact
+    # We use callback.message.answer to reply in the same chat
+    keyboard = ReplyKeyboardMarkup(keyboard=but , resize_keyboard=True, one_time_keyboard=True)
+    await callback.message.answer(
+        "To start, please share your phone number by pressing the button below.",
+        reply_markup=keyboard
+    )
+    
+    await state.set_state(Registration.phone)    
+    
     
 #--------------Handler to catch the contact of user--------------------------------
 @dp.message(Registration.phone)
@@ -119,8 +164,8 @@ async def contact_handler(message: Message , state: FSMContext):
     data = await state.get_data()
     #Here we remove the Reply Keyboard after fetching
     await message.answer(
-        f"Thank you for sharing number!I've received this info:\nYour username:{data["username"]}\nPhone number:{data['phone']}",
-        reply_markup=ReplyKeyboardRemove()        
+        f"Thank you for sharing number!I've received this info:\nPhone number:{data['phone']}",
+        reply_markup= ReplyKeyboardRemove()        
     )
     
     # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
@@ -176,12 +221,26 @@ async def email_handler(message: Message, state:FSMContext):
 
 async def show_new_menu(message: Message):
     # Create the text content for the message
-    if message.from_user.full_name == "" or message.from_user.full_name == " ":
-        content = f"Hello, Welcome to TajMotors Bot!"
-    elif("<" in message.from_user.full_name or ">" in message.from_user.full_name):
-        content = f"Hello, {message.from_user.full_name}, Welcome to TajMotors Bot!"
+    # if message.from_user.full_name == "" or message.from_user.full_name == " ":
+    #     content = f"Hello, Welcome to TajMotors Bot!\n"
+    #     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\n"
+    #     "Компания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
+        
+    # elif("<" in message.from_user.full_name or ">" in message.from_user.full_name):
+    #     content = f"Hello, {message.from_user.full_name}, Welcome to TajMotors Bot!"
+    #     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\n"
+    #     "Компания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
+    # else:
+    #     content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!"
+    #     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\n"
+    #     "Компания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
+    #Can use from_user or chat(message.chat.id)
+    name = fetch_name(message.from_user.id)
+    if name:
+        content = f"Hello, <b>{name}</b>, Welcome to TajMotors Bot!\n"
     else:
-        content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!"
+        content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!\n"
+    content =  content + "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\nКомпания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
     
     #Adding a callback data - it helps to know which button is clicked.
     kb = [
@@ -190,7 +249,7 @@ async def show_new_menu(message: Message):
     ]
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
-    
+
     await message.answer(
         text=content, 
         reply_markup=keyboard,

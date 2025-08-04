@@ -38,3 +38,20 @@ Not all functionality of the bot can be implemented as single handler,
 for example you will need to collect some data from user in separated steps you will need to use FSM.
 
 Using States is crucial for storing data of the user.
+
+If you want InlineKeyboardButton for requesting phone number, can do with just KeyboardButton:
+The Fundamental Rule: request_contact is Special
+For security and user privacy, Telegram has a strict rule:
+The ability to request a user's phone number (request_contact=True) or location (request_location=True) is exclusively available for KeyboardButton objects, which can only be used inside a ReplyKeyboardMarkup.
+Why this rule exists:
+ReplyKeyboardMarkup (The one you are using correctly): 
+This keyboard replaces the user's standard text keyboard at the bottom of the screen. 
+It is a very clear and explicit prompt. When a user sees this, they understand the bot is asking for a special permission or action. 
+It's a "heavyweight" interaction.
+InlineKeyboardMarkup (The one you want to switch to): These are the small buttons attached directly to a message. 
+They are designed for "lightweight" interactions like navigating menus, clicking a link, or sending a simple callback_data signal (like "yes", "no", "next_page"). 
+They are not allowed to perform sensitive actions like requesting private user data directly.
+
+
+When you put this Series into an if statement, Python gets confused. It looks at [False, True, False] and asks, "Is this whole list True or False?"
+ It can't decide, so it raises the "ambiguous" error. Working with Series, check how it shall be doing it.
