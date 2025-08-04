@@ -27,6 +27,18 @@ from aiogram.fsm.state import State, StatesGroup
 
 EXCEL_FILE = 'Registered_users.xlsx'
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 #Turn on logging, not to miss important messages
 logging.basicConfig(level=logging.INFO)
 
@@ -35,6 +47,8 @@ class Registration(StatesGroup):
     email = State()
     phone = State()
     name = State()
+    username = State()
+    iduser = State()
 
     
 bot = Bot(token= config.bot_token.get_secret_value())
@@ -83,7 +97,8 @@ def register_user(user_id , name , phone, email) -> None:
 
 #/start handler to ask the number
 @dp.message(Command("start"))
-async def cmd_start(message: Message):
+async def cmd_start(message: Message, state: FSMContext):
+    await state.set_state(Registration.phone)
     #Checking if he was registered
     if check_registered(message.chat.id):
         await show_new_menu(message)
@@ -93,18 +108,7 @@ async def cmd_start(message: Message):
             [KeyboardButton(text="Share My Phone Number" , callback_data = "Fetch phone number",request_contact=True)]
         ]
         
-        #Adding dict for getting all info there, starting from chat.id
-        # global user_info
-        # user_info = {
-        #     "User_ID" : [],
-        #     "Name" : [],
-        #     "Phone" : [],
-        #     "Email" : []
-        # }
-        # user_info["User_ID"].append(message.chat.id)
-        # print(message.chat.id)
-        global userid
-        userid = message.chat.id
+        await state.update_data(iduser = message.chat.id)
         
         keyboard = ReplyKeyboardMarkup(
             keyboard=but,
@@ -113,43 +117,57 @@ async def cmd_start(message: Message):
         )
 
         await message.answer(
-            "Hello, Please register before you start. We will need your phone number and name.\nClick 'Share My Phone Number', we will fetch automatically",
+            f"Hello, Please register before you start. We will need your phone number,name and " 
+            f"email.\nClick 'Share My Phone Number', we will fetch automatically",
             reply_markup=keyboard    
         )
+        
+        # await state.set_state(Registration.waiting_for_email)
     
 #--------------Handler to catch the contact of user--------------------------------
 @dp.message(F.contact)
 async def contact_handler(message: Message , state: FSMContext):
-    
+
+    await state.update_data(phone = message.contact.phone_number)        
     #Fetching info of the user
     contact = message.contact
-    global phone_number 
-    phone_number = contact.phone_number
-    global name
-    name = contact.first_name + contact.last_name
+    
+    await state.update_data(username = (contact.first_name + contact.last_name))
+    await state.update_data(phone = contact.phone_number)
     
     #Save the phone number in the bot's memory for this user
-    await state.update_data(phone_number = contact.phone_number)
+    # await state.update_data(phone_number = contact.phone_number)
     
-    
+    data = await state.get_data()
     #Here we remove the Reply Keyboard after fetching
     await message.answer(
-        f"Thank you for sharing number!I've received this info:\nYour name:{name}\nPhone number:{phone_number}",
+        f"Thank you for sharing number!I've received this info:\nYour username:{data['username']}\nPhone number:{data['phone']}",
         reply_markup=ReplyKeyboardRemove()        
     )
     
-    #Adding phone number and name to dictionary
-    # user_info["Phone"].append(phone_number)    
-    # user_info["Name"].append(name)
-    
     # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
+    await message.answer("Great! Now, please enter your name.")
+    
+    await state.set_state(Registration.name)
+    
+#------------------------------- This handler will only work when the bot is in the 'waiting_for_email' state-------------------------------
+
+@dp.message(Registration.name)
+async def name_handler(message:Message , state:FSMContext):
+    await state.set_state(Registration.name)
+    
+    await state.update_data(name = message.text)
+    
     await message.answer("Great! Now, please enter your email address.")
     
     await state.set_state(Registration.waiting_for_email)
 
+
 #------------------------------- This handler will only work when the bot is in the 'waiting_for_email' state-------------------------------
 @dp.message(Registration.waiting_for_email)
 async def email_handler(message: Message, state:FSMContext):
+    
+    await state.set_state(Registration.email)
     #Need to make a validation for email entry
     valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' , message.text)
     if not valid:
@@ -159,23 +177,18 @@ async def email_handler(message: Message, state:FSMContext):
     await state.update_data(email = message.text)
     
     # Retrieve all the stored data
-    user_data = await state.get_data()
-    # phone = user_data.get('phone number')
-    email = user_data.get('email')
+    data = await state.get_data()
     
     await message.answer(
         "Registration complete! Thanks for providing information.\n\n"
-        f"<b>Phone</b>:{phone_number}\n"
-        f"<b>Email</b>:{email}\n"
-        f"<b>Name</b>:{name}",
+        f"<b>Phone</b>:{data['phone']}\n"
+        f"<b>Email</b>:{data['email']}\n"
+        f"<b>Name</b>:{data['username']}",
         parse_mode=ParseMode.HTML
     )
     
-    #Adding email to dictionary
-    # user_info["Email"].append(message.text)
-    # df = pd.DataFrame(data=user_info)
-    # df.to_excel(EXCEL_FILE , index=False)
-    register_user(user_id=message.chat.id , name=name , phone=phone_number , email = email)
+    #Registration of user
+    register_user(user_id=message.chat.id , name=data['name'] , phone=data["phone"] , email = data["email"])
     await state.clear() #End the FSM Session
 
     #Start showind the menu with orders

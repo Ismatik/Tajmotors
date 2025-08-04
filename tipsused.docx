@@ -34,3 +34,7 @@ The dispatcher receives updates from Telegram, which can include various types o
 When you make handlers, do not forget make function async!
 
 
+Not all functionality of the bot can be implemented as single handler, 
+for example you will need to collect some data from user in separated steps you will need to use FSM.
+
+Using States is crucial for storing data of the user.
