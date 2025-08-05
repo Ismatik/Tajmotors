@@ -1,31 +1,46 @@
+# =================================================================================
+# 1. IMPORTS
+# =================================================================================
 import asyncio
 import logging
-from config_reader import config
-
-from aiogram import Bot, Dispatcher, types
-from aiogram.filters.command import Command
-from aiogram.utils.formatting import Bold, Text,Italic
-
-from aiogram import F
-#Added Inline buttons and Markups
-from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from aiogram.filters import Command
-from aiogram.enums import ParseMode 
-
-#Adding info to Excel(for now)
+import datetime
+import re
 import pandas as pd
 
-#Library for validating email
-import re
-
+from aiogram import Bot, Dispatcher, F, types
+from aiogram.enums import ParseMode
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from aiogram.types import (
+    InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton,
+    Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
+)
 
-EXCEL_FILE = 'Registered_users.xlsx'
+from config_reader import config
 
-#Turn on logging, not to miss important messages
+
+# =================================================================================
+# 2. CONFIGURATION AND INITIALIZATION
+# =================================================================================
+
 logging.basicConfig(level=logging.INFO)
 
+EXCEL_FILE = 'Registered_users.xlsx'
+BOT_DESCRIPTION = (
+    "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\nКомпания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
+)
+TEST_DRIVE_LIST = 'Test_drive_list.xlsx'
+
+# Initialize bot, dispatcher
+bot = Bot(token=config.bot_token.get_secret_value())
+dp = Dispatcher()
+
+
+# =================================================================================
+# 3. FSM (FINITE STATE MACHINE) STATES
+# =================================================================================
+# States should represent what the bot is WAITING FOR, not data it has stored.
 class Registration(StatesGroup):
     waiting_for_email = State()
     email = State()
@@ -34,10 +49,13 @@ class Registration(StatesGroup):
     username = State()
     iduser = State()
     
-bot = Bot(token= config.bot_token.get_secret_value())
-
-
-dp = Dispatcher()
+class TestDrive(StatesGroup):
+    name = State()
+    phone_number = State()
+    VIN = State()
+    auto_model = State()
+    action_list = State()
+    date_and_time = State()
 
 def check_registered(user_id) -> bool:
     """Enter User_ID to check, if he was registered already. 
@@ -98,6 +116,41 @@ def fetch_name(user_id)-> str:
             
     except FileExistsError:
         return None
+
+def fetch_name_and_phone_number(user_id):
+    try:
+        df = pd.read_excel(EXCEL_FILE)
+        # 1. Filter the DataFrame to find the row(s) matching the user_id
+         
+        user_row = df[df["User_ID"] == user_id]
+        
+        # 2. Check if any rows were found. .empty is the correct way to do this.
+        if not user_row.empty:
+            # 3. Get the value from the 'Name' column of the found row.
+            # .item() is perfect for extracting a single value from a Series.
+            return user_row["Name"].item(), user_row["Phone"].item()
+        else:
+            # 4. Nothing found, no such user
+            return None
+            
+    except FileExistsError:
+        return None
+
+def register_testdrive(fullname , contact_number, VIN, auto_model, service, date_and_time_service):
+    """
+        ◦ ФИО. - fullname\n 
+        ◦ Контактный телефон. - contact_number\n
+        ◦ Госномер или VIN-код автомобиля. - VIN\n
+        ◦ Модель автомобиля. - auto_model\n
+        ◦ Тип необходимой услуги (выбор из списка, который редактируется в админ-панели). - service\n
+        ◦ Желаемая дата и время. - date_and_time_service\n
+    """
+    pass
+
+# =================================================================================
+# 6. HANDLERS FOR REGISTRATION
+# =================================================================================
+# --- Main Menu and Entry Point ---
 
 #/start handler to ask the number
 @dp.message(Command("start"))
@@ -160,7 +213,7 @@ async def contact_handler(message: Message , state: FSMContext):
     )
     
     # Now we ask for the email and set the state, so in case he goes to /start we do not make it work
-    await message.answer(f"Great! Now, please enter your full name.")
+    await message.answer(f"Great! Now, please enter your full name(Example: Gulmurod Gulmurodov).")
     
     await state.set_state(Registration.name)
     
@@ -169,6 +222,10 @@ async def contact_handler(message: Message , state: FSMContext):
 @dp.message(Registration.name)
 async def name_handler(message:Message , state:FSMContext):
     await state.set_state(Registration.name)
+    valid = message.text
+    if " " not in valid:
+        await message.reply("Please enter FULL Name.")
+        return
     
     await state.update_data(name = message.text)
     
@@ -181,7 +238,7 @@ async def name_handler(message:Message , state:FSMContext):
 @dp.message(Registration.waiting_for_email)
 async def email_handler(message: Message, state:FSMContext):
     
-    await state.set_state(Registration.email)
+    # await state.set_state(Registration.email)
     #Need to make a validation for email entry
     valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' , message.text)
     if not valid:
@@ -218,12 +275,14 @@ async def show_new_menu(message: Message):
         content = f"Hello, <b>{name}</b>, Welcome to TajMotors Bot!\n"
     else:
         content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!\n"
-    content =  content + "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\nКомпания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
+    content =  content + BOT_DESCRIPTION
     
     #Adding a callback data - it helps to know which button is clicked.
     kb = [
-        [InlineKeyboardButton(text = "Test Drive" , callback_data = "Test Drive" , url="https://tjm.toyota-centralasia.com/") , InlineKeyboardButton(text="Service" , callback_data="Service" , url="https://tjm.toyota-centralasia.com/vladeltsam/service?trade_source=menu")],
-        [InlineKeyboardButton(text = "About us" , callback_data="About us" , url = "https://tjm.toyota-centralasia.com/about/dealerships?trade_source=menu")]
+        [InlineKeyboardButton(text = "Catalogue" , callback_data = "Catalogue") , InlineKeyboardButton(text="Operator" , callback_data="Operator")],
+        [InlineKeyboardButton(text = "Test Drive" , callback_data = "Test_Drive") , InlineKeyboardButton(text = "Service" , callback_data="Service")],
+        [InlineKeyboardButton(text = "Contact/Address" , callback_data="Contact/Address" , url = "https://tjm.toyota-centralasia.com/about/dealerships?trade_source=menu")],
+        [InlineKeyboardButton(text = "About us" , callback_data="AboutUs" , url = "https://tjm.toyota-centralasia.com/")]
     ]
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
@@ -233,24 +292,79 @@ async def show_new_menu(message: Message):
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
+   
+# =================================================================================
+# 6. HANDLERS/CALLBACK QUERIES FOR MAIN MENU PART
+# ================================================================================= 
+
+@dp.callback_query(F.data == "Service")
+async def process_test_drive(callback: types.CallbackQuery , state:FSMContext):
     
-@dp.callback_query(F.data == "test_drive")
-async def process_test_drive(callback: types.CallbackQuery):
-    await callback.message.answer("You chose 'Test Drive'. When are you available?")
-    await callback.answer() # Acknowledge the button press
-
-@dp.callback_query(F.data == "service")
-async def process_service(callback: types.CallbackQuery):
-    await callback.message.answer("You chose 'Service'. What do you need help with?")
+    name , phone = fetch_name_and_phone_number(callback.from_user.id)
+    await state.update_data(name= name)
+    await state.update_data(phone = phone)
+    data = await state.get_data()
+    
+    await callback.message.answer(f"Thanks for selecting TajMotors! We will use name and phone number from registration form you filled!Plase fill the from for service of your car 🚗\n"
+                                  f"Name: {name}\n"
+                                  f"Phone: {phone}\n" 
+                                  f"Please enter state registration number or VIN code of the vehicle.")
+    
+    await state.update_data(VIN = callback.message.text)
+    await state.set_state(TestDrive.auto_model)
     await callback.answer()
+    
+@dp.message(TestDrive.auto_model)
+async def process_service_auto(message: Message , state: FSMContext):
+    await message.answer("We received your VIN! Enter Car Model of yours:")
 
-@dp.callback_query(F.data == "about_us")
-async def process_about_us(callback: types.CallbackQuery):
-    await callback.message.answer("TajMotors is a premier dealership for luxury vehicles.")
-    await callback.answer()
+    await state.update_data(auto_model = message.text)
+    
+    await state.set_state(TestDrive.action_list)
+
+@dp.message(TestDrive.action_list)
+async def process_service_list(message: Message , state:FSMContext):
+    await message.answer(text="We noted your car model.")
+    
+    #list as for now
+    service_list = [InlineKeyboardButton(text= "Service 1" , callback_data= "Service 1") , InlineKeyboardButton(text= "Service 2" , callback_data= "Service 2") ,
+                    InlineKeyboardButton(text= "Service 3" , callback_data= "Service 3") , InlineKeyboardButton(text= "Service 4" , callback_data= "Service 4") ,
+                    InlineKeyboardButton(text= "Service 5" , callback_data= "Service 5")]
+    kb = []
+    for i in range(0 , len(service_list) , 2):
+        kb.append(service_list[i: i+2])
+    
+    keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
+
+    await message.answer( 
+        text="Please select what service you require:",
+        reply_markup=keyboard,
+        parse_mode=ParseMode.HTML
+    )
+    await state.update_data(action_list = "")
+    await state.set_state(TestDrive.date_and_time)
+    
+@dp.message(TestDrive.date_and_time)
+async def process_service_dateandtime(message: Message , state: FSMContext):
+    print("YAAAAAAAAAAAAAAAA")
+    
+    
+# @dp.callback_query(F.data == "service")
+# async def process_service(callback: types.CallbackQuery):
+#     await callback.message.answer("You chose 'Service'. What do you need help with?")
+#     await callback.answer()
+
+# @dp.callback_query(F.data == "about_us")
+# async def process_about_us(callback: types.CallbackQuery):
+#     await callback.message.answer("TajMotors is a premier dealership for luxury vehicles.")
+#     await callback.answer()
+
+# =================================================================================
+# MAIN EXECUTION BLOCK
+# =================================================================================
 
 async def main():
-    await dp.start_polling(bot)
+    await dp.start_polling(bot )
     
 if __name__ == "__main__":
     asyncio.run(main())
