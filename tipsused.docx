@@ -55,3 +55,10 @@ They are not allowed to perform sensitive actions like requesting private user d
 
 When you put this Series into an if statement, Python gets confused. It looks at [False, True, False] and asks, "Is this whole list True or False?"
  It can't decide, so it raises the "ambiguous" error. Working with Series, check how it shall be doing it.
+
+Used Calendar date selection directly from chat.
+
+# The library's process_selection method handles everything.
+    # It returns True and the selected date if a date was chosen.
+    # It returns False and a new calendar markup if the user navigated months.
+    selected, LSTEP = await calendar.process_selection(callback, callback_data)

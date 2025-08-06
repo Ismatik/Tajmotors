@@ -3,7 +3,6 @@
 # =================================================================================
 import asyncio
 import logging
-import datetime
 import re
 import pandas as pd
 
@@ -14,8 +13,13 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import (
     InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton,
-    Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
+    Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, CallbackQuery
 )
+from aiogram.filters.callback_data import CallbackData
+
+from aiogram_calendar import SimpleCalendar , SimpleCalendarCallback, get_user_locale, DialogCalendar
+from datetime import date, datetime
+from aiogram.utils.markdown import hbold
 
 from config_reader import config
 
@@ -56,6 +60,18 @@ class TestDrive(StatesGroup):
     auto_model = State()
     action_list = State()
     date_and_time = State()
+
+class MyCalendar(SimpleCalendar):
+    """
+    A custom calendar that disables selection of dates in the past.
+    """
+    def _get_day_text(self, date: date) -> str:
+        # If the date is in the past, return a disabled symbol
+        if date < date.today():
+            return '❌' # Or any other symbol you prefer
+        
+        # Otherwise, return the day number as usual
+        return super()._get_day_text(date)
 
 def check_registered(user_id) -> bool:
     """Enter User_ID to check, if he was registered already. 
@@ -299,37 +315,45 @@ async def show_new_menu(message: Message):
 
 @dp.callback_query(F.data == "Service")
 async def process_test_drive(callback: types.CallbackQuery , state:FSMContext):
+    await callback.answer() #Service was clicked
     
     name , phone = fetch_name_and_phone_number(callback.from_user.id)
-    await state.update_data(name= name)
-    await state.update_data(phone = phone)
-    data = await state.get_data()
+    await state.update_data(name= name , phone = phone)
+
     
     await callback.message.answer(f"Thanks for selecting TajMotors! We will use name and phone number from registration form you filled!Plase fill the from for service of your car 🚗\n"
-                                  f"Name: {name}\n"
-                                  f"Phone: {phone}\n" 
-                                  f"Please enter state registration number or VIN code of the vehicle.")
+                                  f"<b>Name:</b> {name}\n<b>Phone:</b> {phone}\n" 
+                                  f"Please enter state registration number or VIN code of the vehicle.",
+                                  parse_mode=ParseMode.HTML)
     
-    await state.update_data(VIN = callback.message.text)
+    await state.set_state(TestDrive.VIN)
+    
+@dp.message(TestDrive.VIN)
+async def process_service_VIN(message: Message, state: FSMContext):
+    
+    await state.update_data(VIN = message.text)
+    
+    await message.answer("Thank you! Now, please enter the car model (e.g., Toyota Camry):")
+    
+    # Set the state to wait for the model
     await state.set_state(TestDrive.auto_model)
-    await callback.answer()
     
 @dp.message(TestDrive.auto_model)
 async def process_service_auto(message: Message , state: FSMContext):
-    await message.answer("We received your VIN! Enter Car Model of yours:")
 
     await state.update_data(auto_model = message.text)
     
-    await state.set_state(TestDrive.action_list)
-
-@dp.message(TestDrive.action_list)
-async def process_service_list(message: Message , state:FSMContext):
     await message.answer(text="We noted your car model.")
     
     #list as for now
-    service_list = [InlineKeyboardButton(text= "Service 1" , callback_data= "Service 1") , InlineKeyboardButton(text= "Service 2" , callback_data= "Service 2") ,
-                    InlineKeyboardButton(text= "Service 3" , callback_data= "Service 3") , InlineKeyboardButton(text= "Service 4" , callback_data= "Service 4") ,
-                    InlineKeyboardButton(text= "Service 5" , callback_data= "Service 5")]
+    service_list = [
+        InlineKeyboardButton(text="Service 1" , callback_data="chosen_service:Service 1"),
+        InlineKeyboardButton(text="Service 2" , callback_data="chosen_service:Service 2"),
+        InlineKeyboardButton(text="Service 3" , callback_data="chosen_service:Service 3"),
+        InlineKeyboardButton(text="Service 4" , callback_data="chosen_service:Service 4"),
+        InlineKeyboardButton(text="Service 5" , callback_data="chosen_service:Service 5")
+    ]
+    
     kb = []
     for i in range(0 , len(service_list) , 2):
         kb.append(service_list[i: i+2])
@@ -341,23 +365,46 @@ async def process_service_list(message: Message , state:FSMContext):
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
-    await state.update_data(action_list = "")
-    await state.set_state(TestDrive.date_and_time)
-    
-@dp.message(TestDrive.date_and_time)
-async def process_service_dateandtime(message: Message , state: FSMContext):
-    print("YAAAAAAAAAAAAAAAA")
-    
-    
-# @dp.callback_query(F.data == "service")
-# async def process_service(callback: types.CallbackQuery):
-#     await callback.message.answer("You chose 'Service'. What do you need help with?")
-#     await callback.answer()
 
-# @dp.callback_query(F.data == "about_us")
-# async def process_about_us(callback: types.CallbackQuery):
-#     await callback.message.answer("TajMotors is a premier dealership for luxury vehicles.")
-#     await callback.answer()
+    await state.set_state(TestDrive.action_list)
+    
+@dp.callback_query(TestDrive.action_list, F.data.startswith("chosen_service:"))
+async def process_service_choice(callback: types.CallbackQuery, state: FSMContext):
+
+    await callback.answer()
+    
+    chose = callback.data.split(":")[-1]
+    
+    await state.update_data(action_list = chose)    
+    
+    await callback.message.answer(f"You have selected: <b>{chose}</b>." ,
+                                     parse_mode=ParseMode.HTML)
+    
+    calendar = SimpleCalendar(
+        locale=await get_user_locale(callback.from_user), 
+        show_alerts=True
+    )
+    
+    await callback.message.answer(
+        "Great! Now, please select a convenient date:",
+        reply_markup=await calendar.start_calendar()
+    )
+    await callback.answer()
+
+@dp.callback_query(SimpleCalendarCallback.filter())
+async def process_simple_calendar(callback_query: CallbackQuery, callback_data: CallbackData, state:FSMContext):
+    calendar = SimpleCalendar(
+        locale=await get_user_locale(callback_query.from_user), show_alerts=True
+    )
+    calendar.set_dates_range(datetime(2022, 1, 1), datetime(2025, 12, 31))
+    selected, date = await calendar.process_selection(callback_query, callback_data)
+    if selected and date > datetime.today():
+        await callback_query.message.answer(
+            f'You selected {date.strftime("%d/%m/%Y")}'
+        )
+    else:
+        return
+    await state.update_data(data_and_time = date)
 
 # =================================================================================
 # MAIN EXECUTION BLOCK
