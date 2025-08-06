@@ -59,22 +59,11 @@ class TestDrive(StatesGroup):
     VIN = State()
     auto_model = State()
     action_list = State()
-    date_and_time = State()
+    date = State()
+    time = State()
     registration_time = State()
     userid = State()
 
-
-class MyCalendar(SimpleCalendar):
-    """
-    A custom calendar that disables selection of dates in the past.
-    """
-    def _get_day_text(self, date: date) -> str:
-        # If the date is in the past, return a disabled symbol
-        if date < date.today():
-            return '❌' # Or any other symbol you prefer
-        
-        # Otherwise, return the day number as usual
-        return super()._get_day_text(date)
 
 def check_registered(user_id) -> bool:
     """Enter User_ID to check, if he was registered already. 
@@ -163,14 +152,15 @@ def fetch_name_and_phone_number(user_id):
     except FileExistsError:
         return None
 
-def register_testdrive(user_id , fullname , contact_number, VIN, auto_model, service, date_and_time_service, registration_time):
+def register_testdrive(user_id , fullname , contact_number, VIN, auto_model, service, date_service, registration_time,time_service):
     """
         ◦ ФИО. - fullname\n 
         ◦ Контактный телефон. - contact_number\n
         ◦ Госномер или VIN-код автомобиля. - VIN\n
         ◦ Модель автомобиля. - auto_model\n
         ◦ Тип необходимой услуги (выбор из списка, который редактируется в админ-панели). - service\n
-        ◦ Желаемая дата и время. - date_and_time_service\n
+        ◦ Желаемая дата. - date_service\n
+        ◦ Желаемое время. - time_service\n
         ◦ Дата и время регистрации. - registration_time\n
         ◦ ID Пользователя
     """
@@ -181,8 +171,9 @@ def register_testdrive(user_id , fullname , contact_number, VIN, auto_model, ser
         'VIN' : VIN,
         'Auto Model' : auto_model,
         'Service Type' : service,
-        'Service Datetime' : date_and_time_service,
-        'Registration time' : registration_time
+        'Service Datetime' : date_service,
+        'Registration time' : registration_time,
+        'Time Service' : time_service
         }])
     
     
@@ -405,13 +396,13 @@ async def process_service_auto(message: Message , state: FSMContext):
 @dp.callback_query(TestDrive.action_list, F.data.startswith("chosen_service:"))
 async def process_service_choice(callback: types.CallbackQuery, state: FSMContext):
 
-    await callback.answer()
+    # await callback.answer()
     
     chose = callback.data.split(":")[-1]
     
     await state.update_data(action_list = chose)    
     
-    await callback.message.answer(f"You have selected: <b>{chose}</b>." ,
+    await callback.message.edit_text(f"You have selected: <b>{chose}</b>." ,
                                      parse_mode=ParseMode.HTML)
     
     calendar = SimpleCalendar(
@@ -430,27 +421,25 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
     calendar = SimpleCalendar(
         locale=await get_user_locale(callback_query.from_user), show_alerts=True
     )
-    calendar.set_dates_range(datetime(2022, 1, 1), datetime(2025, 12, 31))
+    
+    # calendar.set_dates_range(datetime(2022, 1, 1), datetime(2025, 12, 31))
+    
+    calendar.set_dates_range(datetime.today(), datetime(2030, 12, 31))# set from today
     selected, data = await calendar.process_selection(callback_query, callback_data)
     if selected:
         if data > datetime.today():
             await callback_query.message.answer(
-                f'You selected {data.strftime("%d/%m/%Y")}.\n\nWe recevied your request.<b>Our manager will contact you soon!</b>',
+                # f'You selected {data.strftime("%d/%m/%Y")}.\n\nWe recevied your request.<b>Our manager will contact you soon!</b>',
+                f'You selected {data.strftime("%d/%m/%Y")}.\n\n'
+                f'Now, please enter a convenient time (e.g., 14:30).',
                 parse_mode=ParseMode.HTML
             )
-            await state.update_data(date_and_time = data.strftime("%d/%m/%Y"))
+            await state.update_data(date = data.strftime("%d/%m/%Y"))
             await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
             await state.update_data(userid = callback_query.message.from_user.id)
-            info = await state.get_data()
-            register_testdrive(user_id=info["userid"] , 
-                               fullname=info["name"],
-                               contact_number = info["phone_number"],
-                               VIN=info["VIN"] , 
-                               auto_model=info["auto_model"], 
-                               service=info["action_list"], 
-                               date_and_time_service=info["date_and_time"],
-                               registration_time=info["registration_time"])
-            await state.clear()
+            
+            await state.set_state(TestDrive.time)
+            
          
         else:
             await callback_query.answer("You cannot select a date in the past. Please choose again.", show_alert=True)
@@ -461,7 +450,24 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
                 reply_markup=await calendar.start_calendar()
             )
 
-
+@dp.message(TestDrive.time)
+async def process_time_service(message:Message, state:FSMContext):
+    
+    await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
+    await state.update_data(userid = message.from_user.id)
+    await state.update_data(time = message.text)
+    info = await state.get_data()
+    
+    register_testdrive(user_id=info["userid"] , 
+                        fullname=info["name"],
+                        contact_number = info["phone_number"],
+                        VIN=info["VIN"] , 
+                        auto_model=info["auto_model"], 
+                        service=info["action_list"], 
+                        date_service=info["date"],
+                        registration_time=info["registration_time"],
+                        time_service=info["time"])
+    
 # =================================================================================
 # MAIN EXECUTION BLOCK
 # =================================================================================
