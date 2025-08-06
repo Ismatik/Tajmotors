@@ -60,6 +60,9 @@ class TestDrive(StatesGroup):
     auto_model = State()
     action_list = State()
     date_and_time = State()
+    registration_time = State()
+    userid = State()
+
 
 class MyCalendar(SimpleCalendar):
     """
@@ -91,12 +94,12 @@ def register_user(user_id , name , phone, email, username,) -> None:
     """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
     As he finished registration, initialize the function."""
     
-    try:
-        df = pd.read_excel(EXCEL_FILE)
-    except FileNotFoundError:
-        df = pd.DataFrame(
-            columns=['User_ID' , 'Name' , 'Phone' , 'Email', 'Username']
-        )
+    # try:
+    #     df = pd.read_excel(EXCEL_FILE)
+    # except FileNotFoundError:
+    #     df = pd.DataFrame(
+    #         columns=['User_ID' , 'Name' , 'Phone' , 'Email', 'Username']
+    #     )
         
     new_df = pd.DataFrame([{
         'User_ID':user_id,
@@ -105,12 +108,20 @@ def register_user(user_id , name , phone, email, username,) -> None:
         'Email' : email,
         'Username' : username
         }])
+    try: 
+        ex_df = pd.read_excel(EXCEL_FILE)
+        
+        updated_df = pd.concat([ex_df, new_df], ignore_index=True)
+        updated_df.to_excel(EXCEL_FILE, index=False)
+
+    except FileNotFoundError:
+        
+        new_df.to_excel(EXCEL_FILE , index=False)
+    # #Append new user to the existing DataFrame, fetching from excel file.
+    # df = pd.concat([df , new_df] , ignore_index=True)
     
-    #Append new user to the existing DataFrame, fetching from excel file.
-    df = pd.concat([df , new_df] , ignore_index=True)
-    
-    #Save the updated 
-    df.to_excel(EXCEL_FILE , index=False)
+    # #Save the updated 
+    # df.to_excel(EXCEL_FILE , index=False)
 
 
 def fetch_name(user_id)-> str:
@@ -152,7 +163,7 @@ def fetch_name_and_phone_number(user_id):
     except FileExistsError:
         return None
 
-def register_testdrive(fullname , contact_number, VIN, auto_model, service, date_and_time_service):
+def register_testdrive(user_id , fullname , contact_number, VIN, auto_model, service, date_and_time_service, registration_time):
     """
         ◦ ФИО. - fullname\n 
         ◦ Контактный телефон. - contact_number\n
@@ -160,9 +171,30 @@ def register_testdrive(fullname , contact_number, VIN, auto_model, service, date
         ◦ Модель автомобиля. - auto_model\n
         ◦ Тип необходимой услуги (выбор из списка, который редактируется в админ-панели). - service\n
         ◦ Желаемая дата и время. - date_and_time_service\n
+        ◦ Дата и время регистрации. - registration_time\n
+        ◦ ID Пользователя
     """
-    pass
+    new_df = pd.DataFrame([{
+        'User_ID':user_id,
+        'Full name': fullname,
+        'Phone/Contact number' : contact_number,
+        'VIN' : VIN,
+        'Auto Model' : auto_model,
+        'Service Type' : service,
+        'Service Datetime' : date_and_time_service,
+        'Registration time' : registration_time
+        }])
+    
+    
+    try:
+        ex_df = pd.read_excel(TEST_DRIVE_LIST)
+        
+        updated_df = pd.concat([ex_df, new_df], ignore_index=True)
+        updated_df.to_excel(TEST_DRIVE_LIST, index=False)
 
+    except FileNotFoundError:
+        new_df.to_excel(TEST_DRIVE_LIST , index=False)
+        
 # =================================================================================
 # 6. HANDLERS FOR REGISTRATION
 # =================================================================================
@@ -313,12 +345,14 @@ async def show_new_menu(message: Message):
 # 6. HANDLERS/CALLBACK QUERIES FOR MAIN MENU PART
 # ================================================================================= 
 
+
+# ==========================           SERVICE        ============================= 
 @dp.callback_query(F.data == "Service")
 async def process_test_drive(callback: types.CallbackQuery , state:FSMContext):
     await callback.answer() #Service was clicked
     
     name , phone = fetch_name_and_phone_number(callback.from_user.id)
-    await state.update_data(name= name , phone = phone)
+    await state.update_data(name= name , phone_number = phone)
 
     
     await callback.message.answer(f"Thanks for selecting TajMotors! We will use name and phone number from registration form you filled!Plase fill the from for service of your car 🚗\n"
@@ -397,14 +431,36 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
         locale=await get_user_locale(callback_query.from_user), show_alerts=True
     )
     calendar.set_dates_range(datetime(2022, 1, 1), datetime(2025, 12, 31))
-    selected, date = await calendar.process_selection(callback_query, callback_data)
-    if selected and date > datetime.today():
-        await callback_query.message.answer(
-            f'You selected {date.strftime("%d/%m/%Y")}'
-        )
-    else:
-        return
-    await state.update_data(data_and_time = date)
+    selected, data = await calendar.process_selection(callback_query, callback_data)
+    if selected:
+        if data > datetime.today():
+            await callback_query.message.answer(
+                f'You selected {data.strftime("%d/%m/%Y")}.\n\nWe recevied your request.<b>Our manager will contact you soon!</b>',
+                parse_mode=ParseMode.HTML
+            )
+            await state.update_data(date_and_time = data.strftime("%d/%m/%Y"))
+            await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
+            await state.update_data(userid = callback_query.message.from_user.id)
+            info = await state.get_data()
+            register_testdrive(user_id=info["userid"] , 
+                               fullname=info["name"],
+                               contact_number = info["phone_number"],
+                               VIN=info["VIN"] , 
+                               auto_model=info["auto_model"], 
+                               service=info["action_list"], 
+                               date_and_time_service=info["date_and_time"],
+                               registration_time=info["registration_time"])
+            await state.clear()
+         
+        else:
+            await callback_query.answer("You cannot select a date in the past. Please choose again.", show_alert=True)
+            
+            # Optional: You can re-send the calendar if you want them to immediately try again.
+            # Note: This can feel a bit clunky to the user.
+            await callback_query.message.edit_reply_markup(
+                reply_markup=await calendar.start_calendar()
+            )
+
 
 # =================================================================================
 # MAIN EXECUTION BLOCK
