@@ -20,7 +20,6 @@ from aiogram.filters.callback_data import CallbackData
 
 from aiogram_calendar import SimpleCalendar , SimpleCalendarCallback, get_user_locale, DialogCalendar
 from datetime import date, datetime
-from aiogram.utils.markdown import hbold
 
 from config_reader import config
 
@@ -30,16 +29,16 @@ from config_reader import config
 
 logging.basicConfig(level=logging.INFO)
 
-EXCEL_FILE = 'Registration files/Registered_users.xlsx'
+EXCEL_FILE = '/home/ikki/Desktop/Koinot/Tajmotors/Registration files/Registered_users.xlsx'
 BOT_DESCRIPTION = (
     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\nКомпания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
 )
-TEST_DRIVE_LIST = 'Registration files/Test_drive_list.xlsx'
+TEST_DRIVE_LIST = '/home/ikki/Desktop/Koinot/Tajmotors/Registration files/Test_drive_list.xlsx'
 
 # Initialize bot, dispatcher
 bot = Bot(token=config.bot_token.get_secret_value())
 dp = Dispatcher()
-
+# dp.include_router(service.router)
 
 # =================================================================================
 # 3. FSM (FINITE STATE MACHINE) STATES
@@ -53,7 +52,7 @@ class Registration(StatesGroup):
     username = State()
     iduser = State()
     
-class TestDrive(StatesGroup):
+class Service(StatesGroup):
     name = State()
     phone_number = State()
     VIN = State()
@@ -63,6 +62,7 @@ class TestDrive(StatesGroup):
     time = State()
     registration_time = State()
     userid = State()
+    comments = State()
 
 
 def check_registered(user_id) -> bool:
@@ -82,13 +82,6 @@ def check_registered(user_id) -> bool:
 def register_user(user_id , name , phone, email, username,) -> None:
     """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
     As he finished registration, initialize the function."""
-    
-    # try:
-    #     df = pd.read_excel(EXCEL_FILE)
-    # except FileNotFoundError:
-    #     df = pd.DataFrame(
-    #         columns=['User_ID' , 'Name' , 'Phone' , 'Email', 'Username']
-    #     )
         
     new_df = pd.DataFrame([{
         'User_ID':user_id,
@@ -106,11 +99,6 @@ def register_user(user_id , name , phone, email, username,) -> None:
     except FileNotFoundError:
         
         new_df.to_excel(EXCEL_FILE , index=False)
-    # #Append new user to the existing DataFrame, fetching from excel file.
-    # df = pd.concat([df , new_df] , ignore_index=True)
-    
-    # #Save the updated 
-    # df.to_excel(EXCEL_FILE , index=False)
 
 
 def fetch_name(user_id)-> str:
@@ -152,7 +140,7 @@ def fetch_name_and_phone_number(user_id):
     except FileExistsError:
         return None
 
-def register_testdrive(user_id , fullname , contact_number, VIN, auto_model, service, date_service, registration_time,time_service):
+def register_service(user_id , fullname , contact_number, VIN, auto_model, service, date_service, registration_time,time_service, comments):
     """
         ◦ ФИО. - fullname\n 
         ◦ Контактный телефон. - contact_number\n
@@ -173,7 +161,8 @@ def register_testdrive(user_id , fullname , contact_number, VIN, auto_model, ser
         'Service Type' : service,
         'Service Datetime' : date_service,
         'Registration time' : registration_time,
-        'Time Service' : time_service
+        'Time Service' : time_service,
+        'Comments' : comments
         }])
     
     
@@ -241,9 +230,11 @@ async def start_register(callback: types.CallbackQuery , state: State):
 @dp.message(Registration.phone)
 async def contact_handler(message: Message , state: FSMContext):
 
-    await state.update_data(phone = message.contact.phone_number)        
-    await state.update_data(username = (message.contact.first_name + message.contact.last_name))
-       
+    await state.update_data(phone = message.contact.phone_number)
+    contact_name = (str(message.contact.first_name) + str(message.contact.last_name))
+    contact_name = contact_name.replace("None" , "")
+    await state.update_data(username = (str(message.contact.first_name) + " " + str(message.contact.last_name)))
+    
     data = await state.get_data()
     #Here we remove the Reply Keyboard after fetching
     await message.answer(
@@ -255,6 +246,7 @@ async def contact_handler(message: Message , state: FSMContext):
     await message.answer(f"Great! Now, please enter your full name(Example: Gulmurod Gulmurodov).")
     
     await state.set_state(Registration.name)
+    
     
 #------------------------------- This handler will only work when the bot is in the 'waiting_for_email' state-------------------------------
 
@@ -331,15 +323,17 @@ async def show_new_menu(message: Message):
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
-   
+    
+    # dp.include_router(service.router)
+
 # =================================================================================
-# 6. HANDLERS/CALLBACK QUERIES FOR MAIN MENU PART
+# 6.1 HANDLERS/CALLBACK QUERIES FOR MAIN MENU PART
 # ================================================================================= 
 
 
 # ==========================           SERVICE        ============================= 
 @dp.callback_query(F.data == "Service")
-async def process_test_drive(callback: types.CallbackQuery , state:FSMContext):
+async def process_service(callback: types.CallbackQuery , state:FSMContext):
     await callback.answer() #Service was clicked
     
     name , phone = fetch_name_and_phone_number(callback.from_user.id)
@@ -351,19 +345,22 @@ async def process_test_drive(callback: types.CallbackQuery , state:FSMContext):
                                   f"Please enter state registration number or VIN code of the vehicle.",
                                   parse_mode=ParseMode.HTML)
     
-    await state.set_state(TestDrive.VIN)
+    await state.set_state(Service.VIN)
     
-@dp.message(TestDrive.VIN)
+@dp.message(Service.VIN)
 async def process_service_VIN(message: Message, state: FSMContext):
+    if len(message.text) != 17:
+        await message.reply("Please enter correct VIN.")
+        return
     
     await state.update_data(VIN = message.text)
     
     await message.answer("Thank you! Now, please enter the car model (e.g., Toyota Camry):")
     
     # Set the state to wait for the model
-    await state.set_state(TestDrive.auto_model)
+    await state.set_state(Service.auto_model)
     
-@dp.message(TestDrive.auto_model)
+@dp.message(Service.auto_model)
 async def process_service_auto(message: Message , state: FSMContext):
 
     await state.update_data(auto_model = message.text)
@@ -391,9 +388,9 @@ async def process_service_auto(message: Message , state: FSMContext):
         parse_mode=ParseMode.HTML
     )
 
-    await state.set_state(TestDrive.action_list)
+    await state.set_state(Service.action_list)
     
-@dp.callback_query(TestDrive.action_list, F.data.startswith("chosen_service:"))
+@dp.callback_query(Service.action_list, F.data.startswith("chosen_service:"))
 async def process_service_choice(callback: types.CallbackQuery, state: FSMContext):
 
     # await callback.answer()
@@ -428,17 +425,36 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
     selected, data = await calendar.process_selection(callback_query, callback_data)
     if selected:
         if data > datetime.today():
-            await callback_query.message.answer(
+            await callback_query.message.edit_text(
                 # f'You selected {data.strftime("%d/%m/%Y")}.\n\nWe recevied your request.<b>Our manager will contact you soon!</b>',
-                f'You selected {data.strftime("%d/%m/%Y")}.\n\n'
+                f'You selected this date - <b>{data.strftime("%d/%m/%Y")}</b>.\n\n'
                 f'Now, please enter a convenient time (e.g., 14:30).',
                 parse_mode=ParseMode.HTML
             )
+            
             await state.update_data(date = data.strftime("%d/%m/%Y"))
             await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
             await state.update_data(userid = callback_query.message.from_user.id)
             
-            await state.set_state(TestDrive.time)
+            time_slots = ["09:00", "09:30" , "10:00" , "10:30", "11:00" , "11:30", "14:00" , "14:30", "15:00" , "15:30", "16:00", "16:30"]
+            buttons = []
+            for slots in time_slots:
+                buttons.append(
+                    InlineKeyboardButton(
+                        text=slots,
+                        callback_data=f"Chosen-{slots}"
+                    )
+                )
+            kb = []
+            for i in range( 0 , len(time_slots) , 3):
+                kb.append(buttons[i:i+3])
+            
+            keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
+            await callback_query.message.answer(text="Select your convenient time:",
+                                                reply_markup = keyboard
+                                                )            
+
+            await state.set_state(Service.time)
             
          
         else:
@@ -448,17 +464,34 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
             # Note: This can feel a bit clunky to the user.
             await callback_query.message.edit_reply_markup(
                 reply_markup=await calendar.start_calendar()
+                
             )
 
-@dp.message(TestDrive.time)
-async def process_time_service(message:Message, state:FSMContext):
+@dp.callback_query(Service.time , F.data.startswith("Chosen-"))
+async def process_time_service(callback_query: types.CallbackQuery , state:FSMContext):
+    await callback_query.answer()
     
-    await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
-    await state.update_data(userid = message.from_user.id)
-    await state.update_data(time = message.text)
+    chosen_time = callback_query.data.split("-")[-1]
+    
+    await state.update_data(registration_time = datetime.today().strftime("%Y-%m-%d %H:%M:%S"))
+    await state.update_data(userid = callback_query.message.from_user.id)
+    await state.update_data(time = chosen_time)
     info = await state.get_data()
     
-    register_testdrive(user_id=info["userid"] , 
+    await callback_query.message.edit_text(text=f"You selected date on <b>{info["date"]} at {info["time"]}</b>.\n\n"
+                                                f"Great. If you have any <b>additional comments</b> or requests for the mechanic, please enter them now. Please add contact number in case if we would not be able to reach you with number you registered with.\n\n"
+                                                f"If you have no comments, just send a dash (-).",
+                                           parse_mode=ParseMode.HTML)
+    
+    await state.set_state(Service.comments)
+    
+@dp.message(Service.comments)
+async def process_test_drive_comments(message: Message, state:FSMContext):
+    
+    await state.update_data(comments = message.text)
+    
+    info = await state.get_data()
+    register_service(user_id=info["userid"] , 
                         fullname=info["name"],
                         contact_number = info["phone_number"],
                         VIN=info["VIN"] , 
@@ -466,8 +499,30 @@ async def process_time_service(message:Message, state:FSMContext):
                         service=info["action_list"], 
                         date_service=info["date"],
                         registration_time=info["registration_time"],
-                        time_service=info["time"])
+                        time_service=info["time"],
+                        comments = info["comments"])
     
+    await message.answer(
+        f"Thank you! Your appointment request is complete and has been registered.\n"
+        f"Our manager will contact you soon."
+        f"We recevied your request.<b>Our manager will contact you soon!</b>",
+        parse_mode=ParseMode.HTML
+    )
+    
+    await state.clear()
+    
+# =================================================================================
+
+# =================================================================================
+# 6.2 HANDLERS/CALLBACK QUERIES FOR MAIN MENU PART
+# ================================================================================= 
+
+
+@dp.callback_query(F.data == "Test Drive")
+async def process_test_drive(callback: CallbackQuery , state:FSMContext):
+    pass
+
+
 # =================================================================================
 # MAIN EXECUTION BLOCK
 # =================================================================================

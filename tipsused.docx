@@ -82,3 +82,18 @@ But look at it from the user's perspective. They just saw "You selected [the dat
 The Solution: Ask, Then Wait
 The core principle of FSM is that a handler should process the current information and then ask the question for the next state.
 You need to modify your process_simple_calendar handler to explicitly ask the user for the time.
+
+
+
+I want to separate test drive handler in separate file, from main - how to make that?
+That is an excellent and very professional step to take! Separating your handlers into different files (a concept often called "blueprints" or "routers" in web frameworks) is the best way to keep your main bot file clean and manage a large project.
+In aiogram 3.x, the tool for this is the Router.
+A Router acts like a mini-Dispatcher. You can attach handlers to it just like you do with dp, and then you "plug" that router into your main dispatcher.
+Here is the complete, step-by-step guide to move your TestDrive FSM flow into its own file.
+The Strategy
+Create a New File: We'll make a new Python file, for example, handlers/test_drive.py.
+Create a Router: Inside this new file, we will create an instance of Router.
+Move the Code: We will cut and paste all the TestDrive-related code (the StatesGroup, the register_testdrive function, and all the handlers) into this new file.
+Change Decorators: We'll change all the decorators from @dp. to @router. (using the name of our new router).
+Import in Main File: In your main bot file (tajmotors.py), we will import the new router.
+Include the Router: We'll tell the main dispatcher (dp) to include all the handlers from our new router using dp.include_router().
