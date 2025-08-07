@@ -62,3 +62,23 @@ Used Calendar date selection directly from chat.
     # It returns True and the selected date if a date was chosen.
     # It returns False and a new calendar markup if the user navigated months.
     selected, LSTEP = await calendar.process_selection(callback, callback_data)
+
+Made the handler to awake, but it did not work - WHY?
+
+Of course! You've run into one of the most fundamental and important concepts of Finite State Machines (FSM). This is a perfect example to learn from.
+The reason your process_time_service handler doesn't run is that the bot is waiting for a message that it never asked for.
+Let's trace the logic step-by-step to see where the chain of events breaks.
+The Problem: The Broken Chain
+User Clicks a Date: The user interacts with the calendar.
+process_simple_calendar Runs: This callback_query handler correctly catches the button click.
+Inside the Handler:
+It checks if a valid, future date was selected.
+It sends a confirmation message: await callback_query.message.answer('You selected ...').
+It saves the date to the state: await state.update_data(date=...).
+It sets the state for the next step: await state.set_state(TestDrive.time).
+And then the function ends.
+At this point, the bot has done its job. It has successfully processed the date and is now in the TestDrive.time state. The handler it's waiting for is @dp.message(TestDrive.time), which expects the user to send a text message.
+But look at it from the user's perspective. They just saw "You selected [the date]. Our manager will contact you soon!" They have not been asked to type anything else. They have no reason to send a message, so the process_time_service handler is never triggered.
+The Solution: Ask, Then Wait
+The core principle of FSM is that a handler should process the current information and then ask the question for the next state.
+You need to modify your process_simple_calendar handler to explicitly ask the user for the time.

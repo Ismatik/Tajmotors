@@ -6,6 +6,7 @@ import logging
 import re
 import pandas as pd
 
+
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.enums import ParseMode
 from aiogram.filters import Command
@@ -23,18 +24,17 @@ from aiogram.utils.markdown import hbold
 
 from config_reader import config
 
-
 # =================================================================================
 # 2. CONFIGURATION AND INITIALIZATION
 # =================================================================================
 
 logging.basicConfig(level=logging.INFO)
 
-EXCEL_FILE = 'Registered_users.xlsx'
+EXCEL_FILE = 'Registration files/Registered_users.xlsx'
 BOT_DESCRIPTION = (
     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\nКомпания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
 )
-TEST_DRIVE_LIST = 'Test_drive_list.xlsx'
+TEST_DRIVE_LIST = 'Registration files/Test_drive_list.xlsx'
 
 # Initialize bot, dispatcher
 bot = Bot(token=config.bot_token.get_secret_value())
@@ -473,7 +473,7 @@ async def process_time_service(message:Message, state:FSMContext):
 # =================================================================================
 
 async def main():
-    await dp.start_polling(bot )
+    await dp.start_polling(bot)
     
 if __name__ == "__main__":
     asyncio.run(main())
