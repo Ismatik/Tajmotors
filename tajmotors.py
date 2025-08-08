@@ -4,8 +4,7 @@
 import asyncio
 import logging
 import re
-import pandas as pd
-
+from Registration_functions import functions
 
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.enums import ParseMode
@@ -29,11 +28,9 @@ from config_reader import config
 
 logging.basicConfig(level=logging.INFO)
 
-EXCEL_FILE = '/home/ikki/Desktop/Koinot/Tajmotors/Registration files/Registered_users.xlsx'
 BOT_DESCRIPTION = (
     "ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\nКомпания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года."
 )
-TEST_DRIVE_LIST = '/home/ikki/Desktop/Koinot/Tajmotors/Registration files/Test_drive_list.xlsx'
 
 # Initialize bot, dispatcher
 bot = Bot(token=config.bot_token.get_secret_value())
@@ -64,117 +61,14 @@ class Service(StatesGroup):
     userid = State()
     comments = State()
 
+class TestDrive(StatesGroup):
+    car_model = State()
+    name=State()
+    phone = State()
+    test_date = State()
+    time = State()
+    comments = State()
 
-def check_registered(user_id) -> bool:
-    """Enter User_ID to check, if he was registered already. 
-    To proceed for further steps."""
-    try: 
-        
-        #Reading excel file using pd.read_excel
-        df = pd.read_excel(EXCEL_FILE)
-
-        return user_id in df["User_ID"].tolist()
-    
-    except FileNotFoundError:
-        return False
-    
-
-def register_user(user_id , name , phone, email, username,) -> None:
-    """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
-    As he finished registration, initialize the function."""
-        
-    new_df = pd.DataFrame([{
-        'User_ID':user_id,
-        'Name': name,
-        'Phone' : phone,
-        'Email' : email,
-        'Username' : username
-        }])
-    try: 
-        ex_df = pd.read_excel(EXCEL_FILE)
-        
-        updated_df = pd.concat([ex_df, new_df], ignore_index=True)
-        updated_df.to_excel(EXCEL_FILE, index=False)
-
-    except FileNotFoundError:
-        
-        new_df.to_excel(EXCEL_FILE , index=False)
-
-
-def fetch_name(user_id)-> str:
-    
-    try:
-        df = pd.read_excel(EXCEL_FILE)
-        # 1. Filter the DataFrame to find the row(s) matching the user_id
-         
-        user_row = df[df["User_ID"] == user_id]
-        
-        # 2. Check if any rows were found. .empty is the correct way to do this.
-        if not user_row.empty:
-            # 3. Get the value from the 'Name' column of the found row.
-            # .item() is perfect for extracting a single value from a Series.
-            return user_row["Name"].item()
-        else:
-            # 4. Nothing found, no such user
-            return None
-            
-    except FileExistsError:
-        return None
-
-def fetch_name_and_phone_number(user_id):
-    try:
-        df = pd.read_excel(EXCEL_FILE)
-        # 1. Filter the DataFrame to find the row(s) matching the user_id
-         
-        user_row = df[df["User_ID"] == user_id]
-        
-        # 2. Check if any rows were found. .empty is the correct way to do this.
-        if not user_row.empty:
-            # 3. Get the value from the 'Name' column of the found row.
-            # .item() is perfect for extracting a single value from a Series.
-            return user_row["Name"].item(), user_row["Phone"].item()
-        else:
-            # 4. Nothing found, no such user
-            return None
-            
-    except FileExistsError:
-        return None
-
-def register_service(user_id , fullname , contact_number, VIN, auto_model, service, date_service, registration_time,time_service, comments):
-    """
-        ◦ ФИО. - fullname\n 
-        ◦ Контактный телефон. - contact_number\n
-        ◦ Госномер или VIN-код автомобиля. - VIN\n
-        ◦ Модель автомобиля. - auto_model\n
-        ◦ Тип необходимой услуги (выбор из списка, который редактируется в админ-панели). - service\n
-        ◦ Желаемая дата. - date_service\n
-        ◦ Желаемое время. - time_service\n
-        ◦ Дата и время регистрации. - registration_time\n
-        ◦ ID Пользователя
-    """
-    new_df = pd.DataFrame([{
-        'User_ID':user_id,
-        'Full name': fullname,
-        'Phone/Contact number' : contact_number,
-        'VIN' : VIN,
-        'Auto Model' : auto_model,
-        'Service Type' : service,
-        'Service Datetime' : date_service,
-        'Registration time' : registration_time,
-        'Time Service' : time_service,
-        'Comments' : comments
-        }])
-    
-    
-    try:
-        ex_df = pd.read_excel(TEST_DRIVE_LIST)
-        
-        updated_df = pd.concat([ex_df, new_df], ignore_index=True)
-        updated_df.to_excel(TEST_DRIVE_LIST, index=False)
-
-    except FileNotFoundError:
-        new_df.to_excel(TEST_DRIVE_LIST , index=False)
-        
 # =================================================================================
 # 6. HANDLERS FOR REGISTRATION
 # =================================================================================
@@ -185,7 +79,7 @@ def register_service(user_id , fullname , contact_number, VIN, auto_model, servi
 async def cmd_start(message: Message, state: FSMContext):
     await state.set_state(Registration.phone)
     #Checking if he was registered
-    if check_registered(message.chat.id):
+    if functions.check_registered(message.chat.id):
         await show_new_menu(message)
     
     else:
@@ -281,7 +175,7 @@ async def email_handler(message: Message, state:FSMContext):
     # Retrieve all the stored data
     data = await state.get_data()
 
-    register_user(user_id=data['iduser'] , name=data['name'] , phone=data["phone"] , email = data["email"], username= data['username'])
+    functions.register_user(user_id=data['iduser'] , name=data['name'] , phone=data["phone"] , email = data["email"], username= data['username'])
     
     await message.answer(
         "Registration complete! Thanks for providing information.\n\n"
@@ -300,7 +194,7 @@ async def email_handler(message: Message, state:FSMContext):
 
 async def show_new_menu(message: Message):
 
-    name = fetch_name(message.from_user.id)
+    name = functions.fetch_name(message.from_user.id)
     
     if name:
         content = f"Hello, <b>{name}</b>, Welcome to TajMotors Bot!\n"
@@ -336,7 +230,7 @@ async def show_new_menu(message: Message):
 async def process_service(callback: types.CallbackQuery , state:FSMContext):
     await callback.answer() #Service was clicked
     
-    name , phone = fetch_name_and_phone_number(callback.from_user.id)
+    name , phone = functions.fetch_name_and_phone_number(callback.from_user.id)
     await state.update_data(name= name , phone_number = phone)
 
     
@@ -480,7 +374,7 @@ async def process_time_service(callback_query: types.CallbackQuery , state:FSMCo
     
     await callback_query.message.edit_text(text=f"You selected date on <b>{info["date"]} at {info["time"]}</b>.\n\n"
                                                 f"Great. If you have any <b>additional comments</b> or requests for the mechanic, please enter them now. Please add contact number in case if we would not be able to reach you with number you registered with.\n\n"
-                                                f"If you have no comments, just send a dash (-).",
+                                                f"If you have no comments, just send a dash (-) to finish filling request form.",
                                            parse_mode=ParseMode.HTML)
     
     await state.set_state(Service.comments)
@@ -491,7 +385,7 @@ async def process_test_drive_comments(message: Message, state:FSMContext):
     await state.update_data(comments = message.text)
     
     info = await state.get_data()
-    register_service(user_id=info["userid"] , 
+    functions.register_service(user_id=info["userid"] , 
                         fullname=info["name"],
                         contact_number = info["phone_number"],
                         VIN=info["VIN"] , 
@@ -520,7 +414,24 @@ async def process_test_drive_comments(message: Message, state:FSMContext):
 
 @dp.callback_query(F.data == "Test Drive")
 async def process_test_drive(callback: CallbackQuery , state:FSMContext):
-    pass
+    await callback.answer() #Clicked Test Drive
+
+    name , phone = functions.fetch_name_and_phone_number(callback.from_user.id)
+    await state.update_data(name= name , phone_number = phone)
+
+    car_list = ["Toyota Camry 1" , "Toyota Camry 2" , "Toyota Camry 3" , "Toyota Camry 4" ,"Toyota Camry 5" ,"Toyota Camry 6" ,"Toyota Camry 7" "Toyota Camry 8","Toyota Camry 9", "Toyota Camry 10"]
+
+    kb = []
+    for i in car_list:
+        kb.append(InlineKeyboardButton)
+    
+    await callback.message.answer(f"Thanks for selecting TajMotors! We will use name and phone number from registration form you filled!Plase fill the from for test drive.🚗\n"
+                                  f"<b>Name:</b> {name}\n<b>Phone:</b> {phone}\n" 
+                                  f"Please select vehicle you want to <b>drive test</b>:",
+                                  parse_mode=ParseMode.HTML)
+    
+    await state.set_state(TestDrive.car_model)
+    
 
 
 # =================================================================================
