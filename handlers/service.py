@@ -1,27 +1,22 @@
-import asyncio
-import logging
-import re
-import pandas as pd
+from Registration_functions.functions import fetch_name,fetch_name_and_phone_number, register_service,register_testdrive,register_user,check_registered
 
-
-from aiogram import Bot, Dispatcher, F, types
+from aiogram import F, types, Router
 from aiogram.enums import ParseMode
-from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import (
-    InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton,
-    Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, CallbackQuery
+    InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 )
 from aiogram.filters.callback_data import CallbackData
 
-from aiogram_calendar import SimpleCalendar , SimpleCalendarCallback, get_user_locale, DialogCalendar
+from aiogram_calendar import SimpleCalendar , SimpleCalendarCallback, get_user_locale
 from datetime import date, datetime
+from utils.utils import Service
 
-from config_reader import config
+from config_reader import COMMENTS
 
+router = Router()
 
-@dp.callback_query(F.data == "Service")
+@router.callback_query(F.data == "Service")
 async def process_service(callback: types.CallbackQuery , state:FSMContext):
     await callback.answer() #Service was clicked
     
@@ -36,7 +31,7 @@ async def process_service(callback: types.CallbackQuery , state:FSMContext):
     
     await state.set_state(Service.VIN)
     
-@dp.message(Service.VIN)
+@router.message(Service.VIN)
 async def process_service_VIN(message: Message, state: FSMContext):
     if len(message.text) != 17:
         await message.reply("Please enter correct VIN.")
@@ -49,7 +44,7 @@ async def process_service_VIN(message: Message, state: FSMContext):
     # Set the state to wait for the model
     await state.set_state(Service.auto_model)
     
-@dp.message(Service.auto_model)
+@router.message(Service.auto_model)
 async def process_service_auto(message: Message , state: FSMContext):
 
     await state.update_data(auto_model = message.text)
@@ -79,7 +74,7 @@ async def process_service_auto(message: Message , state: FSMContext):
 
     await state.set_state(Service.action_list)
     
-@dp.callback_query(Service.action_list, F.data.startswith("chosen_service:"))
+@router.callback_query(Service.action_list, F.data.startswith("chosen_service:"))
 async def process_service_choice(callback: types.CallbackQuery, state: FSMContext):
 
     # await callback.answer()
@@ -102,13 +97,11 @@ async def process_service_choice(callback: types.CallbackQuery, state: FSMContex
     )
     await callback.answer()
 
-@dp.callback_query(SimpleCalendarCallback.filter())
+@router.callback_query(SimpleCalendarCallback.filter())
 async def process_simple_calendar(callback_query: CallbackQuery, callback_data: CallbackData, state:FSMContext):
     calendar = SimpleCalendar(
         locale=await get_user_locale(callback_query.from_user), show_alerts=True
     )
-    
-    # calendar.set_dates_range(datetime(2022, 1, 1), datetime(2025, 12, 31))
     
     calendar.set_dates_range(datetime.today(), datetime(2030, 12, 31))# set from today
     selected, data = await calendar.process_selection(callback_query, callback_data)
@@ -156,7 +149,7 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
                 
             )
 
-@dp.callback_query(Service.time , F.data.startswith("Chosen-"))
+@router.callback_query(Service.time , F.data.startswith("Chosen-"))
 async def process_time_service(callback_query: types.CallbackQuery , state:FSMContext):
     await callback_query.answer()
     
@@ -167,14 +160,12 @@ async def process_time_service(callback_query: types.CallbackQuery , state:FSMCo
     await state.update_data(time = chosen_time)
     info = await state.get_data()
     
-    await callback_query.message.edit_text(text=f"You selected date on <b>{info["date"]} at {info["time"]}</b>.\n\n"
-                                                f"Great. If you have any <b>additional comments</b> or requests for the mechanic, please enter them now. Please add contact number in case if we would not be able to reach you with number you registered with.\n\n"
-                                                f"If you have no comments, just send a dash (-) to finish filling request form.",
+    await callback_query.message.edit_text(text=COMMENTS,
                                            parse_mode=ParseMode.HTML)
     
     await state.set_state(Service.comments)
     
-@dp.message(Service.comments)
+@router.message(Service.comments)
 async def process_test_drive_comments(message: Message, state:FSMContext):
     
     await state.update_data(comments = message.text)
@@ -193,8 +184,7 @@ async def process_test_drive_comments(message: Message, state:FSMContext):
     
     await message.answer(
         f"Thank you! Your appointment request is complete and has been registered.\n"
-        f"Our manager will contact you soon."
-        f"We recevied your request.<b>Our manager will contact you soon!</b>",
+        f"We recevied your request.<b>Our manager will contact you soon!</b>" + COMMENTS,
         parse_mode=ParseMode.HTML
     )
     
