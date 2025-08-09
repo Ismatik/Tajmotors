@@ -1,4 +1,4 @@
-from Registration_functions.functions import fetch_name,fetch_name_and_phone_number, register_testdrive, check_registered
+from Registration_functions.functions import fetch_name_and_phone_number, register_testdrive
 
 from aiogram import F, types, Router
 from aiogram.enums import ParseMode
@@ -22,7 +22,7 @@ async def process_test_drive(callback: CallbackQuery , state:FSMContext):
     await callback.answer() #Clicked Test Drive
 
     name , phone = fetch_name_and_phone_number(callback.from_user.id)
-    await state.update_data(name= name , phone_number = phone)
+    await state.update_data(name= name , phone = phone)
 
     car_list = ["Toyota Camry 1" , "Toyota Camry 2" , "Toyota Camry 3" , "Toyota Camry 4" ,"Toyota Camry 5" ,"Toyota Camry 6" ,"Toyota Camry 7" , "Toyota Camry 8","Toyota Camry 9", "Toyota Camry 10"]
 
@@ -66,8 +66,9 @@ async def process_test_drive_car(callback: CallbackQuery , state: FSMContext):
     )
     
     await callback.answer()
+    await state.set_state(TestDrive.test_date)
 
-@router.callback_query(SimpleCalendarCallback.filter())
+@router.callback_query(TestDrive.test_date , SimpleCalendarCallback.filter())
 async def process_simple_calendar(callback_query:CallbackQuery , callback_data: CallbackData, state: FSMContext):
     calendar = SimpleCalendar(
         locale = await get_user_locale(callback_query.from_user), 
@@ -81,13 +82,14 @@ async def process_simple_calendar(callback_query:CallbackQuery , callback_data: 
         if data > datetime.today():
             await callback_query.message.edit_text(
                 f'You selected this date - <b>{data.strftime("%d/%m/%Y")}</b>.\n\n'
-                f'Now, please enter a convenient time (e.g., 14:30).',
+                f'Now, please enter a convenient time (e.g., 10:00).',
                 parse_mode=ParseMode.HTML
             )
             
             await state.update_data(test_date = data.strftime("%d/%m%Y"))
-            await state.update_data(userid = callback_query.from_user.id)
-           
+            await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
+            await state.update_data(userid = callback_query.message.from_user.id)
+            
             time_slots = ["09:00", "09:30" , "10:00" , "10:30", "11:00" , "11:30", "14:00" , "14:30", "15:00" , "15:30", "16:00", "16:30"]
             buttons = []
             for slots in time_slots:
@@ -128,7 +130,7 @@ async def process_testdrive_time(callback_query: CallbackQuery, state: FSMContex
     
     info = await state.get_data()
     
-    await callback_query.message.edit_text(text=f"You selected date on <b>{info["date"]} at {info["time"]}</b>.\n\n" + COMMENTS,
+    await callback_query.message.edit_text(text=f"You selected date on <b>{info["test_date"]} at {info["time"]}</b>.\n\n{COMMENTS}",
                                            parse_mode=ParseMode.HTML)
     
     await state.set_state(TestDrive.comments)
@@ -139,21 +141,13 @@ async def process_testdrive_comments(message: Message, state: FSMContext):
     
     await state.update_data(comments = message.text)
     
-    info = state.get_data()
+    info = await state.get_data()
     
-    register_testdrive(user_id= info["userid"],
-                       fullname= info["name"],
-                       contact_number= info["phone"],
-                       auto_model = info["car model"],
-                       test_date=info["test_date"],
-                       time=info["time"],
-                       comments=info["comments"],
-                       registration_time=info["registration_time"]
-                       )
+    register_testdrive(user_id= info["userid"],fullname= info["name"],contact_number= info["phone"],auto_model = info["car_model"],test_date=info["test_date"],time=info["time"],comments=info["comments"],registration_time=info["registration_time"])
 
     await message.answer(
         f"Thank you! Your appointment request is complete and has been registered.\n"
-        f"We recevied your request.<b>Our manager will contact you soon!</b>" + COMMENTS,
+        f"We recevied your request for <b>Test Drive</b>.\n<b>Our manager will contact you soon!</b>" + COMMENTS,
         parse_mode=ParseMode.HTML
     )
     

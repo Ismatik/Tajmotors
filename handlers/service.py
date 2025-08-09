@@ -1,4 +1,4 @@
-from Registration_functions.functions import fetch_name,fetch_name_and_phone_number, register_service,register_testdrive,register_user,check_registered
+from Registration_functions.functions import fetch_name_and_phone_number, register_service
 
 from aiogram import F, types, Router
 from aiogram.enums import ParseMode
@@ -96,8 +96,9 @@ async def process_service_choice(callback: types.CallbackQuery, state: FSMContex
         reply_markup=await calendar.start_calendar()
     )
     await callback.answer()
+    await state.set_state(Service.date)
 
-@router.callback_query(SimpleCalendarCallback.filter())
+@router.callback_query(Service.date , SimpleCalendarCallback.filter())
 async def process_simple_calendar(callback_query: CallbackQuery, callback_data: CallbackData, state:FSMContext):
     calendar = SimpleCalendar(
         locale=await get_user_locale(callback_query.from_user), show_alerts=True
@@ -132,7 +133,7 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
                 kb.append(buttons[i:i+3])
             
             keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
-            await callback_query.message.answer(text="Select your convenient time:",
+            await callback_query.message.answer(text="Select your convenient time for service:",
                                                 reply_markup = keyboard
                                                 )            
 
@@ -166,15 +167,16 @@ async def process_time_service(callback_query: types.CallbackQuery , state:FSMCo
     await state.set_state(Service.comments)
     
 @router.message(Service.comments)
-async def process_test_drive_comments(message: Message, state:FSMContext):
+async def process_service_comments(message: Message, state:FSMContext):
     
     await state.update_data(comments = message.text)
     
     info = await state.get_data()
+    
     register_service(user_id=info["userid"] , 
                         fullname=info["name"],
                         contact_number = info["phone_number"],
-                        VIN=info["VIN"] , 
+                        VIN = info["VIN"] , 
                         auto_model=info["auto_model"], 
                         service=info["action_list"], 
                         date_service=info["date"],
@@ -184,7 +186,7 @@ async def process_test_drive_comments(message: Message, state:FSMContext):
     
     await message.answer(
         f"Thank you! Your appointment request is complete and has been registered.\n"
-        f"We recevied your request.<b>Our manager will contact you soon!</b>" + COMMENTS,
+        f"We recevied your request for <b>Service</b>.\n<b>Our manager will contact you soon!</b>" + COMMENTS,
         parse_mode=ParseMode.HTML
     )
     

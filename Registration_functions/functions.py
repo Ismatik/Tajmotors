@@ -151,9 +151,8 @@ def register_testdrive(user_id , fullname , contact_number, auto_model, test_dat
     """
     ◦ ФИО. - fullname\n 
     ◦ Контактный телефон. - contact_number\n
-    ◦ Госномер или VIN-код автомобиля. - VIN\n
     ◦ Модель автомобиля. - auto_model\n
-    ◦ Тип необходимой услуги (выбор из списка, который редактируется в админ-панели). - service\n
+    ◦ Выбор машины(выбор из списка, который редактируется в админ-панели). - service\n
     ◦ Желаемая дата. - date_service\n
     ◦ Желаемое время. - time_service\n
     ◦ Дата и время регистрации. - registration_time\n
