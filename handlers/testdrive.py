@@ -147,7 +147,7 @@ async def process_testdrive_comments(message: Message, state: FSMContext):
 
     await message.answer(
         f"Thank you! Your appointment request is complete and has been registered.\n"
-        f"We recevied your request for <b>Test Drive</b>.\n<b>Our manager will contact you soon!</b>" + COMMENTS,
+        f"We recevied your request for <b>Test Drive</b>.\n<b>Our manager will contact you soon!</b>",
         parse_mode=ParseMode.HTML
     )
     

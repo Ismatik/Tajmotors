@@ -161,7 +161,7 @@ async def process_time_service(callback_query: types.CallbackQuery , state:FSMCo
     await state.update_data(time = chosen_time)
     info = await state.get_data()
     
-    await callback_query.message.edit_text(text=COMMENTS,
+    await callback_query.message.edit_text(text=f"You selected date on <b>{info["date"]} at {info["time"]}</b>.\n\n{COMMENTS}",
                                            parse_mode=ParseMode.HTML)
     
     await state.set_state(Service.comments)
@@ -186,7 +186,7 @@ async def process_service_comments(message: Message, state:FSMContext):
     
     await message.answer(
         f"Thank you! Your appointment request is complete and has been registered.\n"
-        f"We recevied your request for <b>Service</b>.\n<b>Our manager will contact you soon!</b>" + COMMENTS,
+        f"We recevied your request for <b>Service</b>.\n<b>Our manager will contact you soon!</b>",
         parse_mode=ParseMode.HTML
     )
     
