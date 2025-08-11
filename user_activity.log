@@ -1,0 +1,37 @@
+2025-08-11 17:18:08,399 - INFO - aiogram.dispatcher - Start polling
+2025-08-11 17:18:09,193 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-11 17:18:15,643 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-11 17:18:15
+2025-08-11 17:18:16,169 - INFO - aiogram.event - Update id=799215629 is handled. Duration 526 ms by bot id=8138074349
+2025-08-11 17:18:24,146 - INFO - root - Ismat . REGISTRATION begun | 631886740 | 2025-08-11 17:18:24
+2025-08-11 17:18:24,865 - INFO - aiogram.event - Update id=799215630 is handled. Duration 720 ms by bot id=8138074349
+2025-08-11 17:18:29,688 - INFO - root - Ismat .'s NUMBER received | 631886740 | 2025-08-11 17:18:29
+2025-08-11 17:18:30,389 - INFO - aiogram.event - Update id=799215631 is handled. Duration 701 ms by bot id=8138074349
+2025-08-11 17:18:42,991 - INFO - root - ikII MARU - NAME fetched | 631886740 | 2025-08-11 17:18:42
+2025-08-11 17:18:43,295 - INFO - aiogram.event - Update id=799215632 is handled. Duration 304 ms by bot id=8138074349
+2025-08-11 17:19:01,121 - INFO - root - asdads@mail.ru - EMAIL fetched | 631886740 | 2025-08-11 17:19:01
+2025-08-11 17:19:01,687 - INFO - root - asdads@mail.ru's - registration finished | 631886740 | 2025-08-11 17:19:01
+2025-08-11 17:19:01,925 - INFO - aiogram.event - Update id=799215633 is handled. Duration 805 ms by bot id=8138074349
+2025-08-11 17:19:23,560 - INFO - handlers.testdrive - Ismat . user 631886740-id started the Test_drive flow | 2025-08-11 17:19:23
+2025-08-11 17:19:24,173 - INFO - handlers.testdrive - Ismat . user 631886740 is on selection of buttons | 2025-08-11 17:19:24
+2025-08-11 17:19:24,173 - INFO - aiogram.event - Update id=799215634 is handled. Duration 614 ms by bot id=8138074349
+2025-08-11 17:19:32,472 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of car | 2025-08-11 17:19:32
+2025-08-11 17:19:33,088 - INFO - handlers.testdrive - Ismat . user with 631886740-id made selection of car | 2025-08-11 17:19:33
+2025-08-11 17:19:33,684 - INFO - aiogram.event - Update id=799215635 is handled. Duration 1213 ms by bot id=8138074349
+2025-08-11 17:19:38,206 - INFO - handlers.testdrive - Ismat . user 631886740-id STARTED SELECTING THE DATE | 2025-08-11 17:19:38
+2025-08-11 17:19:38,924 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTED THE DATE | 2025-08-11 17:19:38
+2025-08-11 17:19:39,227 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTION of time | 2025-08-11 17:19:39
+2025-08-11 17:19:39,227 - INFO - aiogram.event - Update id=799215636 is handled. Duration 1022 ms by bot id=8138074349
+2025-08-11 17:19:45,379 - INFO - handlers.testdrive - Ismat . user 631886740-id time selected | Chosen test time-15:00 | 2025-08-11 17:19:45
+2025-08-11 17:19:45,993 - INFO - handlers.testdrive - Ismat . user 631886740- COMMENTS to add | Chosen test time-15:00 | 2025-08-11 17:19:45
+2025-08-11 17:19:45,993 - INFO - aiogram.event - Update id=799215637 is handled. Duration 615 ms by bot id=8138074349
+2025-08-11 17:36:51,126 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-11 17:36:51,126 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-11 17:36:51,126 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-11 17:36:57,823 - INFO - aiogram.dispatcher - Start polling
+2025-08-11 17:37:01,690 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-11 17:37:03,109 - INFO - aiogram.event - Update id=799215638 is handled. Duration 608 ms by bot id=8138074349
+2025-08-11 17:37:10,786 - INFO - aiogram.event - Update id=799215639 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-11 17:38:34,922 - INFO - aiogram.event - Update id=799215640 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-11 17:38:55,574 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-11 17:38:55,574 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-11 17:38:55,575 - INFO - aiogram.dispatcher - Polling stopped

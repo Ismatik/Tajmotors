@@ -3,12 +3,13 @@
 # =================================================================================
 import asyncio
 import logging
-import re
-
+import sys
+import os
 
 from aiogram import Bot, Dispatcher
 
 from config_reader import config
+from config_reader import USER_ACTIVITY_LOG_FILE
 
 #File containing function to register
 from Registration_functions import functions
@@ -22,8 +23,7 @@ from handlers.testdrive import router as testdrive_router
 # 21. CONFIGURATION AND INITIALIZATION
 # =================================================================================
 
-logging.basicConfig(level=logging.INFO)
-    
+
 # Initialize bot, dispatcher
 bot = Bot(token=config.bot_token.get_secret_value())
 dp = Dispatcher()
@@ -34,11 +34,22 @@ dp = Dispatcher()
 # =================================================================================
 
 async def main():
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        handlers={
+            logging.FileHandler(USER_ACTIVITY_LOG_FILE , mode = "a"),
+            logging.StreamHandler()
+        }
+    )
     dp.include_router(service_router)
     dp.include_router(registration_router)
     dp.include_router(testdrive_router)
     await dp.start_polling(bot)
     
 if __name__ == "__main__":
-    asyncio.run(main())
-        
+    # logging.basicConfig(level=logging.INFO , stream=sys.stdout)
+    try:
+        asyncio.run(main())
+    except (KeyboardInterrupt , SystemExit):
+        logging.info("Bot was stopped.")

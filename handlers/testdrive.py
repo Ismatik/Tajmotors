@@ -15,12 +15,20 @@ from datetime import date, datetime
 from utils.utils import TestDrive
 from config_reader import COMMENTS
 
+import logging
+
+
+logger = logging.getLogger(__name__)
 router = Router()
 
 @router.callback_query(F.data == "test_drive")
 async def process_test_drive(callback: CallbackQuery , state:FSMContext):
-    await callback.answer() #Clicked Test Drive
-
+    user = callback.from_user
+    
+    logger.info(f"{user.full_name} user {user.id}-id started the Test_drive flow | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
+    
+    await callback.answer() #Clicked Test Drive    
+    
     name , phone = fetch_name_and_phone_number(callback.from_user.id)
     await state.update_data(name= name , phone = phone)
 
@@ -33,7 +41,7 @@ async def process_test_drive(callback: CallbackQuery , state:FSMContext):
     rows = []
     for i in range(0, len(kb), 3):
         rows.append(kb[i:i+3])
-        
+    
     keyboard = InlineKeyboardMarkup(inline_keyboard= rows)
     
     await callback.message.answer(f"Thanks for selecting TajMotors! We will use name and phone number from registration form you filled!Plase fill the from for test drive.🚗\n"
@@ -41,11 +49,16 @@ async def process_test_drive(callback: CallbackQuery , state:FSMContext):
                                   f"Please select vehicle you want to <b>drive test</b>:",
                                   parse_mode=ParseMode.HTML,
                                   reply_markup=keyboard)
+    logger.info(f"{user.full_name} user {user.id} is on selection of buttons | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     
     await state.set_state(TestDrive.car_model)
     
 @router.callback_query(TestDrive.car_model , F.data.startswith("Test:"))
 async def process_test_drive_car(callback: CallbackQuery , state: FSMContext):
+    user = callback.from_user
+    
+    logger.info(f"{user.full_name} user with {user.id}-id, started the selection of car | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
+    
     await callback.answer()
     
     selected = callback.data.split(":")[-1]
@@ -54,6 +67,7 @@ async def process_test_drive_car(callback: CallbackQuery , state: FSMContext):
     await callback.message.edit_text(f"Great choice! We saved your choice:<b>{selected}</b>",
                                      parse_mode=ParseMode.HTML
                                      )
+    logger.info(f"{user.full_name} user with {user.id}-id made selection of car | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     
     calendar = SimpleCalendar(
         locale= await get_user_locale(callback.from_user),
@@ -64,12 +78,14 @@ async def process_test_drive_car(callback: CallbackQuery , state: FSMContext):
         "Select date for Test Drive:",
         reply_markup= await calendar.start_calendar()
     )
-    
+    logger.info(f"{user.full_name} user with {user.id}-id, started the selection of DATE FOR TEST DRIVE | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     await callback.answer()
     await state.set_state(TestDrive.test_date)
 
 @router.callback_query(TestDrive.test_date , SimpleCalendarCallback.filter())
 async def process_simple_calendar(callback_query:CallbackQuery , callback_data: CallbackData, state: FSMContext):
+    user = callback_query.from_user    
+    logger.info(f"{user.full_name} user {user.id}-id STARTED SELECTING THE DATE | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     calendar = SimpleCalendar(
         locale = await get_user_locale(callback_query.from_user), 
         show_alerts = True
@@ -85,6 +101,8 @@ async def process_simple_calendar(callback_query:CallbackQuery , callback_data: 
                 f'Now, please enter a convenient time (e.g., 10:00).',
                 parse_mode=ParseMode.HTML
             )
+            
+            logger.info(f"{user.full_name} user {user.id}-id SELECTED THE DATE | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
             
             await state.update_data(test_date = data.strftime("%d/%m%Y"))
             await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
@@ -107,10 +125,12 @@ async def process_simple_calendar(callback_query:CallbackQuery , callback_data: 
             await callback_query.message.answer(text="Select time for test drive:",
                                                 reply_markup = keyboard
                                                 )            
+            logger.info(f"{user.full_name} user {user.id}-id SELECTION of time BUTTONS SHOWN | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
 
             await state.set_state(TestDrive.time)
         
         else:
+            logger.info(f"{user.full_name} user {user.id}-id WRONG selection of time | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
             
             await callback_query.answer("You cannot select a date in the past. Please choose again.", show_alert=True)
             
@@ -121,6 +141,9 @@ async def process_simple_calendar(callback_query:CallbackQuery , callback_data: 
         
 @router.callback_query(TestDrive.time , F.data.startswith("Chosen test time-"))
 async def process_testdrive_time(callback_query: CallbackQuery, state: FSMContext):
+    user = callback_query.from_user
+    logger.info(f"{user.full_name} user {user.id}-id TIME SELECTED | {callback_query.data} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
+
     await callback_query.answer()
     
     chosen_time = callback_query.data.split("-")[-1]
@@ -132,7 +155,7 @@ async def process_testdrive_time(callback_query: CallbackQuery, state: FSMContex
     
     await callback_query.message.edit_text(text=f"You selected date on <b>{info["test_date"]} at {info["time"]}</b>.\n\n{COMMENTS}",
                                            parse_mode=ParseMode.HTML)
-    
+    logger.info(f"{user.full_name} user {user.id}-id COMMENTS to add | {callback_query.data} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     await state.set_state(TestDrive.comments)
     
 

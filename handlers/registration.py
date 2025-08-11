@@ -1,4 +1,4 @@
-from Registration_functions.functions import fetch_name,fetch_name_and_phone_number, register_service,register_testdrive,register_user,check_registered
+from Registration_functions.functions import fetch_name,register_user,check_registered
 
 from aiogram import F, types, Router
 from aiogram.enums import ParseMode
@@ -9,9 +9,11 @@ from aiogram.types import (
 )
 from aiogram.fsm.state import State
 
+import logging as lg
 import re
 import config_reader as config
 from utils.utils import Registration
+from datetime import datetime
 
 BOT_DESCRIPTION = config.BOT_DESCRIPTION
 
@@ -21,6 +23,8 @@ router = Router()
 @router.message(Command("start"))
 async def cmd_start(message: Message, state: FSMContext):
     await state.set_state(Registration.phone)
+    user = message.from_user
+    lg.info(f"{user.full_name} clicked button /start | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     #Checking if he was registered
     if check_registered(message.chat.id):
         await show_new_menu(message)
@@ -41,10 +45,13 @@ async def cmd_start(message: Message, state: FSMContext):
             reply_markup=keyboard    
         )
         
+        
 
 @router.callback_query(F.data == "start_registration")
 async def start_register(callback: types.CallbackQuery , state: State):
     # First, acknowledge the button press to remove the "loading" icon
+    user = callback.from_user
+    lg.info(f"{user.full_name} REGISTRATION begun | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     await callback.answer()
     
     # Now, send the Reply Keyboard with the contact request button.
@@ -74,6 +81,9 @@ async def contact_handler(message: Message , state: FSMContext):
     
     data = await state.get_data()
     #Here we remove the Reply Keyboard after fetching
+    user = message.from_user
+    lg.info(f"{user.full_name}'s NUMBER received | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
+
     await message.answer(
         f"Thank you for sharing number!I've received this info:\n\nPhone number:{data['phone']}",
         reply_markup= ReplyKeyboardRemove()        
@@ -94,7 +104,10 @@ async def name_handler(message:Message , state:FSMContext):
     if " " not in valid:
         await message.reply("Please enter FULL Name.")
         return
-    
+
+    user = message.from_user
+    lg.info(f"{message.text} - NAME fetched | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
+   
     await state.update_data(name = message.text)
     
     await message.answer(f"Wonderful! Please enter your email address.")
@@ -106,6 +119,8 @@ async def name_handler(message:Message , state:FSMContext):
 @router.message(Registration.waiting_for_email)
 async def email_handler(message: Message, state:FSMContext):
     
+    user = message.from_user
+    lg.info(f"{message.text} - EMAIL fetched | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     # await state.set_state(Registration.email)
     #Need to make a validation for email entry
     valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' , message.text)
@@ -130,6 +145,7 @@ async def email_handler(message: Message, state:FSMContext):
     
     #Registration of user
     await state.clear() #End the FSM Session
+    lg.info(f"{user.full_name} Registration COMPLETE FSM Session CLOSED | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
 
     #Start showind the menu with orders
     await show_new_menu(message)
@@ -137,6 +153,9 @@ async def email_handler(message: Message, state:FSMContext):
 
 async def show_new_menu(message: Message):
 
+    user = message.from_user
+    lg.info(f"{message.text}'s - MAIN MENU SHOW | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
+    
     name = fetch_name(message.from_user.id)
     
     if name:
@@ -144,6 +163,8 @@ async def show_new_menu(message: Message):
     else:
         content = f"Hello, <b>{message.from_user.full_name}</b>, Welcome to TajMotors Bot!\n"
     content =  content + BOT_DESCRIPTION
+
+    lg.info(f"{message.text}'s - MAIN MENU SHOWED | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")    
     
     #Adding a callback data - it helps to know which button is clicked.
     kb = [

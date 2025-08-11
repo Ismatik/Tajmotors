@@ -4,6 +4,7 @@ from pydantic import SecretStr
 EXCEL_FILE = '/home/ikki/Desktop/Koinot/Tajmotors/Registration files/Registered_users.xlsx'
 TEST_DRIVE_LIST = '/home/ikki/Desktop/Koinot/Tajmotors/Registration files/Test_drive_list.xlsx'
 SERVICE_LIST = '/home/ikki/Desktop/Koinot/Tajmotors/Registration files/Service_list.xlsx'
+USER_ACTIVITY_LOG_FILE = '/home/ikki/Desktop/Koinot/Tajmotors/user_activity.log'
 
 BOT_DESCRIPTION = ("ООО «Тадж Моторс» — современный 3S комплекс, построенный в соответствии со всеми стандартами TOYOTA MOTOR CORPORATION\nКомпания ООО «Тадж Моторс» является официальным дилером компании TOYOTA MOTOR CORPORATION в Республики Таджикистан с 05 июля 2013 года.")
 
@@ -21,4 +22,3 @@ class Settings(BaseSettings):
 # and validated,
 # which can then be imported from different places
 config = Settings()
-    
