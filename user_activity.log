@@ -111,3 +111,34 @@
 2025-08-12 11:33:13,133 - WARNING - aiogram.dispatcher - Received SIGINT signal
 2025-08-12 11:33:13,134 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
 2025-08-12 11:33:13,134 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-12 11:39:14,432 - INFO - aiogram.dispatcher - Start polling
+2025-08-12 11:39:15,042 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 11:39:50,058 - INFO - root - Buzurgmehr Abdulloev clicked button /start | 974794263 | 2025-08-12 11:39:50
+2025-08-12 11:39:50,854 - INFO - aiogram.event - Update id=799215662 is handled. Duration 796 ms by bot id=8138074349
+2025-08-12 11:39:51,907 - INFO - root - Buzurgmehr Abdulloev REGISTRATION begun | 974794263 | 2025-08-12 11:39:51
+2025-08-12 11:39:52,518 - INFO - aiogram.event - Update id=799215663 is handled. Duration 610 ms by bot id=8138074349
+2025-08-12 11:39:55,315 - INFO - root - Buzurgmehr Abdulloev's NUMBER received | 974794263 | 2025-08-12 11:39:55
+2025-08-12 11:39:56,204 - INFO - aiogram.event - Update id=799215664 is handled. Duration 889 ms by bot id=8138074349
+2025-08-12 11:40:06,033 - INFO - root - Головач Лена - NAME fetched | 974794263 | 2025-08-12 11:40:06
+2025-08-12 11:40:06,345 - INFO - aiogram.event - Update id=799215665 is handled. Duration 312 ms by bot id=8138074349
+2025-08-12 11:40:13,102 - INFO - root - golovach@lena.ker - EMAIL fetched | 974794263 | 2025-08-12 11:40:13
+2025-08-12 11:40:13,308 - INFO - root - Buzurgmehr Abdulloev Registration COMPLETE FSM Session CLOSED | 974794263 | 2025-08-12 11:40:13
+2025-08-12 11:40:13,308 - INFO - root - golovach@lena.ker's - MAIN MENU SHOW | 974794263 | 2025-08-12 11:40:13
+2025-08-12 11:40:13,312 - INFO - root - golovach@lena.ker's - MAIN MENU SHOWED | 974794263 | 2025-08-12 11:40:13
+2025-08-12 11:40:13,723 - INFO - aiogram.event - Update id=799215666 is handled. Duration 623 ms by bot id=8138074349
+2025-08-12 11:59:16,952 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-12 11:59:16,953 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 11:59:16,953 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-12 12:27:58,553 - INFO - aiogram.dispatcher - Start polling
+2025-08-12 12:27:59,924 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 12:31:24,690 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-12 12:31:24,690 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 12:31:24,690 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-12 12:45:55,669 - INFO - aiogram.dispatcher - Start polling
+2025-08-12 12:45:56,746 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 12:45:57,760 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-12 12:45:57,760 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 12:45:57,760 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-12 14:30:01,727 - INFO - aiogram.dispatcher - Start polling
+2025-08-12 14:30:10,301 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 15:02:44,147 - INFO - aiogram.event - Update id=799215667 is not handled. Duration 1 ms by bot id=8138074349

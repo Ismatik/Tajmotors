@@ -97,3 +97,6 @@ Move the Code: We will cut and paste all the TestDrive-related code (the StatesG
 Change Decorators: We'll change all the decorators from @dp. to @router. (using the name of our new router).
 Import in Main File: In your main bot file (tajmotors.py), we will import the new router.
 Include the Router: We'll tell the main dispatcher (dp) to include all the handlers from our new router using dp.include_router().
+
+
+Admin part needed to be done with FastAPI library, using app = FastAPI. Ping it with Postman, so it makes newslettering by that.

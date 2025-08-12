@@ -28,7 +28,15 @@ def check_registered(user_id) -> bool:
     except FileNotFoundError:
         return False
     
+def fetch_users()->list:
+    """
+
+    Returns:
+        list: list of users
+    """
     
+    return pd.read_excel(REGISTRATION_FILE)
+
 
 def register_user(user_id , name , phone, email, username,) -> None:
     """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
@@ -179,3 +187,5 @@ def register_testdrive(user_id , fullname , contact_number, auto_model, test_dat
 
     except FileNotFoundError:
         new_df.to_excel(TEST_DRIVE_LIST , index=False)
+        
+        
