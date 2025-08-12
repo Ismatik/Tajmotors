@@ -35,3 +35,79 @@
 2025-08-11 17:38:55,574 - WARNING - aiogram.dispatcher - Received SIGINT signal
 2025-08-11 17:38:55,574 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
 2025-08-11 17:38:55,575 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-12 11:26:19,217 - INFO - aiogram.dispatcher - Start polling
+2025-08-12 11:26:19,883 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 11:26:32,174 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-12 11:26:32
+2025-08-12 11:26:32,532 - INFO - aiogram.event - Update id=799215641 is handled. Duration 358 ms by bot id=8138074349
+2025-08-12 11:26:34,952 - INFO - root - Ismat . REGISTRATION begun | 631886740 | 2025-08-12 11:26:34
+2025-08-12 11:26:35,673 - INFO - aiogram.event - Update id=799215642 is handled. Duration 722 ms by bot id=8138074349
+2025-08-12 11:26:38,441 - INFO - root - Ismat .'s NUMBER received | 631886740 | 2025-08-12 11:26:38
+2025-08-12 11:26:38,880 - INFO - aiogram.event - Update id=799215643 is handled. Duration 440 ms by bot id=8138074349
+2025-08-12 11:26:58,104 - INFO - root - Gul Gulov - NAME fetched | 631886740 | 2025-08-12 11:26:58
+2025-08-12 11:26:58,415 - INFO - aiogram.event - Update id=799215644 is handled. Duration 311 ms by bot id=8138074349
+2025-08-12 11:27:12,545 - INFO - root - gul@gmail.com - EMAIL fetched | 631886740 | 2025-08-12 11:27:12
+2025-08-12 11:27:13,064 - INFO - root - Ismat . Registration COMPLETE FSM Session CLOSED | 631886740 | 2025-08-12 11:27:13
+2025-08-12 11:27:13,064 - INFO - root - gul@gmail.com's - MAIN MENU SHOW | 631886740 | 2025-08-12 11:27:13
+2025-08-12 11:27:13,071 - INFO - root - gul@gmail.com's - MAIN MENU SHOWED | 631886740 | 2025-08-12 11:27:13
+2025-08-12 11:27:13,465 - INFO - aiogram.event - Update id=799215645 is handled. Duration 921 ms by bot id=8138074349
+2025-08-12 11:27:23,609 - INFO - handlers.testdrive - Ismat . user 631886740-id started the Test_drive flow | 2025-08-12 11:27:23
+2025-08-12 11:27:24,219 - INFO - handlers.testdrive - Ismat . user 631886740 is on selection of buttons | 2025-08-12 11:27:24
+2025-08-12 11:27:24,219 - INFO - aiogram.event - Update id=799215646 is handled. Duration 611 ms by bot id=8138074349
+2025-08-12 11:27:25,758 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of car | 2025-08-12 11:27:25
+2025-08-12 11:27:26,373 - INFO - handlers.testdrive - Ismat . user with 631886740-id made selection of car | 2025-08-12 11:27:26
+2025-08-12 11:27:26,683 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of DATE FOR TEST DRIVE | 2025-08-12 11:27:26
+2025-08-12 11:27:26,852 - INFO - aiogram.event - Update id=799215647 is handled. Duration 1094 ms by bot id=8138074349
+2025-08-12 11:27:28,525 - INFO - handlers.testdrive - Ismat . user 631886740-id STARTED SELECTING THE DATE | 2025-08-12 11:27:28
+2025-08-12 11:27:28,828 - INFO - aiogram.event - Update id=799215648 is handled. Duration 303 ms by bot id=8138074349
+2025-08-12 11:27:57,713 - INFO - handlers.testdrive - Ismat . user 631886740-id STARTED SELECTING THE DATE | 2025-08-12 11:27:57
+2025-08-12 11:27:59,222 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTED THE DATE | 2025-08-12 11:27:59
+2025-08-12 11:27:59,657 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTION of time BUTTONS SHOWN | 2025-08-12 11:27:59
+2025-08-12 11:27:59,657 - INFO - aiogram.event - Update id=799215649 is handled. Duration 1943 ms by bot id=8138074349
+2025-08-12 11:28:05,499 - INFO - handlers.testdrive - Ismat . user 631886740-id TIME SELECTED | Chosen test time-15:00 | 2025-08-12 11:28:05
+2025-08-12 11:28:06,108 - INFO - handlers.testdrive - Ismat . user 631886740-id COMMENTS to add | Chosen test time-15:00 | 2025-08-12 11:28:06
+2025-08-12 11:28:06,108 - INFO - aiogram.event - Update id=799215650 is handled. Duration 610 ms by bot id=8138074349
+2025-08-12 11:28:17,585 - INFO - handlers.testdrive - Ismat . user 631886740-id ADDED COMMENTS | 2025-08-12 11:28:17
+2025-08-12 11:28:17,890 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE ADDED COMMENTS | 2025-08-12 11:28:17
+2025-08-12 11:28:17,890 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE END | 2025-08-12 11:28:17
+2025-08-12 11:28:17,890 - INFO - aiogram.event - Update id=799215651 is handled. Duration 305 ms by bot id=8138074349
+2025-08-12 11:28:27,942 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-12 11:28:27,942 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 11:28:27,943 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-12 11:28:36,827 - INFO - aiogram.dispatcher - Start polling
+2025-08-12 11:28:56,900 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-12 11:29:30,295 - INFO - aiogram.dispatcher - Start polling
+2025-08-12 11:29:34,852 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 11:29:35,010 - INFO - root - xuwdil clicked button /start | 5547528084 | 2025-08-12 11:29:35
+2025-08-12 11:29:35,935 - INFO - aiogram.event - Update id=799215652 is handled. Duration 926 ms by bot id=8138074349
+2025-08-12 11:29:38,697 - INFO - root - xuwdil REGISTRATION begun | 5547528084 | 2025-08-12 11:29:38
+2025-08-12 11:29:39,304 - INFO - aiogram.event - Update id=799215653 is handled. Duration 608 ms by bot id=8138074349
+2025-08-12 11:29:49,141 - INFO - root - xuwdil's NUMBER received | 5547528084 | 2025-08-12 11:29:49
+2025-08-12 11:29:49,754 - INFO - aiogram.event - Update id=799215654 is handled. Duration 614 ms by bot id=8138074349
+2025-08-12 11:30:04,191 - INFO - root - Saidov Khushdil - NAME fetched | 5547528084 | 2025-08-12 11:30:04
+2025-08-12 11:30:04,497 - INFO - aiogram.event - Update id=799215655 is handled. Duration 306 ms by bot id=8138074349
+2025-08-12 11:30:15,871 - INFO - root - xuwdil@mail.ru - EMAIL fetched | 5547528084 | 2025-08-12 11:30:15
+2025-08-12 11:30:16,178 - INFO - root - xuwdil Registration COMPLETE FSM Session CLOSED | 5547528084 | 2025-08-12 11:30:16
+2025-08-12 11:30:16,178 - INFO - root - xuwdil@mail.ru's - MAIN MENU SHOW | 5547528084 | 2025-08-12 11:30:16
+2025-08-12 11:30:16,184 - INFO - root - xuwdil@mail.ru's - MAIN MENU SHOWED | 5547528084 | 2025-08-12 11:30:16
+2025-08-12 11:30:16,483 - INFO - aiogram.event - Update id=799215656 is handled. Duration 613 ms by bot id=8138074349
+2025-08-12 11:30:47,515 - INFO - handlers.testdrive - xuwdil user 5547528084-id started the Test_drive flow | 2025-08-12 11:30:47
+2025-08-12 11:30:48,130 - INFO - handlers.testdrive - xuwdil user 5547528084 is on selection of buttons | 2025-08-12 11:30:48
+2025-08-12 11:30:48,130 - INFO - aiogram.event - Update id=799215657 is handled. Duration 615 ms by bot id=8138074349
+2025-08-12 11:30:53,971 - INFO - handlers.testdrive - xuwdil user with 5547528084-id, started the selection of car | 2025-08-12 11:30:53
+2025-08-12 11:30:54,583 - INFO - handlers.testdrive - xuwdil user with 5547528084-id made selection of car | 2025-08-12 11:30:54
+2025-08-12 11:30:54,855 - INFO - handlers.testdrive - xuwdil user with 5547528084-id, started the selection of DATE FOR TEST DRIVE | 2025-08-12 11:30:54
+2025-08-12 11:30:54,984 - INFO - aiogram.event - Update id=799215658 is handled. Duration 1014 ms by bot id=8138074349
+2025-08-12 11:30:58,986 - INFO - handlers.testdrive - xuwdil user 5547528084-id STARTED SELECTING THE DATE | 2025-08-12 11:30:58
+2025-08-12 11:30:59,492 - INFO - handlers.testdrive - xuwdil user 5547528084-id SELECTED THE DATE | 2025-08-12 11:30:59
+2025-08-12 11:30:59,806 - INFO - handlers.testdrive - xuwdil user 5547528084-id SELECTION of time BUTTONS SHOWN | 2025-08-12 11:30:59
+2025-08-12 11:30:59,806 - INFO - aiogram.event - Update id=799215659 is handled. Duration 821 ms by bot id=8138074349
+2025-08-12 11:31:01,643 - INFO - handlers.testdrive - xuwdil user 5547528084-id TIME SELECTED | Chosen test time-15:00 | 2025-08-12 11:31:01
+2025-08-12 11:31:02,255 - INFO - handlers.testdrive - xuwdil user 5547528084-id COMMENTS to add | Chosen test time-15:00 | 2025-08-12 11:31:02
+2025-08-12 11:31:02,255 - INFO - aiogram.event - Update id=799215660 is handled. Duration 613 ms by bot id=8138074349
+2025-08-12 11:31:20,390 - INFO - handlers.testdrive - xuwdil user 5547528084-id ADDED COMMENTS | 2025-08-12 11:31:20
+2025-08-12 11:31:20,701 - INFO - handlers.testdrive - xuwdil user 5547528084-id TEST DRIVE ADDED COMMENTS | 2025-08-12 11:31:20
+2025-08-12 11:31:20,701 - INFO - handlers.testdrive - xuwdil user 5547528084-id TEST DRIVE END | 2025-08-12 11:31:20
+2025-08-12 11:31:20,701 - INFO - aiogram.event - Update id=799215661 is handled. Duration 311 ms by bot id=8138074349
+2025-08-12 11:33:13,133 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-12 11:33:13,134 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-12 11:33:13,134 - INFO - aiogram.dispatcher - Polling stopped

@@ -126,6 +126,7 @@ async def email_handler(message: Message, state:FSMContext):
     valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' , message.text)
     if not valid:
         await message.reply("This doesn't look like e-mail, please check again.")
+        
         return
     
     await state.update_data(email = message.text)

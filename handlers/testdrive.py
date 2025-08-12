@@ -163,6 +163,7 @@ async def process_testdrive_time(callback_query: CallbackQuery, state: FSMContex
 async def process_testdrive_comments(message: Message, state: FSMContext):
     
     await state.update_data(comments = message.text)
+    logger.info(f"{message.from_user.full_name} user {message.from_user.id}-id ADDED COMMENTS | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}" )
     
     info = await state.get_data()
     
@@ -173,6 +174,6 @@ async def process_testdrive_comments(message: Message, state: FSMContext):
         f"We recevied your request for <b>Test Drive</b>.\n<b>Our manager will contact you soon!</b>",
         parse_mode=ParseMode.HTML
     )
-    
+    logger.info(f"{message.from_user.full_name} user {message.from_user.id}-id TEST DRIVE ADDED COMMENTS | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")    
     await state.clear()
-    
+    logger.info(f"{message.from_user.full_name} user {message.from_user.id}-id TEST DRIVE END | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
