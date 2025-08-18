@@ -3791,3 +3791,13 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/ikki/Desktop/Koin
 2025-08-18 17:45:53,070 - WARNING - aiogram.dispatcher - Received SIGINT signal
 2025-08-18 17:45:53,071 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
 2025-08-18 17:45:53,071 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-18 17:58:11,907 - INFO - aiogram.dispatcher - Start polling
+2025-08-18 17:58:12,457 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-18 17:58:17,991 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-18 17:58:17
+2025-08-18 17:58:18,910 - INFO - root - /start's - MAIN MENU SHOW | 631886740 | 2025-08-18 17:58:18
+2025-08-18 17:58:18,913 - INFO - root - /start's - MAIN MENU SHOWED | 631886740 | 2025-08-18 17:58:18
+2025-08-18 17:58:19,214 - INFO - aiogram.event - Update id=799215954 is handled. Duration 1223 ms by bot id=8138074349
+2025-08-18 17:58:20,346 - INFO - aiogram.event - Update id=799215955 is handled. Duration 0 ms by bot id=8138074349
+2025-08-18 17:59:21,477 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-18 17:59:21,477 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-18 17:59:21,478 - INFO - aiogram.dispatcher - Polling stopped

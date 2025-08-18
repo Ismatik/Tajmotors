@@ -100,3 +100,10 @@ Include the Router: We'll tell the main dispatcher (dp) to include all the handl
 
 
 Admin part needed to be done with FastAPI library, using app = FastAPI. Ping it with Postman, so it makes newslettering by that.
+
+If you do not use CALLBACK_DATA - how to do it different way?
+
+# This is the handler that catches the "Edit Profile" button press.
+# It listens for a MESSAGE where the TEXT is one of the values
+# from your BUTTON_EDIT_PROFILE dictionary.
+#@router.message(F.text.in_(BUTTON_EDIT_PROFILE.values()))

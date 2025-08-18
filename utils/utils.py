@@ -33,3 +33,8 @@ class TestDrive(StatesGroup):
     userid = State()
     comments = State()
 
+class EditProfile(StatesGroup):
+    choice = State()
+    change_name = State()
+    change_email = State()
+    change_language = State()

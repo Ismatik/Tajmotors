@@ -18,6 +18,9 @@ from config_reader import BUTTON_EP
 # logger = logging.getLogger(__name__)
 router = Router()
 
-@router.callback_query(F.data == "Edit Profile")
-async def start_ep(callback: CallbackQuery):
-    print(callback)
+@router.message(F.text.in_(BUTTON_EP.values()))
+async def start_ep(message: Message, state: FSMContext):
+    """
+    This handler is triggered when the user presses the 'Edit Profile' ReplyKeyboardButton.
+    """
+    pass
