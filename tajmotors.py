@@ -18,6 +18,7 @@ from Registration_functions import functions
 from handlers.service import router as service_router
 from handlers.registration import router as registration_router
 from handlers.testdrive import router as testdrive_router
+from handlers.edit_profile import router as editprofile_router
 
 # =================================================================================
 # 21. CONFIGURATION AND INITIALIZATION
@@ -45,6 +46,7 @@ async def main():
     dp.include_router(service_router)
     dp.include_router(registration_router)
     dp.include_router(testdrive_router)
+    dp.include_router(editprofile_router)
     await dp.start_polling(bot)
     
 if __name__ == "__main__":

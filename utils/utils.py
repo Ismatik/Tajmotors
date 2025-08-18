@@ -8,6 +8,8 @@ class Registration(StatesGroup):
     name = State()
     username = State()
     iduser = State()
+    language = State()
+    end = State()
 
 class Service(StatesGroup):
     name = State()
@@ -30,3 +32,4 @@ class TestDrive(StatesGroup):
     registration_time = State()
     userid = State()
     comments = State()
+

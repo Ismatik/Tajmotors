@@ -38,7 +38,7 @@ def fetch_users()->list:
     return pd.read_excel(REGISTRATION_FILE)
 
 
-def register_user(user_id , name , phone, email, username,) -> None:
+def register_user(user_id , name , phone, email, username,language) -> None:
     """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
     As he finished registration, initialize the function."""
         
@@ -48,7 +48,8 @@ def register_user(user_id , name , phone, email, username,) -> None:
         'Name': name,
         'Phone' : phone,
         'Email' : email,
-        'Username' : username
+        'Username' : username,
+        'Language' : language
         }])
     try: 
         ex_df = pd.read_excel(REGISTRATION_FILE)
@@ -89,6 +90,33 @@ def fetch_name(user_id)-> str:
     except FileExistsError:
         return None
     
+def fetch_language(user_id)-> str:
+    """_summary_
+
+    Args:
+        user_id (_type_): _description_
+
+    Returns:
+        str: _description_
+    """
+    
+    try:
+        df = pd.read_excel(REGISTRATION_FILE)
+        # 1. Filter the DataFrame to find the row(s) matching the user_id
+         
+        user_row = df[df["User_ID"] == user_id]
+        
+        # 2. Check if any rows were found. .empty is the correct way to do this.
+        if not user_row.empty:
+            # 3. Get the value from the 'Name' column of the found row.
+            # .item() is perfect for extracting a single value from a Series.
+            return user_row["Language"].item()
+        else:
+            # 4. Nothing found, no such user
+            return None
+            
+    except FileExistsError:
+        return None
 
 def fetch_name_and_phone_number(user_id):
     """_summary_

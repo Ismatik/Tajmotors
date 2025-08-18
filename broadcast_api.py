@@ -6,7 +6,7 @@ from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
 from aiogram import Bot
 from aiogram.exceptions import TelegramForbiddenError,TelegramBadRequest
-
+from aiogram.methods import SendPhoto
 from config_reader import EXCEL_FILE, config
 
 bot = Bot(token=config.bot_token.get_secret_value())
@@ -36,8 +36,10 @@ class BroadcastMessage(BaseModel):
     
 @app.post("/broadcast")
 async def send_broadcast(bc_message: BroadcastMessage):
+    
     try:
         bc_message = bc_message.__str__().split("=")[-1].replace("'" , "")
+        # pic = pic.__str__().split("=")
         df = pd.read_excel(EXCEL_FILE)
         user_ids = df['User_ID'].tolist()
         asyncio.create_task(broadcast_loop(user_ids , bc_message))
@@ -61,7 +63,9 @@ async def broadcast_loop(user_ids: list, message: str):
         try:
             await bot.send_message(chat_id=user ,
                                    text=message)
+            
             successful_sends += 1
+            await bot(SendPhoto(chat_id=user,photo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZZPJ_PB7TTJq68vx0M4j-9Q2CtFiIwxp02w&s"))
         except (TelegramForbiddenError, TelegramBadRequest):
             failed_sends +=1 
         await asyncio.sleep(0.1)
