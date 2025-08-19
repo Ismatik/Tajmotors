@@ -23,7 +23,7 @@ def check_registered(user_id) -> bool:
         #Reading excel file using pd.read_excel
         df = pd.read_excel(REGISTRATION_FILE)
 
-        return user_id in df["User_ID"].tolist()
+        return user_id in df["User_ID"].tolist() or user_id == df["User_ID"].values
     
     except FileNotFoundError:
         return False
@@ -61,7 +61,6 @@ def register_user(user_id , name , phone, email, username,language) -> None:
         
         new_df.to_excel(REGISTRATION_FILE , index=False)
 
-
 def fetch_name(user_id)-> str:
     """_summary_
 
@@ -74,9 +73,11 @@ def fetch_name(user_id)-> str:
     
     try:
         df = pd.read_excel(REGISTRATION_FILE)
+        print(df)
+        print(user_id)
         # 1. Filter the DataFrame to find the row(s) matching the user_id
-         
         user_row = df[df["User_ID"] == user_id]
+        print(user_row) 
         
         # 2. Check if any rows were found. .empty is the correct way to do this.
         if not user_row.empty:
@@ -118,6 +119,108 @@ def fetch_language(user_id)-> str:
     except FileExistsError:
         return None
 
+def change_email(user_id , new_email):
+    """_summary_
+
+    Args:
+        user_id (_type_): _description_
+        new_email (_type_): _description_
+
+    Returns:
+        _type_: _description_
+
+    Finds a user by their ID in the Excel file and updates their email address.
+
+    Args:
+        user_id (int): The unique ID of the user to update.
+        new_email (str): The new email address to set.
+
+    Returns:
+        bool: True if the user was found and updated, False otherwise.
+    """
+    
+    try:
+        df = pd.read_excel(REGISTRATION_FILE)
+        
+        user_mask = df["User_ID"] == user_id
+        
+        if user_mask.any():
+            df.loc[user_mask , "Email"] = new_email
+            df.to_excel(REGISTRATION_FILE, index=False)
+        else:
+            return False
+        
+    except FileExistsError:
+        return None
+
+def change_language(user_id , new_language):
+    """_summary_
+
+    Args:
+        user_id (_type_): _description_
+        new_email (_type_): _description_
+
+    Returns:
+        _type_: _description_
+
+    Finds a user by their ID in the Excel file and updates their email address.
+
+    Args:
+        user_id (int): The unique ID of the user to update.
+        new_email (str): The new email address to set.
+
+    Returns:
+        bool: True if the user was found and updated, False otherwise.
+    """
+    
+    try:
+        df = pd.read_excel(REGISTRATION_FILE)
+        
+        user_mask = df["User_ID"] == user_id
+        print(user_mask)
+        if user_mask.any():
+            df.loc[user_mask , "Language"] = new_language
+            df.to_excel(REGISTRATION_FILE, index=False)
+        else:
+            return False
+        
+    except FileExistsError:
+        return None
+
+def change_name(user_id , new_name):
+    """_summary_
+
+    Args:
+        user_id (_type_): _description_
+        new_name (_type_): _description_
+
+    Returns:
+        _type_: _description_
+
+    Finds a user by their ID in the Excel file and updates their name.
+
+    Args:
+        user_id (int): The unique ID of the user to update.
+        new_email (str): The new email address to set.
+
+    Returns:
+        bool: True if the user was found and updated, False otherwise.
+    """
+    
+    try:
+        df = pd.read_excel(REGISTRATION_FILE)
+        
+        user_mask = df["User_ID"] == user_id
+        
+        if user_mask.any():
+            df.loc[user_mask , "Name"] = new_name
+            df.to_excel(REGISTRATION_FILE, index=False)
+        else:
+            return False
+        
+    except FileExistsError:
+        return None
+
 def fetch_name_and_phone_number(user_id):
     """_summary_
 
@@ -144,7 +247,6 @@ def fetch_name_and_phone_number(user_id):
             
     except FileExistsError:
         return None
-
 
 def register_service(user_id , fullname , contact_number, VIN, auto_model, service, date_service, registration_time,time_service, comments):
     """
@@ -181,7 +283,6 @@ def register_service(user_id , fullname , contact_number, VIN, auto_model, servi
     except FileNotFoundError:
         new_df.to_excel(SERVICE_LIST , index=False)
         
-
 def register_testdrive(user_id , fullname , contact_number, auto_model, test_date, time, comments, registration_time):
     
     """

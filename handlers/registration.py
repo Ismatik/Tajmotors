@@ -28,7 +28,7 @@ async def cmd_language(message:Message , state: FSMContext):
     user = message
     lg.info(f"{user.from_user.full_name} clicked button /start | {user.from_user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     if check_registered(message.chat.id):
-        await show_new_menu(message)
+        await show_new_menu_2(message)
     else:
         
         kb = [
@@ -189,7 +189,7 @@ async def show_new_menu(message: Message):
 
     reply_kb = [
         [KeyboardButton(text=BUTTON_EP[language])],
-        [ KeyboardButton(text=BUTTON_TDH[language] ,callback_data = "TH"), KeyboardButton(text=BUTTON_SH[language], callback_data="SH")],
+        [KeyboardButton(text=BUTTON_TDH[language] ,callback_data = "TH"), KeyboardButton(text=BUTTON_SH[language], callback_data="SH")],
         [KeyboardButton(text=BUTTON_CS[language])]
     ]
     reply_keyboard = ReplyKeyboardMarkup(
@@ -228,3 +228,47 @@ async def show_new_menu(message: Message):
         parse_mode=ParseMode.HTML
     )
     
+async def show_new_menu_2(message: Message):
+
+    language = fetch_language(message.chat.id)
+
+    reply_kb = [
+        [KeyboardButton(text=BUTTON_EP[language])],
+        [KeyboardButton(text=BUTTON_TDH[language] ,callback_data = "TH"), KeyboardButton(text=BUTTON_SH[language], callback_data="SH")],
+        [KeyboardButton(text=BUTTON_CS[language])]
+    ]
+    reply_keyboard = ReplyKeyboardMarkup(
+        keyboard=reply_kb,
+        resize_keyboard=True
+    )
+    # Send a message with real text to introduce the new keyboard.
+    await message.answer(
+        BUTTONS_TEXT[language],
+        reply_markup=reply_keyboard
+    )
+    
+    user = message.from_user
+    # lg.info(f"{message.text}'s - MAIN MENU SHOW | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
+    
+    name = fetch_name(message.chat.id)
+    print(f'NAME REgistered: {message}')
+    content =  {"EN" : f"Welcome back, <b>{name}</b>, to TajMotors Bot!\n",
+                "RU" : f"Добро пожаловать, <b>{name}</b>, в Тадж Моторс Бот!\n",
+                "TJ" : f"Хуш омадед, <b>{name}</b>, ба TajMotors Bot!\n"}
+
+    # lg.info(f"{message.text}'s - MAIN MENU SHOWED | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")    
+    
+    #Adding a callback data - it helps to know which button is clicked.
+    kb = [
+        [InlineKeyboardButton(text = CATALOGUE[language] , callback_data = "Catalogue") , InlineKeyboardButton(text=OPERATOR[language] , callback_data="Operator")],
+        [InlineKeyboardButton(text = TEST_DRIVE[language] , callback_data = "test_drive") , InlineKeyboardButton(text = SERVICE[language] , callback_data="Service")],
+        [InlineKeyboardButton(text = ABOUT_US[language] , callback_data="Contact/Address" , url = "https://tjm.toyota-centralasia.com/about/dealerships?trade_source=menu")]
+    ]
+    
+    keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
+
+    await message.answer(
+        text=content[language], 
+        reply_markup=keyboard,
+        parse_mode=ParseMode.HTML
+    )

@@ -36,5 +36,8 @@ class TestDrive(StatesGroup):
 class EditProfile(StatesGroup):
     choice = State()
     change_name = State()
+    change_name_end = State()
     change_email = State()
+    change_email_end = State()
     change_language = State()
+    change_language_end = State()
