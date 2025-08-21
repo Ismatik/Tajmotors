@@ -37,7 +37,6 @@ def fetch_users()->list:
     
     return pd.read_excel(REGISTRATION_FILE)
 
-
 def register_user(user_id , name , phone, email, username,language) -> None:
     """Enter User_ID , Name, Phone  and Email to register user, after you have fetched all the info.
     As he finished registration, initialize the function."""
@@ -73,11 +72,8 @@ def fetch_name(user_id)-> str:
     
     try:
         df = pd.read_excel(REGISTRATION_FILE)
-        print(df)
-        print(user_id)
         # 1. Filter the DataFrame to find the row(s) matching the user_id
         user_row = df[df["User_ID"] == user_id]
-        print(user_row) 
         
         # 2. Check if any rows were found. .empty is the correct way to do this.
         if not user_row.empty:
@@ -317,4 +313,27 @@ def register_testdrive(user_id , fullname , contact_number, auto_model, test_dat
     except FileNotFoundError:
         new_df.to_excel(TEST_DRIVE_LIST , index=False)
         
+def return_tdh(user_id):
+    try:
+        df = pd.read_excel(TEST_DRIVE_LIST)
+        info = df[df["User_ID"] == user_id]
+        
+        content = []
+        for i in info.values:
+            content.append(i)
+        return content
+    except FileNotFoundError:
+        return None
+        
+def return_sh(user_id):
+    try:
+        df = pd.read_excel(SERVICE_LIST)
+        info = df[df["User_ID"] == user_id]
+        
+        content = []
+        for i in info.values:
+            content.append(i)
+        return content
+    except FileNotFoundError:
+        return None
         

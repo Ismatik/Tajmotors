@@ -106,7 +106,6 @@ async def process_simple_calendar(callback_query:CallbackQuery , callback_data: 
             
             await state.update_data(test_date = data.strftime("%d/%m%Y"))
             await state.update_data(registration_time = date.today().strftime("%Y-%m-%d %H:%M:%S"))
-            await state.update_data(userid = callback_query.message.from_user.id)
             
             time_slots = ["09:00", "09:30" , "10:00" , "10:30", "11:00" , "11:30", "14:00" , "14:30", "15:00" , "15:30", "16:00", "16:30"]
             buttons = []
@@ -163,6 +162,7 @@ async def process_testdrive_time(callback_query: CallbackQuery, state: FSMContex
 async def process_testdrive_comments(message: Message, state: FSMContext):
     
     await state.update_data(comments = message.text)
+    await state.update_data(userid = message.chat.id)
     logger.info(f"{message.from_user.full_name} user {message.from_user.id}-id ADDED COMMENTS | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}" )
     
     info = await state.get_data()

@@ -251,7 +251,6 @@ async def show_new_menu_2(message: Message):
     # lg.info(f"{message.text}'s - MAIN MENU SHOW | {user.id} | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     
     name = fetch_name(message.chat.id)
-    print(f'NAME REgistered: {message}')
     content =  {"EN" : f"Welcome back, <b>{name}</b>, to TajMotors Bot!\n",
                 "RU" : f"Добро пожаловать, <b>{name}</b>, в Тадж Моторс Бот!\n",
                 "TJ" : f"Хуш омадед, <b>{name}</b>, ба TajMotors Bot!\n"}

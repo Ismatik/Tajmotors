@@ -17,7 +17,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 router = Router()
- 
+
 @router.callback_query(F.data == "Service")
 async def process_service(callback: types.CallbackQuery , state:FSMContext):
     await callback.answer() #Service was clicked
@@ -173,7 +173,6 @@ async def process_time_service(callback_query: types.CallbackQuery , state:FSMCo
     chosen_time = callback_query.data.split("-")[-1]
     
     await state.update_data(registration_time = datetime.today().strftime("%Y-%m-%d %H:%M:%S"))
-    await state.update_data(userid = callback_query.message.from_user.id)
     await state.update_data(time = chosen_time)
     info = await state.get_data()
     logger.info(f"{user.full_name} user {user.id}-id RESPONSE for date and time with COMMENTS| {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
@@ -187,7 +186,7 @@ async def process_service_comments(message: Message, state:FSMContext):
     user = message.from_user
     logger.info(f"{user.full_name} user {user.id}-id SERVICE COMMENTS FETCHED | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     await state.update_data(comments = message.text)
-    
+    await state.update_data(userid = message.chat.id)
     info = await state.get_data()
     
     register_service(user_id=info["userid"] , 

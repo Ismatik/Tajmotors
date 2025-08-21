@@ -5704,3 +5704,771 @@ KeyError: 'language'
 2025-08-19 16:52:56,127 - INFO - aiogram.event - Update id=799216250 is handled. Duration 1021 ms by bot id=8138074349
 2025-08-19 16:52:57,764 - INFO - aiogram.event - Update id=799216251 is handled. Duration 190 ms by bot id=8138074349
 2025-08-19 16:53:15,584 - INFO - aiogram.event - Update id=799216252 is handled. Duration 1536 ms by bot id=8138074349
+2025-08-20 11:54:51,613 - INFO - aiogram.dispatcher - Start polling
+2025-08-20 11:54:52,478 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-20 11:54:52,650 - INFO - aiogram.event - Update id=799216253 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-20 11:54:54,701 - INFO - aiogram.event - Update id=799216254 is not handled. Duration 3 ms by bot id=8138074349
+2025-08-20 11:55:25,732 - INFO - aiogram.event - Update id=799216255 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-20 12:09:21,409 - INFO - aiogram.event - Update id=799216256 is handled. Duration 962 ms by bot id=8138074349
+2025-08-20 12:09:24,172 - INFO - aiogram.event - Update id=799216257 is handled. Duration 302 ms by bot id=8138074349
+2025-08-20 12:09:26,647 - INFO - aiogram.event - Update id=799216258 is handled. Duration 939 ms by bot id=8138074349
+2025-08-20 12:23:09,947 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-20 12:23:09,948 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-20 12:23:09,948 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-20 17:10:44,997 - INFO - aiogram.dispatcher - Start polling
+2025-08-20 17:10:49,668 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-20 17:10:59,136 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-20 17:10:59,137 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-20 17:10:59,137 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-20 17:11:08,471 - INFO - aiogram.dispatcher - Start polling
+2025-08-20 17:11:09,325 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-20 17:11:10,765 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-20 17:11:10
+2025-08-20 17:11:11,788 - INFO - aiogram.event - Update id=799216259 is handled. Duration 1024 ms by bot id=8138074349
+2025-08-20 17:11:15,468 - INFO - aiogram.event - Update id=799216260 is handled. Duration 712 ms by bot id=8138074349
+2025-08-20 17:11:16,907 - INFO - root - Ismat . REGISTRATION begun | 631886740 | 2025-08-20 17:11:16
+2025-08-20 17:11:17,623 - INFO - aiogram.event - Update id=799216261 is handled. Duration 716 ms by bot id=8138074349
+2025-08-20 17:11:20,389 - INFO - root - Ismat .'s NUMBER received | 631886740 | 2025-08-20 17:11:20
+2025-08-20 17:11:20,899 - INFO - aiogram.event - Update id=799216262 is handled. Duration 511 ms by bot id=8138074349
+2025-08-20 17:11:28,683 - INFO - root - Gul Gul - NAME fetched | 631886740 | 2025-08-20 17:11:28
+2025-08-20 17:11:28,889 - INFO - aiogram.event - Update id=799216263 is handled. Duration 206 ms by bot id=8138074349
+2025-08-20 17:11:32,060 - INFO - aiogram.event - Update id=799216264 is handled. Duration 302 ms by bot id=8138074349
+2025-08-20 17:11:37,284 - INFO - root - asdad@sad.com - EMAIL shall be updated in STATE | 631886740 | 2025-08-20 17:11:37
+2025-08-20 17:11:37,900 - INFO - root - Ismat . Registration COMPLETE FSM Session CLOSED | 631886740 | 2025-08-20 17:11:37
+2025-08-20 17:11:38,206 - INFO - root - asdad@sad.com's - MAIN MENU SHOW | 631886740 | 2025-08-20 17:11:38
+2025-08-20 17:11:38,218 - INFO - root - asdad@sad.com's - MAIN MENU SHOWED | 631886740 | 2025-08-20 17:11:38
+2025-08-20 17:11:38,495 - INFO - aiogram.event - Update id=799216265 is handled. Duration 1211 ms by bot id=8138074349
+2025-08-20 17:11:44,660 - INFO - handlers.testdrive - Ismat . user 631886740-id started the Test_drive flow | 2025-08-20 17:11:44
+2025-08-20 17:11:45,274 - INFO - handlers.testdrive - Ismat . user 631886740 is on selection of buttons | 2025-08-20 17:11:45
+2025-08-20 17:11:45,274 - INFO - aiogram.event - Update id=799216266 is handled. Duration 616 ms by bot id=8138074349
+2025-08-20 17:11:46,708 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of car | 2025-08-20 17:11:46
+2025-08-20 17:11:47,424 - INFO - handlers.testdrive - Ismat . user with 631886740-id made selection of car | 2025-08-20 17:11:47
+2025-08-20 17:11:47,728 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of DATE FOR TEST DRIVE | 2025-08-20 17:11:47
+2025-08-20 17:11:48,035 - INFO - aiogram.event - Update id=799216267 is handled. Duration 1327 ms by bot id=8138074349
+2025-08-20 17:11:50,464 - INFO - handlers.testdrive - Ismat . user 631886740-id STARTED SELECTING THE DATE | 2025-08-20 17:11:50
+2025-08-20 17:11:50,595 - INFO - aiogram.event - Update id=799216268 is handled. Duration 132 ms by bot id=8138074349
+2025-08-20 17:11:53,264 - INFO - handlers.testdrive - Ismat . user 631886740-id STARTED SELECTING THE DATE | 2025-08-20 17:11:53
+2025-08-20 17:11:53,667 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTED THE DATE | 2025-08-20 17:11:53
+2025-08-20 17:11:53,872 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTION of time BUTTONS SHOWN | 2025-08-20 17:11:53
+2025-08-20 17:11:53,872 - INFO - aiogram.event - Update id=799216269 is handled. Duration 609 ms by bot id=8138074349
+2025-08-20 17:11:55,713 - INFO - handlers.testdrive - Ismat . user 631886740-id TIME SELECTED | Chosen test time-15:00 | 2025-08-20 17:11:55
+2025-08-20 17:11:56,022 - INFO - handlers.testdrive - Ismat . user 631886740-id COMMENTS to add | Chosen test time-15:00 | 2025-08-20 17:11:56
+2025-08-20 17:11:56,022 - INFO - aiogram.event - Update id=799216270 is handled. Duration 310 ms by bot id=8138074349
+2025-08-20 17:12:17,835 - INFO - handlers.testdrive - Ismat . user 631886740-id ADDED COMMENTS | 2025-08-20 17:12:17
+2025-08-20 17:12:18,433 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE ADDED COMMENTS | 2025-08-20 17:12:18
+2025-08-20 17:12:18,433 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE END | 2025-08-20 17:12:18
+2025-08-20 17:12:18,433 - INFO - aiogram.event - Update id=799216271 is handled. Duration 598 ms by bot id=8138074349
+2025-08-20 17:12:23,065 - INFO - aiogram.event - Update id=799216272 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-20 17:13:25,808 - INFO - aiogram.event - Update id=799216273 is handled. Duration 169 ms by bot id=8138074349
+2025-08-20 17:13:28,600 - INFO - aiogram.event - Update id=799216274 is handled. Duration 151 ms by bot id=8138074349
+2025-08-20 17:13:31,560 - INFO - aiogram.event - Update id=799216275 is handled. Duration 441 ms by bot id=8138074349
+2025-08-20 17:13:42,643 - INFO - handlers.service - Ismat . user 631886740-id started the SERVICE flow | 2025-08-20 17:13:42
+2025-08-20 17:13:42,648 - INFO - handlers.service - Ismat . user 631886740-id MESSAGE for SERVICE flow | 2025-08-20 17:13:42
+2025-08-20 17:13:42,936 - INFO - aiogram.event - Update id=799216276 is handled. Duration 474 ms by bot id=8138074349
+2025-08-20 17:13:51,236 - INFO - handlers.service - Ismat . user 631886740-id VIN ENTERED | 2025-08-20 17:13:51
+2025-08-20 17:13:51,540 - INFO - aiogram.event - Update id=799216277 is handled. Duration 304 ms by bot id=8138074349
+2025-08-20 17:13:57,378 - INFO - handlers.service - Ismat . user 631886740-id CAR MODEL entered | 2025-08-20 17:13:57
+2025-08-20 17:13:57,993 - INFO - handlers.service - Ismat . user 631886740-id SERVICE SELECTION | 2025-08-20 17:13:57
+2025-08-20 17:13:57,993 - INFO - aiogram.event - Update id=799216278 is handled. Duration 615 ms by bot id=8138074349
+2025-08-20 17:14:01,067 - INFO - handlers.service - Ismat . user 631886740-id SERVICE CHOSEN | 2025-08-20 17:14:01
+2025-08-20 17:14:01,375 - INFO - handlers.service - Ismat . user 631886740-id PRINTER CHOSEN service | 2025-08-20 17:14:01
+2025-08-20 17:14:01,679 - INFO - handlers.service - Ismat . user 631886740-id DATE SELECTION PROCESS | 2025-08-20 17:14:01
+2025-08-20 17:14:01,985 - INFO - aiogram.event - Update id=799216279 is handled. Duration 1330 ms by bot id=8138074349
+2025-08-20 17:14:03,523 - INFO - handlers.service - Ismat . user 631886740-id SERVICE CALENDAR CREATION | 2025-08-20 17:14:03
+2025-08-20 17:14:04,136 - INFO - handlers.service - Ismat . user 631886740-id SERVICE DATE UPDATED | 2025-08-20 17:14:04
+2025-08-20 17:14:04,415 - INFO - handlers.service - Ismat . user 631886740-id SERVICE TIME SELECTION | 2025-08-20 17:14:04
+2025-08-20 17:14:04,415 - INFO - aiogram.event - Update id=799216280 is handled. Duration 891 ms by bot id=8138074349
+2025-08-20 17:14:06,287 - INFO - handlers.service - Ismat . user 631886740-id SERVICE TIME CHOSEN | 2025-08-20 17:14:06
+2025-08-20 17:14:06,287 - INFO - handlers.service - Ismat . user 631886740-id RESPONSE for date and time with COMMENTS| 2025-08-20 17:14:06
+2025-08-20 17:14:06,491 - INFO - aiogram.event - Update id=799216281 is handled. Duration 512 ms by bot id=8138074349
+2025-08-20 17:14:19,192 - INFO - handlers.service - Ismat . user 631886740-id SERVICE COMMENTS FETCHED | 2025-08-20 17:14:19
+2025-08-20 17:14:19,197 - INFO - handlers.service - Ismat . user 631886740-id SERVICE COMMENTS added to FILE | 2025-08-20 17:14:19
+2025-08-20 17:14:19,493 - INFO - handlers.service - Ismat . user 631886740-id SERVICE END | 2025-08-20 17:14:19
+2025-08-20 17:14:19,493 - INFO - aiogram.event - Update id=799216282 is handled. Duration 301 ms by bot id=8138074349
+2025-08-20 17:14:24,103 - INFO - aiogram.event - Update id=799216283 is handled. Duration 304 ms by bot id=8138074349
+2025-08-20 17:14:28,919 - INFO - aiogram.event - Update id=799216284 is handled. Duration 197 ms by bot id=8138074349
+2025-08-20 17:14:30,867 - INFO - aiogram.event - Update id=799216285 is handled. Duration 617 ms by bot id=8138074349
+2025-08-20 17:14:38,462 - INFO - aiogram.event - Update id=799216286 is handled. Duration 313 ms by bot id=8138074349
+2025-08-20 17:14:39,774 - INFO - aiogram.event - Update id=799216287 is handled. Duration 306 ms by bot id=8138074349
+2025-08-20 17:14:41,925 - INFO - aiogram.event - Update id=799216288 is handled. Duration 1023 ms by bot id=8138074349
+2025-08-20 17:14:49,302 - INFO - aiogram.event - Update id=799216289 is handled. Duration 304 ms by bot id=8138074349
+2025-08-20 17:14:51,141 - INFO - aiogram.event - Update id=799216290 is handled. Duration 405 ms by bot id=8138074349
+2025-08-20 17:14:53,295 - INFO - aiogram.event - Update id=799216291 is handled. Duration 911 ms by bot id=8138074349
+2025-08-20 17:15:48,479 - INFO - root - xuwdil clicked button /start | 5547528084 | 2025-08-20 17:15:48
+2025-08-20 17:15:48,727 - INFO - aiogram.event - Update id=799216292 is handled. Duration 248 ms by bot id=8138074349
+2025-08-20 17:15:51,499 - INFO - aiogram.event - Update id=799216293 is handled. Duration 452 ms by bot id=8138074349
+2025-08-20 17:15:53,064 - INFO - root - xuwdil REGISTRATION begun | 5547528084 | 2025-08-20 17:15:53
+2025-08-20 17:15:53,315 - INFO - aiogram.event - Update id=799216294 is handled. Duration 252 ms by bot id=8138074349
+2025-08-20 17:15:56,479 - INFO - root - xuwdil's NUMBER received | 5547528084 | 2025-08-20 17:15:56
+2025-08-20 17:15:56,757 - INFO - aiogram.event - Update id=799216295 is handled. Duration 280 ms by bot id=8138074349
+2025-08-20 17:16:11,925 - INFO - root - Хушдил Саидов - NAME fetched | 5547528084 | 2025-08-20 17:16:11
+2025-08-20 17:16:12,089 - INFO - aiogram.event - Update id=799216296 is handled. Duration 165 ms by bot id=8138074349
+2025-08-20 17:16:26,584 - INFO - root - xuwdi@mail.ru - EMAIL shall be updated in STATE | 5547528084 | 2025-08-20 17:16:26
+2025-08-20 17:16:26,991 - INFO - root - xuwdil Registration COMPLETE FSM Session CLOSED | 5547528084 | 2025-08-20 17:16:26
+2025-08-20 17:16:27,300 - INFO - root - xuwdi@mail.ru's - MAIN MENU SHOW | 5547528084 | 2025-08-20 17:16:27
+2025-08-20 17:16:27,307 - INFO - root - xuwdi@mail.ru's - MAIN MENU SHOWED | 5547528084 | 2025-08-20 17:16:27
+2025-08-20 17:16:27,608 - INFO - aiogram.event - Update id=799216297 is handled. Duration 1024 ms by bot id=8138074349
+2025-08-20 17:16:37,129 - INFO - handlers.testdrive - xuwdil user 5547528084-id started the Test_drive flow | 2025-08-20 17:16:37
+2025-08-20 17:16:37,548 - INFO - handlers.testdrive - xuwdil user 5547528084 is on selection of buttons | 2025-08-20 17:16:37
+2025-08-20 17:16:37,548 - INFO - aiogram.event - Update id=799216298 is handled. Duration 419 ms by bot id=8138074349
+2025-08-20 17:16:39,593 - INFO - handlers.testdrive - xuwdil user with 5547528084-id, started the selection of car | 2025-08-20 17:16:39
+2025-08-20 17:16:40,206 - INFO - handlers.testdrive - xuwdil user with 5547528084-id made selection of car | 2025-08-20 17:16:40
+2025-08-20 17:16:40,445 - INFO - handlers.testdrive - xuwdil user with 5547528084-id, started the selection of DATE FOR TEST DRIVE | 2025-08-20 17:16:40
+2025-08-20 17:16:40,566 - INFO - aiogram.event - Update id=799216299 is handled. Duration 973 ms by bot id=8138074349
+2025-08-20 17:16:42,232 - INFO - handlers.testdrive - xuwdil user 5547528084-id STARTED SELECTING THE DATE | 2025-08-20 17:16:42
+2025-08-20 17:16:42,393 - INFO - aiogram.event - Update id=799216300 is handled. Duration 163 ms by bot id=8138074349
+2025-08-20 17:16:47,214 - INFO - aiogram.event - Update id=799216301 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-20 17:16:49,555 - INFO - handlers.service - xuwdil user 5547528084-id started the SERVICE flow | 2025-08-20 17:16:49
+2025-08-20 17:16:49,560 - INFO - handlers.service - xuwdil user 5547528084-id MESSAGE for SERVICE flow | 2025-08-20 17:16:49
+2025-08-20 17:16:49,704 - INFO - aiogram.event - Update id=799216302 is handled. Duration 274 ms by bot id=8138074349
+2025-08-20 17:16:57,710 - INFO - handlers.service - xuwdil user 5547528084-id started the SERVICE flow | 2025-08-20 17:16:57
+2025-08-20 17:16:57,715 - INFO - handlers.service - xuwdil user 5547528084-id MESSAGE for SERVICE flow | 2025-08-20 17:16:57
+2025-08-20 17:16:58,028 - INFO - aiogram.event - Update id=799216303 is handled. Duration 625 ms by bot id=8138074349
+2025-08-20 17:17:02,016 - INFO - handlers.service - xuwdil user 5547528084-id WRONG VIN entered | 2025-08-20 17:17:02
+2025-08-20 17:17:02,016 - INFO - aiogram.event - Update id=799216304 is handled. Duration 307 ms by bot id=8138074349
+2025-08-20 17:17:27,559 - INFO - handlers.service - xuwdil user 5547528084-id WRONG VIN entered | 2025-08-20 17:17:27
+2025-08-20 17:17:27,559 - INFO - aiogram.event - Update id=799216305 is handled. Duration 146 ms by bot id=8138074349
+2025-08-20 17:17:46,591 - INFO - handlers.service - xuwdil user 5547528084-id WRONG VIN entered | 2025-08-20 17:17:46
+2025-08-20 17:17:46,591 - INFO - aiogram.event - Update id=799216306 is handled. Duration 162 ms by bot id=8138074349
+2025-08-20 17:17:54,250 - INFO - handlers.service - xuwdil user 5547528084-id VIN ENTERED | 2025-08-20 17:17:54
+2025-08-20 17:17:54,494 - INFO - aiogram.event - Update id=799216307 is handled. Duration 245 ms by bot id=8138074349
+2025-08-20 17:18:04,279 - INFO - handlers.service - xuwdil user 5547528084-id CAR MODEL entered | 2025-08-20 17:18:04
+2025-08-20 17:18:04,691 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE SELECTION | 2025-08-20 17:18:04
+2025-08-20 17:18:04,691 - INFO - aiogram.event - Update id=799216308 is handled. Duration 411 ms by bot id=8138074349
+2025-08-20 17:18:08,212 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CHOSEN | 2025-08-20 17:18:08
+2025-08-20 17:18:08,401 - INFO - handlers.service - xuwdil user 5547528084-id PRINTER CHOSEN service | 2025-08-20 17:18:08
+2025-08-20 17:18:08,685 - INFO - handlers.service - xuwdil user 5547528084-id DATE SELECTION PROCESS | 2025-08-20 17:18:08
+2025-08-20 17:18:08,986 - INFO - aiogram.event - Update id=799216309 is handled. Duration 941 ms by bot id=8138074349
+2025-08-20 17:18:10,432 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CALENDAR CREATION | 2025-08-20 17:18:10
+2025-08-20 17:18:10,633 - INFO - aiogram.event - Update id=799216310 is handled. Duration 201 ms by bot id=8138074349
+2025-08-20 17:18:13,876 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CALENDAR CREATION | 2025-08-20 17:18:13
+2025-08-20 17:18:13,999 - INFO - aiogram.event - Update id=799216311 is handled. Duration 123 ms by bot id=8138074349
+2025-08-20 17:18:17,894 - INFO - handlers.service - xuwdil user 5547528084-id started the SERVICE flow | 2025-08-20 17:18:17
+2025-08-20 17:18:17,898 - INFO - handlers.service - xuwdil user 5547528084-id MESSAGE for SERVICE flow | 2025-08-20 17:18:17
+2025-08-20 17:18:18,203 - INFO - aiogram.event - Update id=799216312 is handled. Duration 608 ms by bot id=8138074349
+2025-08-20 17:18:27,438 - INFO - handlers.service - xuwdil user 5547528084-id VIN ENTERED | 2025-08-20 17:18:27
+2025-08-20 17:18:27,584 - INFO - aiogram.event - Update id=799216313 is handled. Duration 145 ms by bot id=8138074349
+2025-08-20 17:18:50,156 - INFO - handlers.service - xuwdil user 5547528084-id started the SERVICE flow | 2025-08-20 17:18:50
+2025-08-20 17:18:50,164 - INFO - handlers.service - xuwdil user 5547528084-id MESSAGE for SERVICE flow | 2025-08-20 17:18:50
+2025-08-20 17:18:50,465 - INFO - aiogram.event - Update id=799216314 is handled. Duration 615 ms by bot id=8138074349
+2025-08-20 17:18:59,996 - INFO - handlers.service - xuwdil user 5547528084-id VIN ENTERED | 2025-08-20 17:18:59
+2025-08-20 17:19:00,294 - INFO - aiogram.event - Update id=799216315 is handled. Duration 298 ms by bot id=8138074349
+2025-08-20 17:19:09,512 - INFO - handlers.service - xuwdil user 5547528084-id CAR MODEL entered | 2025-08-20 17:19:09
+2025-08-20 17:19:10,120 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE SELECTION | 2025-08-20 17:19:10
+2025-08-20 17:19:10,120 - INFO - aiogram.event - Update id=799216316 is handled. Duration 608 ms by bot id=8138074349
+2025-08-20 17:19:12,276 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CHOSEN | 2025-08-20 17:19:12
+2025-08-20 17:19:12,449 - INFO - handlers.service - xuwdil user 5547528084-id PRINTER CHOSEN service | 2025-08-20 17:19:12
+2025-08-20 17:19:12,609 - INFO - handlers.service - xuwdil user 5547528084-id DATE SELECTION PROCESS | 2025-08-20 17:19:12
+2025-08-20 17:19:12,894 - INFO - aiogram.event - Update id=799216317 is handled. Duration 925 ms by bot id=8138074349
+2025-08-20 17:19:14,120 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CALENDAR CREATION | 2025-08-20 17:19:14
+2025-08-20 17:19:14,733 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE DATE UPDATED | 2025-08-20 17:19:14
+2025-08-20 17:19:16,269 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE TIME SELECTION | 2025-08-20 17:19:16
+2025-08-20 17:19:16,269 - INFO - aiogram.event - Update id=799216318 is handled. Duration 2149 ms by bot id=8138074349
+2025-08-20 17:19:17,628 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE TIME CHOSEN | 2025-08-20 17:19:17
+2025-08-20 17:19:17,628 - INFO - handlers.service - xuwdil user 5547528084-id RESPONSE for date and time with COMMENTS| 2025-08-20 17:19:17
+2025-08-20 17:19:17,817 - INFO - aiogram.event - Update id=799216319 is handled. Duration 391 ms by bot id=8138074349
+2025-08-20 17:19:27,943 - ERROR - aiogram.dispatcher - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2025-08-20 17:19:27,943 - WARNING - aiogram.dispatcher - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8138074349)
+2025-08-20 17:19:30,095 - INFO - aiogram.dispatcher - Connection established (tryings = 1, bot id = 8138074349)
+2025-08-20 17:19:30,096 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE COMMENTS FETCHED | 2025-08-20 17:19:30
+2025-08-20 17:19:30,107 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE COMMENTS added to FILE | 2025-08-20 17:19:30
+2025-08-20 17:19:32,416 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE END | 2025-08-20 17:19:32
+2025-08-20 17:19:32,416 - INFO - aiogram.event - Update id=799216320 is handled. Duration 2319 ms by bot id=8138074349
+2025-08-20 17:19:40,476 - ERROR - aiogram.dispatcher - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2025-08-20 17:19:40,476 - WARNING - aiogram.dispatcher - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8138074349)
+2025-08-20 17:19:45,761 - INFO - aiogram.dispatcher - Connection established (tryings = 1, bot id = 8138074349)
+2025-08-20 17:19:45,762 - INFO - handlers.testdrive - xuwdil user 5547528084-id started the Test_drive flow | 2025-08-20 17:19:45
+2025-08-20 17:19:46,888 - INFO - handlers.testdrive - xuwdil user 5547528084 is on selection of buttons | 2025-08-20 17:19:46
+2025-08-20 17:19:46,888 - INFO - aiogram.event - Update id=799216321 is handled. Duration 1125 ms by bot id=8138074349
+2025-08-20 17:19:49,757 - INFO - handlers.testdrive - xuwdil user with 5547528084-id, started the selection of car | 2025-08-20 17:19:49
+2025-08-20 17:19:50,371 - INFO - handlers.testdrive - xuwdil user with 5547528084-id made selection of car | 2025-08-20 17:19:50
+2025-08-20 17:19:50,677 - INFO - handlers.testdrive - xuwdil user with 5547528084-id, started the selection of DATE FOR TEST DRIVE | 2025-08-20 17:19:50
+2025-08-20 17:19:50,881 - INFO - aiogram.event - Update id=799216322 is handled. Duration 1125 ms by bot id=8138074349
+2025-08-20 17:19:51,907 - INFO - handlers.testdrive - xuwdil user 5547528084-id STARTED SELECTING THE DATE | 2025-08-20 17:19:51
+2025-08-20 17:19:52,213 - INFO - aiogram.event - Update id=799216323 is handled. Duration 307 ms by bot id=8138074349
+2025-08-20 17:19:56,479 - INFO - handlers.testdrive - xuwdil user 5547528084-id STARTED SELECTING THE DATE | 2025-08-20 17:19:56
+2025-08-20 17:19:56,616 - INFO - aiogram.event - Update id=799216324 is handled. Duration 137 ms by bot id=8138074349
+2025-08-20 17:20:02,660 - INFO - handlers.testdrive - xuwdil user 5547528084-id STARTED SELECTING THE DATE | 2025-08-20 17:20:02
+2025-08-20 17:20:03,273 - INFO - handlers.testdrive - xuwdil user 5547528084-id SELECTED THE DATE | 2025-08-20 17:20:03
+2025-08-20 17:20:03,580 - INFO - handlers.testdrive - xuwdil user 5547528084-id SELECTION of time BUTTONS SHOWN | 2025-08-20 17:20:03
+2025-08-20 17:20:03,580 - INFO - aiogram.event - Update id=799216325 is handled. Duration 922 ms by bot id=8138074349
+2025-08-20 17:20:05,119 - INFO - handlers.testdrive - xuwdil user 5547528084-id TIME SELECTED | Chosen test time-15:00 | 2025-08-20 17:20:05
+2025-08-20 17:20:05,732 - INFO - handlers.testdrive - xuwdil user 5547528084-id COMMENTS to add | Chosen test time-15:00 | 2025-08-20 17:20:05
+2025-08-20 17:20:05,732 - INFO - aiogram.event - Update id=799216326 is handled. Duration 613 ms by bot id=8138074349
+2025-08-20 17:20:08,497 - INFO - handlers.testdrive - xuwdil user 5547528084-id ADDED COMMENTS | 2025-08-20 17:20:08
+2025-08-20 17:20:08,701 - INFO - handlers.testdrive - xuwdil user 5547528084-id TEST DRIVE ADDED COMMENTS | 2025-08-20 17:20:08
+2025-08-20 17:20:08,701 - INFO - handlers.testdrive - xuwdil user 5547528084-id TEST DRIVE END | 2025-08-20 17:20:08
+2025-08-20 17:20:08,702 - INFO - aiogram.event - Update id=799216327 is handled. Duration 206 ms by bot id=8138074349
+2025-08-20 17:26:29,319 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-20 17:26:29,320 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-20 17:26:29,320 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 09:23:04,463 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 09:23:05,424 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 09:28:04,948 - INFO - aiogram.event - Update id=799216328 is handled. Duration 923 ms by bot id=8138074349
+2025-08-21 09:32:13,680 - ERROR - aiogram.dispatcher - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-08-21 09:32:13,681 - WARNING - aiogram.dispatcher - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8138074349)
+2025-08-21 09:32:13,681 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 09:32:13,681 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 09:32:13,681 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 09:32:18,179 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 09:32:25,742 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 09:32:26,972 - INFO - aiogram.event - Update id=799216330 is handled. Duration 916 ms by bot id=8138074349
+2025-08-21 09:32:26,972 - INFO - aiogram.event - Update id=799216329 is handled. Duration 918 ms by bot id=8138074349
+2025-08-21 09:32:30,652 - INFO - aiogram.event - Update id=799216331 is handled. Duration 302 ms by bot id=8138074349
+2025-08-21 09:33:14,857 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 09:33:14,857 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 09:33:14,857 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 10:11:45,309 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 10:12:00,943 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:12:01,251 - INFO - handlers.testdrive - Ismat . user 631886740-id started the Test_drive flow | 2025-08-21 10:12:01
+2025-08-21 10:12:02,376 - INFO - handlers.testdrive - Ismat . user 631886740 is on selection of buttons | 2025-08-21 10:12:02
+2025-08-21 10:12:02,377 - INFO - aiogram.event - Update id=799216332 is handled. Duration 1126 ms by bot id=8138074349
+2025-08-21 10:12:03,896 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of car | 2025-08-21 10:12:03
+2025-08-21 10:12:04,211 - INFO - handlers.testdrive - Ismat . user with 631886740-id made selection of car | 2025-08-21 10:12:04
+2025-08-21 10:12:04,390 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of DATE FOR TEST DRIVE | 2025-08-21 10:12:04
+2025-08-21 10:12:04,533 - INFO - aiogram.event - Update id=799216333 is handled. Duration 637 ms by bot id=8138074349
+2025-08-21 10:12:07,310 - INFO - handlers.testdrive - Ismat . user 631886740-id STARTED SELECTING THE DATE | 2025-08-21 10:12:07
+2025-08-21 10:12:08,000 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTED THE DATE | 2025-08-21 10:12:08
+2025-08-21 10:12:08,313 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTION of time BUTTONS SHOWN | 2025-08-21 10:12:08
+2025-08-21 10:12:08,314 - INFO - aiogram.event - Update id=799216334 is handled. Duration 1003 ms by bot id=8138074349
+2025-08-21 10:12:09,796 - INFO - handlers.testdrive - Ismat . user 631886740-id TIME SELECTED | Chosen test time-15:00 | 2025-08-21 10:12:09
+2025-08-21 10:12:10,122 - INFO - handlers.testdrive - Ismat . user 631886740-id COMMENTS to add | Chosen test time-15:00 | 2025-08-21 10:12:10
+2025-08-21 10:12:10,123 - INFO - aiogram.event - Update id=799216335 is handled. Duration 328 ms by bot id=8138074349
+2025-08-21 10:12:13,738 - INFO - handlers.testdrive - Ismat . user 631886740-id ADDED COMMENTS | 2025-08-21 10:12:13
+2025-08-21 10:12:14,145 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE ADDED COMMENTS | 2025-08-21 10:12:14
+2025-08-21 10:12:14,145 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE END | 2025-08-21 10:12:14
+2025-08-21 10:12:14,145 - INFO - aiogram.event - Update id=799216336 is handled. Duration 408 ms by bot id=8138074349
+2025-08-21 10:12:58,560 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 10:12:58,561 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:12:58,561 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 10:13:03,326 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 10:13:19,559 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:13:26,934 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-21 10:13:26
+2025-08-21 10:13:28,464 - INFO - aiogram.event - Update id=799216337 is handled. Duration 1530 ms by bot id=8138074349
+2025-08-21 10:13:30,617 - INFO - handlers.testdrive - Ismat . user 631886740-id started the Test_drive flow | 2025-08-21 10:13:30
+2025-08-21 10:13:31,232 - INFO - handlers.testdrive - Ismat . user 631886740 is on selection of buttons | 2025-08-21 10:13:31
+2025-08-21 10:13:31,232 - INFO - aiogram.event - Update id=799216338 is handled. Duration 614 ms by bot id=8138074349
+2025-08-21 10:13:34,302 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of car | 2025-08-21 10:13:34
+2025-08-21 10:13:34,915 - INFO - handlers.testdrive - Ismat . user with 631886740-id made selection of car | 2025-08-21 10:13:34
+2025-08-21 10:13:35,218 - INFO - handlers.testdrive - Ismat . user with 631886740-id, started the selection of DATE FOR TEST DRIVE | 2025-08-21 10:13:35
+2025-08-21 10:13:35,528 - INFO - aiogram.event - Update id=799216339 is handled. Duration 1226 ms by bot id=8138074349
+2025-08-21 10:13:40,749 - INFO - handlers.testdrive - Ismat . user 631886740-id STARTED SELECTING THE DATE | 2025-08-21 10:13:40
+2025-08-21 10:13:41,323 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTED THE DATE | 2025-08-21 10:13:41
+2025-08-21 10:13:41,460 - INFO - handlers.testdrive - Ismat . user 631886740-id SELECTION of time BUTTONS SHOWN | 2025-08-21 10:13:41
+2025-08-21 10:13:41,460 - INFO - aiogram.event - Update id=799216340 is handled. Duration 711 ms by bot id=8138074349
+2025-08-21 10:13:51,186 - INFO - handlers.testdrive - Ismat . user 631886740-id TIME SELECTED | Chosen test time-09:30 | 2025-08-21 10:13:51
+2025-08-21 10:13:51,492 - INFO - handlers.testdrive - Ismat . user 631886740-id COMMENTS to add | Chosen test time-09:30 | 2025-08-21 10:13:51
+2025-08-21 10:13:51,492 - INFO - aiogram.event - Update id=799216341 is handled. Duration 306 ms by bot id=8138074349
+2025-08-21 10:13:55,341 - INFO - handlers.testdrive - Ismat . user 631886740-id ADDED COMMENTS | 2025-08-21 10:13:55
+2025-08-21 10:13:55,801 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE ADDED COMMENTS | 2025-08-21 10:13:55
+2025-08-21 10:13:55,801 - INFO - handlers.testdrive - Ismat . user 631886740-id TEST DRIVE END | 2025-08-21 10:13:55
+2025-08-21 10:13:55,801 - INFO - aiogram.event - Update id=799216342 is handled. Duration 461 ms by bot id=8138074349
+2025-08-21 10:14:25,701 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 10:14:25,702 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:14:25,702 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 10:15:53,424 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 10:16:03,920 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:16:05,148 - INFO - handlers.service - Ismat . user 631886740-id started the SERVICE flow | 2025-08-21 10:16:05
+2025-08-21 10:16:05,194 - INFO - handlers.service - Ismat . user 631886740-id MESSAGE for SERVICE flow | 2025-08-21 10:16:05
+2025-08-21 10:16:05,764 - INFO - aiogram.event - Update id=799216343 is handled. Duration 1536 ms by bot id=8138074349
+2025-08-21 10:16:28,493 - INFO - handlers.service - Ismat . user 631886740-id VIN ENTERED | 2025-08-21 10:16:28
+2025-08-21 10:16:28,799 - INFO - aiogram.event - Update id=799216344 is handled. Duration 306 ms by bot id=8138074349
+2025-08-21 10:16:34,942 - INFO - handlers.service - Ismat . user 631886740-id CAR MODEL entered | 2025-08-21 10:16:34
+2025-08-21 10:16:35,454 - INFO - handlers.service - Ismat . user 631886740-id SERVICE SELECTION | 2025-08-21 10:16:35
+2025-08-21 10:16:35,454 - INFO - aiogram.event - Update id=799216345 is handled. Duration 512 ms by bot id=8138074349
+2025-08-21 10:16:37,724 - INFO - handlers.service - Ismat . user 631886740-id SERVICE CHOSEN | 2025-08-21 10:16:37
+2025-08-21 10:16:38,016 - INFO - handlers.service - Ismat . user 631886740-id PRINTER CHOSEN service | 2025-08-21 10:16:38
+2025-08-21 10:16:38,323 - INFO - handlers.service - Ismat . user 631886740-id DATE SELECTION PROCESS | 2025-08-21 10:16:38
+2025-08-21 10:16:38,628 - INFO - aiogram.event - Update id=799216346 is handled. Duration 1025 ms by bot id=8138074349
+2025-08-21 10:16:40,781 - INFO - handlers.service - Ismat . user 631886740-id SERVICE CALENDAR CREATION | 2025-08-21 10:16:40
+2025-08-21 10:16:41,292 - INFO - handlers.service - Ismat . user 631886740-id SERVICE DATE UPDATED | 2025-08-21 10:16:41
+2025-08-21 10:16:41,431 - INFO - handlers.service - Ismat . user 631886740-id SERVICE TIME SELECTION | 2025-08-21 10:16:41
+2025-08-21 10:16:41,431 - INFO - aiogram.event - Update id=799216347 is handled. Duration 650 ms by bot id=8138074349
+2025-08-21 10:16:43,439 - INFO - handlers.service - Ismat . user 631886740-id SERVICE TIME CHOSEN | 2025-08-21 10:16:43
+2025-08-21 10:16:43,439 - INFO - handlers.service - Ismat . user 631886740-id RESPONSE for date and time with COMMENTS| 2025-08-21 10:16:43
+2025-08-21 10:16:43,849 - INFO - aiogram.event - Update id=799216348 is handled. Duration 586 ms by bot id=8138074349
+2025-08-21 10:16:48,765 - INFO - handlers.service - Ismat . user 631886740-id SERVICE COMMENTS FETCHED | 2025-08-21 10:16:48
+2025-08-21 10:16:48,781 - INFO - handlers.service - Ismat . user 631886740-id SERVICE COMMENTS added to FILE | 2025-08-21 10:16:48
+2025-08-21 10:16:49,293 - INFO - handlers.service - Ismat . user 631886740-id SERVICE END | 2025-08-21 10:16:49
+2025-08-21 10:16:49,293 - INFO - aiogram.event - Update id=799216349 is handled. Duration 528 ms by bot id=8138074349
+2025-08-21 10:22:58,705 - INFO - root - Buzurgmehr Abdulloev clicked button /start | 974794263 | 2025-08-21 10:22:58
+2025-08-21 10:22:58,708 - INFO - aiogram.event - Update id=799216350 is not handled. Duration 3 ms by bot id=8138074349
+2025-08-21 10:22:58,708 - ERROR - aiogram.event - Cause exception while process update id=799216350 by bot id=8138074349
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+Traceback (most recent call last):
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/handlers/registration.py", line 30, in cmd_language
+    if check_registered(message.chat.id):
+       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-08-21 10:23:38,683 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-21 10:23:38
+2025-08-21 10:23:39,596 - INFO - aiogram.event - Update id=799216351 is handled. Duration 914 ms by bot id=8138074349
+2025-08-21 10:24:17,897 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 10:24:17,897 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:24:17,897 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 10:24:53,339 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 10:25:02,887 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:25:03,197 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-21 10:25:03
+2025-08-21 10:25:03,675 - INFO - aiogram.event - Update id=799216352 is handled. Duration 478 ms by bot id=8138074349
+2025-08-21 10:25:30,243 - INFO - root - Buzurgmehr Abdulloev clicked button /start | 974794263 | 2025-08-21 10:25:30
+2025-08-21 10:25:30,542 - INFO - aiogram.event - Update id=799216353 is handled. Duration 300 ms by bot id=8138074349
+2025-08-21 10:25:32,819 - INFO - aiogram.event - Update id=799216354 is handled. Duration 262 ms by bot id=8138074349
+2025-08-21 10:25:34,538 - INFO - root - Buzurgmehr Abdulloev REGISTRATION begun | 974794263 | 2025-08-21 10:25:34
+2025-08-21 10:25:35,151 - INFO - aiogram.event - Update id=799216355 is handled. Duration 613 ms by bot id=8138074349
+2025-08-21 10:25:38,224 - INFO - root - Buzurgmehr Abdulloev's NUMBER received | 974794263 | 2025-08-21 10:25:38
+2025-08-21 10:25:38,836 - INFO - aiogram.event - Update id=799216356 is handled. Duration 613 ms by bot id=8138074349
+2025-08-21 10:25:40,820 - INFO - aiogram.event - Update id=799216357 is handled. Duration 253 ms by bot id=8138074349
+2025-08-21 10:25:42,218 - INFO - root - Ismat . REGISTRATION begun | 631886740 | 2025-08-21 10:25:42
+2025-08-21 10:25:42,830 - INFO - aiogram.event - Update id=799216358 is handled. Duration 612 ms by bot id=8138074349
+2025-08-21 10:25:45,802 - INFO - root - Ismat .'s NUMBER received | 631886740 | 2025-08-21 10:25:45
+2025-08-21 10:25:46,523 - INFO - aiogram.event - Update id=799216359 is handled. Duration 721 ms by bot id=8138074349
+2025-08-21 10:25:52,050 - INFO - root - Ikki maru - NAME fetched | 631886740 | 2025-08-21 10:25:52
+2025-08-21 10:25:52,356 - INFO - aiogram.event - Update id=799216360 is handled. Duration 307 ms by bot id=8138074349
+2025-08-21 10:25:54,503 - INFO - root - Гульдартабакова Гульдартабакнукрахуросонабегим - NAME fetched | 974794263 | 2025-08-21 10:25:54
+2025-08-21 10:25:54,820 - INFO - aiogram.event - Update id=799216361 is handled. Duration 317 ms by bot id=8138074349
+2025-08-21 10:26:01,575 - INFO - root - ikki@maru.com - EMAIL shall be updated in STATE | 631886740 | 2025-08-21 10:26:01
+2025-08-21 10:26:01,883 - INFO - root - Ismat . Registration COMPLETE FSM Session CLOSED | 631886740 | 2025-08-21 10:26:01
+2025-08-21 10:26:02,085 - INFO - root - ikki@maru.com's - MAIN MENU SHOW | 631886740 | 2025-08-21 10:26:02
+2025-08-21 10:26:02,139 - INFO - root - ikki@maru.com's - MAIN MENU SHOWED | 631886740 | 2025-08-21 10:26:02
+2025-08-21 10:26:02,500 - INFO - aiogram.event - Update id=799216362 is handled. Duration 925 ms by bot id=8138074349
+2025-08-21 10:26:04,344 - INFO - root - thesarboz@gmail.com - EMAIL shall be updated in STATE | 974794263 | 2025-08-21 10:26:04
+2025-08-21 10:26:04,648 - INFO - root - Buzurgmehr Abdulloev Registration COMPLETE FSM Session CLOSED | 974794263 | 2025-08-21 10:26:04
+2025-08-21 10:26:05,323 - INFO - root - thesarboz@gmail.com's - MAIN MENU SHOW | 974794263 | 2025-08-21 10:26:05
+2025-08-21 10:26:05,327 - INFO - root - thesarboz@gmail.com's - MAIN MENU SHOWED | 974794263 | 2025-08-21 10:26:05
+2025-08-21 10:26:05,575 - INFO - aiogram.event - Update id=799216363 is handled. Duration 1231 ms by bot id=8138074349
+2025-08-21 10:26:29,535 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id started the Test_drive flow | 2025-08-21 10:26:29
+2025-08-21 10:26:30,149 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263 is on selection of buttons | 2025-08-21 10:26:30
+2025-08-21 10:26:30,149 - INFO - aiogram.event - Update id=799216364 is handled. Duration 614 ms by bot id=8138074349
+2025-08-21 10:26:32,300 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user with 974794263-id, started the selection of car | 2025-08-21 10:26:32
+2025-08-21 10:26:32,914 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user with 974794263-id made selection of car | 2025-08-21 10:26:32
+2025-08-21 10:26:33,217 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user with 974794263-id, started the selection of DATE FOR TEST DRIVE | 2025-08-21 10:26:33
+2025-08-21 10:26:33,528 - INFO - aiogram.event - Update id=799216365 is handled. Duration 1229 ms by bot id=8138074349
+2025-08-21 10:26:38,754 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id STARTED SELECTING THE DATE | 2025-08-21 10:26:38
+2025-08-21 10:26:39,365 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id SELECTED THE DATE | 2025-08-21 10:26:39
+2025-08-21 10:26:39,570 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id SELECTION of time BUTTONS SHOWN | 2025-08-21 10:26:39
+2025-08-21 10:26:39,570 - INFO - aiogram.event - Update id=799216366 is handled. Duration 817 ms by bot id=8138074349
+2025-08-21 10:26:43,972 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id TIME SELECTED | Chosen test time-14:30 | 2025-08-21 10:26:43
+2025-08-21 10:26:44,585 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id COMMENTS to add | Chosen test time-14:30 | 2025-08-21 10:26:44
+2025-08-21 10:26:44,585 - INFO - aiogram.event - Update id=799216367 is handled. Duration 613 ms by bot id=8138074349
+2025-08-21 10:26:51,944 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id ADDED COMMENTS | 2025-08-21 10:26:51
+2025-08-21 10:26:52,150 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id TEST DRIVE ADDED COMMENTS | 2025-08-21 10:26:52
+2025-08-21 10:26:52,150 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id TEST DRIVE END | 2025-08-21 10:26:52
+2025-08-21 10:26:52,150 - INFO - aiogram.event - Update id=799216368 is handled. Duration 207 ms by bot id=8138074349
+2025-08-21 10:27:01,762 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id started the Test_drive flow | 2025-08-21 10:27:01
+2025-08-21 10:27:02,374 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263 is on selection of buttons | 2025-08-21 10:27:02
+2025-08-21 10:27:02,374 - INFO - aiogram.event - Update id=799216369 is handled. Duration 612 ms by bot id=8138074349
+2025-08-21 10:27:05,605 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user with 974794263-id, started the selection of car | 2025-08-21 10:27:05
+2025-08-21 10:27:06,082 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user with 974794263-id made selection of car | 2025-08-21 10:27:06
+2025-08-21 10:27:06,381 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user with 974794263-id, started the selection of DATE FOR TEST DRIVE | 2025-08-21 10:27:06
+2025-08-21 10:27:06,534 - INFO - aiogram.event - Update id=799216370 is handled. Duration 930 ms by bot id=8138074349
+2025-08-21 10:27:08,819 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id STARTED SELECTING THE DATE | 2025-08-21 10:27:08
+2025-08-21 10:27:09,323 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id SELECTED THE DATE | 2025-08-21 10:27:09
+2025-08-21 10:27:09,531 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id SELECTION of time BUTTONS SHOWN | 2025-08-21 10:27:09
+2025-08-21 10:27:09,531 - INFO - aiogram.event - Update id=799216371 is handled. Duration 712 ms by bot id=8138074349
+2025-08-21 10:27:11,271 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id TIME SELECTED | Chosen test time-15:00 | 2025-08-21 10:27:11
+2025-08-21 10:27:11,781 - INFO - handlers.testdrive - Buzurgmehr Abdulloev user 974794263-id COMMENTS to add | Chosen test time-15:00 | 2025-08-21 10:27:11
+2025-08-21 10:27:11,781 - INFO - aiogram.event - Update id=799216372 is handled. Duration 510 ms by bot id=8138074349
+2025-08-21 10:27:36,127 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id started the SERVICE flow | 2025-08-21 10:27:36
+2025-08-21 10:27:36,130 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id MESSAGE for SERVICE flow | 2025-08-21 10:27:36
+2025-08-21 10:27:36,434 - INFO - aiogram.event - Update id=799216373 is handled. Duration 606 ms by bot id=8138074349
+2025-08-21 10:27:50,863 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id WRONG VIN entered | 2025-08-21 10:27:50
+2025-08-21 10:27:50,863 - INFO - aiogram.event - Update id=799216374 is handled. Duration 314 ms by bot id=8138074349
+2025-08-21 10:28:00,395 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id WRONG VIN entered | 2025-08-21 10:28:00
+2025-08-21 10:28:00,395 - INFO - aiogram.event - Update id=799216375 is handled. Duration 323 ms by bot id=8138074349
+2025-08-21 10:46:55,562 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 10:46:55,563 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:46:55,563 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 10:48:53,014 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 10:48:54,103 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:48:54,413 - INFO - aiogram.event - Update id=799216376 is not handled. Duration 2 ms by bot id=8138074349
+2025-08-21 10:49:09,771 - INFO - aiogram.event - Update id=799216377 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-21 10:49:14,379 - INFO - root - Buzurgmehr Abdulloev clicked button /start | 974794263 | 2025-08-21 10:49:14
+2025-08-21 10:49:15,811 - INFO - aiogram.event - Update id=799216378 is handled. Duration 1432 ms by bot id=8138074349
+2025-08-21 10:49:19,805 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id started the SERVICE flow | 2025-08-21 10:49:19
+2025-08-21 10:49:19,808 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id MESSAGE for SERVICE flow | 2025-08-21 10:49:19
+2025-08-21 10:49:20,215 - INFO - aiogram.event - Update id=799216379 is handled. Duration 591 ms by bot id=8138074349
+2025-08-21 10:49:30,350 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id VIN ENTERED | 2025-08-21 10:49:30
+2025-08-21 10:49:30,656 - INFO - aiogram.event - Update id=799216380 is handled. Duration 305 ms by bot id=8138074349
+2025-08-21 10:49:40,186 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id CAR MODEL entered | 2025-08-21 10:49:40
+2025-08-21 10:49:40,803 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE SELECTION | 2025-08-21 10:49:40
+2025-08-21 10:49:40,803 - INFO - aiogram.event - Update id=799216381 is handled. Duration 617 ms by bot id=8138074349
+2025-08-21 10:49:48,789 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE CHOSEN | 2025-08-21 10:49:48
+2025-08-21 10:49:49,098 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id PRINTER CHOSEN service | 2025-08-21 10:49:49
+2025-08-21 10:49:49,328 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id DATE SELECTION PROCESS | 2025-08-21 10:49:49
+2025-08-21 10:49:49,504 - INFO - aiogram.event - Update id=799216382 is handled. Duration 1028 ms by bot id=8138074349
+2025-08-21 10:49:58,310 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE CALENDAR CREATION | 2025-08-21 10:49:58
+2025-08-21 10:49:58,614 - INFO - aiogram.event - Update id=799216383 is handled. Duration 305 ms by bot id=8138074349
+2025-08-21 10:50:05,072 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE CALENDAR CREATION | 2025-08-21 10:50:05
+2025-08-21 10:50:05,323 - INFO - aiogram.event - Update id=799216384 is handled. Duration 252 ms by bot id=8138074349
+2025-08-21 10:50:44,397 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE CALENDAR CREATION | 2025-08-21 10:50:44
+2025-08-21 10:50:44,703 - INFO - aiogram.event - Update id=799216385 is handled. Duration 306 ms by bot id=8138074349
+2025-08-21 10:50:54,229 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE CALENDAR CREATION | 2025-08-21 10:50:54
+2025-08-21 10:50:54,841 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE DATE UPDATED | 2025-08-21 10:50:54
+2025-08-21 10:50:55,144 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE TIME SELECTION | 2025-08-21 10:50:55
+2025-08-21 10:50:55,144 - INFO - aiogram.event - Update id=799216386 is handled. Duration 916 ms by bot id=8138074349
+2025-08-21 10:50:56,991 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE TIME CHOSEN | 2025-08-21 10:50:56
+2025-08-21 10:50:56,991 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id RESPONSE for date and time with COMMENTS| 2025-08-21 10:50:56
+2025-08-21 10:50:57,299 - INFO - aiogram.event - Update id=799216387 is handled. Duration 613 ms by bot id=8138074349
+2025-08-21 10:51:52,596 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE COMMENTS FETCHED | 2025-08-21 10:51:52
+2025-08-21 10:51:52,651 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE COMMENTS added to FILE | 2025-08-21 10:51:52
+2025-08-21 10:51:53,212 - INFO - handlers.service - Buzurgmehr Abdulloev user 974794263-id SERVICE END | 2025-08-21 10:51:53
+2025-08-21 10:51:53,212 - INFO - aiogram.event - Update id=799216388 is handled. Duration 617 ms by bot id=8138074349
+2025-08-21 10:55:26,646 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 10:55:26,646 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 10:55:26,646 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:26:14,571 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:26:15,650 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:26:19,523 - INFO - aiogram.event - Update id=799216389 is not handled. Duration 2 ms by bot id=8138074349
+2025-08-21 11:26:19,524 - ERROR - aiogram.event - Cause exception while process update id=799216389 by bot id=8138074349
+ValueError: DataFrame constructor not properly called!
+Traceback (most recent call last):
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/edit_profile/test_drive_history.py", line 9, in tdh
+    user_info = return_tdh(message.chat.id)
+  File "/home/ikki/Desktop/Koinot/Tajmotors/Registration_functions/functions.py", line 318, in return_tdh
+    df = pd.DataFrame(TEST_DRIVE_LIST)
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/pandas/core/frame.py", line 886, in __init__
+    raise ValueError("DataFrame constructor not properly called!")
+ValueError: DataFrame constructor not properly called!
+2025-08-21 11:26:37,823 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:26:37,823 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:26:37,823 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:26:40,695 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:26:41,437 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:26:44,414 - INFO - aiogram.event - Update id=799216390 is not handled. Duration 2 ms by bot id=8138074349
+2025-08-21 11:26:44,414 - ERROR - aiogram.event - Cause exception while process update id=799216390 by bot id=8138074349
+ValueError: DataFrame constructor not properly called!
+Traceback (most recent call last):
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/edit_profile/test_drive_history.py", line 9, in tdh
+    user_info = await return_tdh(message.chat.id)
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/Registration_functions/functions.py", line 318, in return_tdh
+    df = pd.DataFrame(TEST_DRIVE_LIST)
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/pandas/core/frame.py", line 886, in __init__
+    raise ValueError("DataFrame constructor not properly called!")
+ValueError: DataFrame constructor not properly called!
+2025-08-21 11:28:24,767 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:28:24,768 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:28:24,768 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:28:27,058 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:28:43,031 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:28:43,376 - INFO - aiogram.event - Update id=799216391 is not handled. Duration 38 ms by bot id=8138074349
+2025-08-21 11:28:43,376 - ERROR - aiogram.event - Cause exception while process update id=799216391 by bot id=8138074349
+TypeError: object str can't be used in 'await' expression
+Traceback (most recent call last):
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/.venv/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/ikki/Desktop/Koinot/Tajmotors/edit_profile/test_drive_history.py", line 9, in tdh
+    user_info = await return_tdh(message.chat.id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object str can't be used in 'await' expression
+2025-08-21 11:28:49,669 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:28:49,669 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:28:49,669 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:28:52,073 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:28:53,167 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:28:53,822 - INFO - aiogram.event - Update id=799216392 is handled. Duration 39 ms by bot id=8138074349
+2025-08-21 11:29:21,059 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:29:21,060 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:29:21,060 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:29:24,774 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:29:25,735 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:29:26,087 - INFO - aiogram.event - Update id=799216393 is handled. Duration 39 ms by bot id=8138074349
+2025-08-21 11:29:59,168 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:29:59,169 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:29:59,169 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:30:01,723 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:30:05,323 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:30:05,519 - INFO - aiogram.event - Update id=799216394 is handled. Duration 40 ms by bot id=8138074349
+2025-08-21 11:30:28,293 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:30:28,293 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:30:28,293 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:30:45,454 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:31:00,369 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:31:00,720 - INFO - aiogram.event - Update id=799216395 is handled. Duration 42 ms by bot id=8138074349
+2025-08-21 11:31:24,729 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:31:24,729 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:31:24,729 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:44:17,656 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:44:22,452 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:44:22,806 - INFO - aiogram.event - Update id=799216396 is handled. Duration 45 ms by bot id=8138074349
+2025-08-21 11:44:44,801 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:44:44,801 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:44:44,801 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:44:47,536 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:44:50,406 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:44:51,842 - INFO - aiogram.event - Update id=799216397 is handled. Duration 1127 ms by bot id=8138074349
+2025-08-21 11:46:13,955 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:46:13,955 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:46:13,955 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 11:49:34,713 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 11:49:35,542 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:49:35,662 - INFO - root - Ismat . clicked button /start | 631886740 | 2025-08-21 11:49:35
+2025-08-21 11:49:36,429 - INFO - aiogram.event - Update id=799216398 is handled. Duration 766 ms by bot id=8138074349
+2025-08-21 11:51:58,020 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 11:51:58,020 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 11:51:58,020 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 12:12:58,175 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 12:13:00,890 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:13:01,205 - INFO - aiogram.event - Update id=799216399 is not handled. Duration 2 ms by bot id=8138074349
+2025-08-21 12:13:53,830 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 12:13:53,830 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:13:53,830 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 12:15:51,745 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 12:16:01,780 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 12:16:05,811 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 12:16:18,057 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:16:19,599 - INFO - aiogram.event - Update id=799216400 is handled. Duration 1234 ms by bot id=8138074349
+2025-08-21 12:19:19,462 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 12:19:19,462 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:19:19,462 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 12:19:35,489 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 12:19:36,643 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:19:41,238 - INFO - aiogram.event - Update id=799216401 is handled. Duration 1216 ms by bot id=8138074349
+2025-08-21 12:34:26,507 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 12:34:26,508 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:34:26,508 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-21 12:34:33,029 - INFO - aiogram.dispatcher - Start polling
+2025-08-21 12:34:34,239 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:34:37,929 - INFO - aiogram.event - Update id=799216402 is handled. Duration 665 ms by bot id=8138074349
+2025-08-21 12:34:43,764 - INFO - aiogram.event - Update id=799216403 is handled. Duration 421 ms by bot id=8138074349
+2025-08-21 12:34:59,531 - INFO - aiogram.event - Update id=799216404 is handled. Duration 191 ms by bot id=8138074349
+2025-08-21 12:35:00,652 - INFO - aiogram.event - Update id=799216405 is handled. Duration 299 ms by bot id=8138074349
+2025-08-21 12:35:02,191 - INFO - aiogram.event - Update id=799216406 is handled. Duration 307 ms by bot id=8138074349
+2025-08-21 12:35:15,382 - INFO - aiogram.event - Update id=799216407 is handled. Duration 1215 ms by bot id=8138074349
+2025-08-21 12:35:17,244 - INFO - aiogram.event - Update id=799216408 is handled. Duration 308 ms by bot id=8138074349
+2025-08-21 12:35:19,699 - INFO - aiogram.event - Update id=799216409 is handled. Duration 192 ms by bot id=8138074349
+2025-08-21 12:35:26,307 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-21 12:35:26,308 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-21 12:35:26,308 - INFO - aiogram.dispatcher - Polling stopped

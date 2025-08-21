@@ -39,7 +39,6 @@ async def division_lang(message: Message, state: FSMContext):
 async def lang_changed(callback: CallbackQuery , state: FSMContext):
     
     language = callback.data.split(":")[-1]
-    print(callback.from_user.id, language)
     change_language(callback.from_user.id, new_language= language)
     
     await callback.answer(

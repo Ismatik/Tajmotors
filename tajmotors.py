@@ -23,6 +23,8 @@ from edit_profile.edit_email import router as editprofileemail_router
 from edit_profile.edit_name import router as editname_router
 from edit_profile.edit_back import router as editback_router
 from edit_profile.edit_language import router as editlanguage_router
+from edit_profile.test_drive_history import router as tdh_router
+from edit_profile.service_history import router as sh_router
 
 # =================================================================================
 # 21. CONFIGURATION AND INITIALIZATION
@@ -55,6 +57,8 @@ async def main():
     dp.include_router(editname_router)
     dp.include_router(editback_router)
     dp.include_router(editlanguage_router)
+    dp.include_router(tdh_router)
+    dp.include_router(sh_router)
     await dp.start_polling(bot)
     
 if __name__ == "__main__":
