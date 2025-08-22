@@ -1,4 +1,4 @@
-from Registration_functions.functions import fetch_name_and_phone_number, register_service
+from Registration_functions.functions import fetch_name_and_phone_number, register_service, fetch_language
 
 from aiogram import F, types, Router
 from aiogram.enums import ParseMode
@@ -11,6 +11,7 @@ from aiogram.filters.callback_data import CallbackData
 from aiogram_calendar import SimpleCalendar , SimpleCalendarCallback, get_user_locale
 from datetime import date, datetime
 from utils.utils import Service
+from utils.service_constants import GREET_SERVICE, WRONG_VIN, CAR_SELECTION, CAR_NOTED, SERVICE_TYPE, SERVICE_TYPE_TEXT, SERVICE_NOTED, SERVICE_DATE_SELECT, SERVICE_DATE_REPLY, TIME_SELECTION, TIME_SELECTED, APPROVED_SERVICE,COMMENTS_SERVICE ,  WRONG_DATE_SELECTION
 
 from config_reader import COMMENTS
 import logging
@@ -27,10 +28,8 @@ async def process_service(callback: types.CallbackQuery , state:FSMContext):
     name , phone = fetch_name_and_phone_number(callback.from_user.id)
     await state.update_data(name= name , phone_number = phone)
     logger.info(f"{user.full_name} user {user.id}-id MESSAGE for SERVICE flow | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")    
-    
-    await callback.message.answer(f"Thanks for selecting TajMotors! We will use name and phone number from registration form you filled!Plase fill the from for service of your car 🚗\n"
-                                  f"<b>Name:</b> {name}\n<b>Phone:</b> {phone}\n" 
-                                  f"Please enter state registration number or VIN code of the vehicle.",
+    lang = fetch_language(user.id)
+    await callback.message.answer(name + GREET_SERVICE[lang] ,
                                   parse_mode=ParseMode.HTML)
     
     await state.set_state(Service.VIN)
@@ -38,16 +37,20 @@ async def process_service(callback: types.CallbackQuery , state:FSMContext):
 @router.message(Service.VIN)
 async def process_service_VIN(message: Message, state: FSMContext):
     user = message.from_user
+    lang = fetch_language(message.chat.id)
+
+    
     if len(message.text) != 17:
-        await message.reply("Please enter correct VIN.")
+        await message.reply(WRONG_VIN[lang])
         logger.info(f"{user.full_name} user {user.id}-id WRONG VIN entered | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
         return
     
     await state.update_data(VIN = message.text)
+    await state.update_data(language = lang)
     logger.info(f"{user.full_name} user {user.id}-id VIN ENTERED | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
 
-    
-    await message.answer("Thank you! Now, please enter the car model (e.g., Toyota Camry):")
+    k = await state.get_data()
+    await message.answer(CAR_SELECTION[k['language']])
     
     # Set the state to wait for the model
     await state.set_state(Service.auto_model)
@@ -55,20 +58,26 @@ async def process_service_VIN(message: Message, state: FSMContext):
 @router.message(Service.auto_model)
 async def process_service_auto(message: Message , state: FSMContext):
     user = message.from_user
+    lang = fetch_language(message.chat.id)
     await state.update_data(auto_model = message.text)
     logger.info(f"{user.full_name} user {user.id}-id CAR MODEL entered | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     
-    await message.answer(text="We noted your car model.")
+    await message.answer(text=CAR_NOTED[lang])
     
     #list as for now
-    service_list = [
-        InlineKeyboardButton(text="Service 1" , callback_data="chosen_service:Service 1"),
-        InlineKeyboardButton(text="Service 2" , callback_data="chosen_service:Service 2"),
-        InlineKeyboardButton(text="Service 3" , callback_data="chosen_service:Service 3"),
-        InlineKeyboardButton(text="Service 4" , callback_data="chosen_service:Service 4"),
-        InlineKeyboardButton(text="Service 5" , callback_data="chosen_service:Service 5")
-    ]
+    # service_list = [
+    #     InlineKeyboardButton(text="Service 1" , callback_data="chosen_service:Service 1"),
+    #     InlineKeyboardButton(text="Service 2" , callback_data="chosen_service:Service 2"),
+    #     InlineKeyboardButton(text="Service 3" , callback_data="chosen_service:Service 3"),
+    #     InlineKeyboardButton(text="Service 4" , callback_data="chosen_service:Service 4"),
+    #     InlineKeyboardButton(text="Service 5" , callback_data="chosen_service:Service 5")
+    # ]
     
+    service_list = []
+    for i in range(len(SERVICE_TYPE[lang])):
+        k = InlineKeyboardButton(text = SERVICE_TYPE[lang][i], callback_data=f"chosen_service:{SERVICE_TYPE[lang][i]}")
+        service_list.append(k)
+        
     kb = []
     for i in range(0 , len(service_list) , 2):
         kb.append(service_list[i: i+2])
@@ -76,12 +85,11 @@ async def process_service_auto(message: Message , state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
 
     await message.answer( 
-        text="Please select what service you require:",
+        text=SERVICE_TYPE_TEXT[lang],
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
     logger.info(f"{user.full_name} user {user.id}-id SERVICE SELECTION | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
-
 
     await state.set_state(Service.action_list)
     
@@ -90,13 +98,15 @@ async def process_service_choice(callback: types.CallbackQuery, state: FSMContex
 
     await callback.answer()
     user = callback.from_user
+    k = await state.get_data()
     logger.info(f"{user.full_name} user {user.id}-id SERVICE CHOSEN | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     
     chose = callback.data.split(":")[-1]
     
     await state.update_data(action_list = chose)    
-    
-    await callback.message.edit_text(f"You have selected: <b>{chose}</b>." ,
+    print(chose)
+    # lang = fetch_language(callback.from_user.id)
+    await callback.message.edit_text(f"<b>{chose}</b> {SERVICE_NOTED[k["language"]]}" ,
                                      parse_mode=ParseMode.HTML)
     logger.info(f"{user.full_name} user {user.id}-id PRINTER CHOSEN service | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     calendar = SimpleCalendar(
@@ -105,7 +115,7 @@ async def process_service_choice(callback: types.CallbackQuery, state: FSMContex
     )
     
     await callback.message.answer(
-        "Great! Now, please select a convenient date:",
+        SERVICE_DATE_SELECT[k['language']],
         reply_markup=await calendar.start_calendar()
     )
     logger.info(f"{user.full_name} user {user.id}-id DATE SELECTION PROCESS | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
@@ -114,6 +124,7 @@ async def process_service_choice(callback: types.CallbackQuery, state: FSMContex
 
 @router.callback_query(Service.date , SimpleCalendarCallback.filter())
 async def process_simple_calendar(callback_query: CallbackQuery, callback_data: CallbackData, state:FSMContext):
+    k = await state.get_data()
     calendar = SimpleCalendar(
         locale=await get_user_locale(callback_query.from_user), show_alerts=True
     )
@@ -125,8 +136,7 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
         if data > datetime.today():
             await callback_query.message.edit_text(
                 # f'You selected {data.strftime("%d/%m/%Y")}.\n\nWe recevied your request.<b>Our manager will contact you soon!</b>',
-                f'You selected this date - <b>{data.strftime("%d/%m/%Y")}</b>.\n\n'
-                f'Now, please enter a convenient time (e.g., 14:30).',
+                f'<b>{data.strftime("%d/%m/%Y")}</b>{SERVICE_DATE_REPLY[k["language"]]}',
                 parse_mode=ParseMode.HTML
             )
             
@@ -148,7 +158,7 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
                 kb.append(buttons[i:i+3])
             
             keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
-            await callback_query.message.answer(text="Select your convenient time for service:",
+            await callback_query.message.answer(text=TIME_SELECTION[k["language"]],
                                                 reply_markup = keyboard
                                                 )            
             logger.info(f"{user.full_name} user {user.id}-id SERVICE TIME SELECTION | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
@@ -156,7 +166,7 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
             
          
         else:
-            await callback_query.answer("You cannot select a date in the past. Please choose again.", show_alert=True)
+            await callback_query.answer(WRONG_DATE_SELECTION[k['language']], show_alert=True)
             logger.info(f"{user.full_name} user {user.id}-id SERVICE TIME WRONG SELECTION | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
             # Optional: You can re-send the calendar if you want them to immediately try again.
             # Note: This can feel a bit clunky to the user.
@@ -169,6 +179,7 @@ async def process_simple_calendar(callback_query: CallbackQuery, callback_data: 
 async def process_time_service(callback_query: types.CallbackQuery , state:FSMContext):
     await callback_query.answer()
     user = callback_query.from_user
+    k = await state.get_data()
     logger.info(f"{user.full_name} user {user.id}-id SERVICE TIME CHOSEN | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     chosen_time = callback_query.data.split("-")[-1]
     
@@ -176,7 +187,7 @@ async def process_time_service(callback_query: types.CallbackQuery , state:FSMCo
     await state.update_data(time = chosen_time)
     info = await state.get_data()
     logger.info(f"{user.full_name} user {user.id}-id RESPONSE for date and time with COMMENTS| {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
-    await callback_query.message.edit_text(text=f"You selected date on <b>{info["date"]} at {info["time"]}</b>.\n\n{COMMENTS}",
+    await callback_query.message.edit_text(text=f"{TIME_SELECTED[k['language']]} <b>{info["date"]} {info["time"]}</b>.\n\n{COMMENTS_SERVICE[k['language']]}",
                                            parse_mode=ParseMode.HTML)
     
     await state.set_state(Service.comments)
@@ -198,12 +209,12 @@ async def process_service_comments(message: Message, state:FSMContext):
                         date_service=info["date"],
                         registration_time=info["registration_time"],
                         time_service=info["time"],
-                        comments = info["comments"])
+                        comments = info["comments"]
+                        )
     logger.info(f"{user.full_name} user {user.id}-id SERVICE COMMENTS added to FILE | {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}")
     
     await message.answer(
-        f"Thank you! Your appointment request is complete and has been registered.\n"
-        f"We recevied your request for <b>Service</b>.\n<b>Our manager will contact you soon!</b>",
+        APPROVED_SERVICE[info['language']],
         parse_mode=ParseMode.HTML
     )
     

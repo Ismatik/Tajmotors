@@ -22,6 +22,7 @@ class Service(StatesGroup):
     registration_time = State()
     userid = State()
     comments = State()
+    language = State()
     
 class TestDrive(StatesGroup):
     car_model = State()
@@ -32,6 +33,7 @@ class TestDrive(StatesGroup):
     registration_time = State()
     userid = State()
     comments = State()
+    language = State()
 
 class EditProfile(StatesGroup):
     choice = State()

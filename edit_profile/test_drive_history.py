@@ -16,7 +16,7 @@ async def tdh(message: Message):
     lang = fetch_language(message.chat.id)
     content = reply[lang] + '<b>'
     for i in user_info:
-        content += f"{i[4]} {i[6]} {i[3]}\n"
+        content += f"{i[4]} {i[6]} (VIN - {i[3]})\n"
     content += "</b>"
     await message.answer(
         text= content,
