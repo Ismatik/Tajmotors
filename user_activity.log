@@ -7025,3 +7025,46 @@ KeyError: 'lang'
 2025-08-22 17:08:43,072 - WARNING - aiogram.dispatcher - Received SIGINT signal
 2025-08-22 17:08:43,072 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
 2025-08-22 17:08:43,073 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-26 08:44:10,586 - INFO - aiogram.dispatcher - Start polling
+2025-08-26 08:44:26,301 - INFO - aiogram.dispatcher - Run polling for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-26 08:46:24,272 - INFO - aiogram.event - Update id=799216489 is handled. Duration 512 ms by bot id=8138074349
+2025-08-26 08:46:28,057 - INFO - aiogram.event - Update id=799216490 is handled. Duration 304 ms by bot id=8138074349
+2025-08-26 08:46:30,816 - INFO - aiogram.event - Update id=799216491 is handled. Duration 608 ms by bot id=8138074349
+2025-08-26 08:46:32,581 - INFO - aiogram.event - Update id=799216492 is handled. Duration 427 ms by bot id=8138074349
+2025-08-26 08:46:39,418 - INFO - aiogram.event - Update id=799216493 is not handled. Duration 2 ms by bot id=8138074349
+2025-08-26 08:46:43,717 - INFO - aiogram.event - Update id=799216494 is not handled. Duration 1 ms by bot id=8138074349
+2025-08-26 08:46:44,640 - INFO - aiogram.event - Update id=799216495 is not handled. Duration 0 ms by bot id=8138074349
+2025-08-26 08:46:45,560 - INFO - handlers.testdrive - xuwdil user 5547528084-id started the Test_drive flow | 2025-08-26 08:46:45
+2025-08-26 08:46:46,074 - INFO - handlers.testdrive - xuwdil user 5547528084 is on selection of buttons | 2025-08-26 08:46:46
+2025-08-26 08:46:46,074 - INFO - aiogram.event - Update id=799216496 is handled. Duration 514 ms by bot id=8138074349
+2025-08-26 08:46:46,481 - INFO - handlers.service - xuwdil user 5547528084-id started the SERVICE flow | 2025-08-26 08:46:46
+2025-08-26 08:46:46,484 - INFO - handlers.service - xuwdil user 5547528084-id MESSAGE for SERVICE flow | 2025-08-26 08:46:46
+2025-08-26 08:46:46,789 - INFO - aiogram.event - Update id=799216497 is handled. Duration 959 ms by bot id=8138074349
+2025-08-26 08:46:51,396 - INFO - aiogram.event - Update id=799216498 is not handled. Duration 0 ms by bot id=8138074349
+2025-08-26 08:47:15,464 - INFO - handlers.service - xuwdil user 5547528084-id VIN ENTERED | 2025-08-26 08:47:15
+2025-08-26 08:47:15,759 - INFO - aiogram.event - Update id=799216499 is handled. Duration 300 ms by bot id=8138074349
+2025-08-26 08:47:25,305 - INFO - handlers.service - xuwdil user 5547528084-id CAR MODEL entered | 2025-08-26 08:47:25
+2025-08-26 08:47:25,807 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE SELECTION | 2025-08-26 08:47:25
+2025-08-26 08:47:25,807 - INFO - aiogram.event - Update id=799216500 is handled. Duration 507 ms by bot id=8138074349
+2025-08-26 08:47:32,115 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CHOSEN | 2025-08-26 08:47:32
+2025-08-26 08:47:32,322 - INFO - handlers.service - xuwdil user 5547528084-id PRINTER CHOSEN service | 2025-08-26 08:47:32
+2025-08-26 08:47:32,729 - INFO - handlers.service - xuwdil user 5547528084-id DATE SELECTION PROCESS | 2025-08-26 08:47:32
+2025-08-26 08:47:33,044 - INFO - aiogram.event - Update id=799216501 is handled. Duration 1242 ms by bot id=8138074349
+2025-08-26 08:47:35,225 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CALENDAR CREATION | 2025-08-26 08:47:35
+2025-08-26 08:47:35,464 - INFO - aiogram.event - Update id=799216502 is handled. Duration 240 ms by bot id=8138074349
+2025-08-26 08:47:40,787 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE CALENDAR CREATION | 2025-08-26 08:47:40
+2025-08-26 08:47:41,405 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE DATE UPDATED | 2025-08-26 08:47:41
+2025-08-26 08:47:41,714 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE TIME SELECTION | 2025-08-26 08:47:41
+2025-08-26 08:47:41,715 - INFO - aiogram.event - Update id=799216503 is handled. Duration 927 ms by bot id=8138074349
+2025-08-26 08:47:50,953 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE TIME CHOSEN | 2025-08-26 08:47:50
+2025-08-26 08:47:50,953 - INFO - handlers.service - xuwdil user 5547528084-id RESPONSE for date and time with COMMENTS| 2025-08-26 08:47:50
+2025-08-26 08:47:51,257 - INFO - aiogram.event - Update id=799216504 is handled. Duration 610 ms by bot id=8138074349
+2025-08-26 08:47:57,107 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE COMMENTS FETCHED | 2025-08-26 08:47:57
+2025-08-26 08:47:57,118 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE COMMENTS added to FILE | 2025-08-26 08:47:57
+2025-08-26 08:47:57,409 - INFO - handlers.service - xuwdil user 5547528084-id SERVICE END | 2025-08-26 08:47:57
+2025-08-26 08:47:57,409 - INFO - aiogram.event - Update id=799216505 is handled. Duration 302 ms by bot id=8138074349
+2025-08-26 08:52:35,000 - WARNING - aiogram.dispatcher - Received SIGINT signal
+2025-08-26 08:52:35,000 - INFO - aiogram.dispatcher - Polling stopped for bot @TajMotors_bot id=8138074349 - 'TajMotors'
+2025-08-26 08:52:35,000 - INFO - aiogram.dispatcher - Polling stopped
+2025-08-26 08:53:00,265 - INFO - aiogram.dispatcher - Start polling
+2025-08-26 08:53:10,406 - INFO - aiogram.dispatcher - Polling stopped

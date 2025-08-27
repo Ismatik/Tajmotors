@@ -65,7 +65,7 @@ async def broadcast_loop(user_ids: list, message: str):
                                    text=message)
             
             successful_sends += 1
-            await bot(SendPhoto(chat_id=user,photo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZZPJ_PB7TTJq68vx0M4j-9Q2CtFiIwxp02w&s"))
+            await bot(SendPhoto(chat_id=user,photo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_Tajikistan.svg/330px-Flag_of_Tajikistan.svg.png"))
         except (TelegramForbiddenError, TelegramBadRequest):
             failed_sends +=1 
         await asyncio.sleep(0.1)
