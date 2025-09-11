@@ -79,20 +79,20 @@ This project empowers developers to create reliable, multilingual Telegram bots 
 ## Project Structure
 Tajmotors/<br>
 ├── Registration_functions/  # Excel integration and user data management<br>
-│   └── functions.py<br>
+ │      └── functions.py<br>
 ├── config_reader.py   # Centralized configuration and localization<br>
 ├── edit_profile/  # Modular profile editing handlers<br>
-│   ├── edit_back.py<br>
-│   ├── edit_email.py<br>
-│   ├── edit_language.py<br>
-│   ├── edit_name.py<br>
-│   ├── service_history.py<br>
-│   └── test_drive_history.py<br>
+ │      ├── edit_back.py<br>
+ │      ├── edit_email.py<br>
+ │      ├── edit_language.py<br>
+ │      ├── edit_name.py<br>
+ │      ├── service_history.py<br>
+ │      └── test_drive_history.py<br>
 ├── handlers/  # Bot handlers for registration, service, test drive, etc.<br>
-│   ├── edit_profile.py<br>
-│   ├── registration.py<br>
-│   ├── service.py<br>
-│   └── testdrive.py<br>
+ │      ├── edit_profile.py<br>
+ │      ├── registration.py<br>
+ │      ├── service.py<br>
+ │      └── testdrive.py<br>
 ├── requirements.txt   # Python dependencies<br>
 ├── tajmotors.py   # Main bot entry point<br>
 └── README.md   # Project documentation<br>
