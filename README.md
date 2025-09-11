@@ -54,7 +54,7 @@ This project empowers developers to create reliable, multilingual Telegram bots 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/tajmotors.git
+   git clone https://github.com/Ismatik/tajmotors
    cd tajmotors
 
 2. **Install dependencies:**
