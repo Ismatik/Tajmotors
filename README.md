@@ -48,7 +48,7 @@ This project empowers developers to create reliable, multilingual Telegram bots 
 
 - Python 3.8+
 - Telegram Bot Token (from [BotFather](https://core.telegram.org/bots#botfather))
-- Excel files for user and service data management > :memo: **Note:** Admin side for current point was added.
+- Excel files for user and service data management (:memo: **Note:** Admin side for current point was added.)
 
 ### Installation
 
@@ -78,24 +78,24 @@ This project empowers developers to create reliable, multilingual Telegram bots 
 
 ## Project Structure
 Tajmotors/
-├── Registration_functions/  # Excel integration and user data management
-│   └── functions.py
-├── config_reader.py   # Centralized configuration and localization
-├── edit_profile/  # Modular profile editing handlers
-│   ├── edit_back.py
-│   ├── edit_email.py
-│   ├── edit_language.py
-│   ├── edit_name.py
-│   ├── service_history.py
-│   └── test_drive_history.py
-├── handlers/  # Bot handlers for registration, service, test drive, etc.
-│   ├── edit_profile.py
-│   ├── registration.py
-│   ├── service.py
-│   └── testdrive.py
-├── requirements.txt   # Python dependencies
-├── tajmotors.py   # Main bot entry point
-└── README.md   # Project documentation
+├── Registration_functions/  # Excel integration and user data management<br>
+│   └── functions.py<br>
+├── config_reader.py   # Centralized configuration and localization<br>
+├── edit_profile/  # Modular profile editing handlers<br>
+│   ├── edit_back.py<br>
+│   ├── edit_email.py<br>
+│   ├── edit_language.py<br>
+│   ├── edit_name.py<br>
+│   ├── service_history.py<br>
+│   └── test_drive_history.py<br>
+├── handlers/  # Bot handlers for registration, service, test drive, etc.<br>
+│   ├── edit_profile.py<br>
+│   ├── registration.py<br>
+│   ├── service.py<br>
+│   └── testdrive.py<br>
+├── requirements.txt   # Python dependencies<br>
+├── tajmotors.py   # Main bot entry point<br>
+└── README.md   # Project documentation<br>
 
 ### License
     This project is for demonstration purposes. For commercial use, please contact the author.
