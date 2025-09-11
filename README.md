@@ -48,7 +48,7 @@ This project empowers developers to create reliable, multilingual Telegram bots 
 
 - Python 3.8+
 - Telegram Bot Token (from [BotFather](https://core.telegram.org/bots#botfather))
-- Excel files for user and service data management
+- Excel files for user and service data management > :memo: **Note:** Admin side for current point was added.
 
 ### Installation
 
@@ -58,10 +58,10 @@ This project empowers developers to create reliable, multilingual Telegram bots 
    cd tajmotors
 
 2. **Install dependencies:**
-    pip install -r requirements.txt
+    ```pip install -r requirements.txt
 
 3. **Configure environment variables:**
-    Create a .env file and add your bot token and other settings as needed.
+    ```Create a .env file and add your bot token and other settings as needed.
 
 ### Usage
 
@@ -77,15 +77,25 @@ This project empowers developers to create reliable, multilingual Telegram bots 
 ○ Automated tests: Add unit tests for handlers and functions as needed.
 
 ## Project Structure
-tajmotors/
-├── handlers/                # Bot handlers for registration, service, test drive, etc.
-├── edit_profile/            # Modular profile editing handlers
+Tajmotors/
 ├── Registration_functions/  # Excel integration and user data management
-├── [config_reader.py](http://_vscodecontentref_/0)         # Centralized configuration and localization
-├── [tajmotors.py](http://_vscodecontentref_/1)             # Main bot entry point
-├── [requirements.txt](http://_vscodecontentref_/2)         # Python dependencies
-├── [README.md](http://_vscodecontentref_/3)                # Project documentation
-
+│   └── functions.py
+├── config_reader.py   # Centralized configuration and localization
+├── edit_profile/  # Modular profile editing handlers
+│   ├── edit_back.py
+│   ├── edit_email.py
+│   ├── edit_language.py
+│   ├── edit_name.py
+│   ├── service_history.py
+│   └── test_drive_history.py
+├── handlers/  # Bot handlers for registration, service, test drive, etc.
+│   ├── edit_profile.py
+│   ├── registration.py
+│   ├── service.py
+│   └── testdrive.py
+├── requirements.txt   # Python dependencies
+├── tajmotors.py   # Main bot entry point
+└── README.md   # Project documentation
 
 ### License
     This project is for demonstration purposes. For commercial use, please contact the author.
@@ -97,17 +107,26 @@ tajmotors/
 **ТЗ от Tajmotors**
 
 
-1. Функциональные требования к Telegram-боту (интерфейс для клиента)
+1. Функциональные требования к Telegram-боту (интерфейс для клиента):
+
     • При первом запуске (/start) бот приветствует пользователя, кратко описывает свои возможности и отображает главное меню.
-    • Навигация по боту осуществляется с помощью кнопок (inline-клавиатура).
+    <br>
+    • Навигация по боту осуществляется с помощью кнопок (inline-клавиатура).<br> 
     • После каждой успешной отправки заявки бот информирует пользователя о том, что его запрос принят в работу ("Спасибо! Ваша заявка принята. Менеджер свяжется с вами в ближайшее время.").
-Состоит из следующих кнопок:
+    Состоит из следующих кнопок:
+    <br>
     • Каталог автомобилей
+    <br>
     • Запись на сервис
+    <br>
     • Тест-драйв
+    <br>
     • Задать вопрос оператору
+    <br>
     • Контакты и адреса
+    <br>
     • О компании
+
     1. При нажатии на кнопку пользователю предлагается выбрать категорию: «Новые авто» / «Авто с пробегом».
     2. После выбора категории появляются кнопки для фильтрации: «Марка», «Модель», «Ценовой диапазон», «Тип кузова».
     3. После применения фильтров бот выводит список подходящих автомобилей в виде карусели карточек. Каждая карточка содержит: фото, марку и модель, цену.
@@ -132,27 +151,49 @@ tajmotors/
     4. Все ответы менеджера из админ-панели приходят пользователю в этот же чат от имени бота.
     • Отображают информацию, которая полностью редактируется в административной панели.
     • Раздел «Контакты» должен содержать адреса, телефоны (кликабельные), ссылки на соцсети и кнопку для построения маршрута на карте.
-2. Функциональные требования к административной панели (интерфейс для сотрудников)
+
+2. Функциональные требования к административной панели (интерфейс для сотрудников):
+    <br>
     • Доступ к панели осуществляется через веб-браузер по логину и паролю.
+    <br>
     • Реализована система ролей (например, «Администратор», «Менеджер»).
+    <br>
     • Интерфейс должен быть интуитивно понятным и адаптивным для работы на ПК.
+    <br>
     • Единый реестр всех заявок (сервис, тест-драйв, консультация).
+    <br>
     • Возможность фильтрации и поиска заявок по типу, статусу («Новая», «В работе», «Завершено», «Отклонено»), дате, клиенту.
+    <br>
     • При клике на заявку открывается её детальная карточка со всей информацией, собранной ботом.
+    <br>
     • Менеджер может менять статус заявки и оставлять внутренние комментарии.
+    <br>
     • Интерфейс для обработки вопросов от пользователей, стилизованный под чат.
+    <br>
     • Список активных и завершенных диалогов.
+    <br>
     • Менеджер выбирает диалог и может писать ответ, который будет мгновенно отправлен пользователю в Telegram.
+    <br>
     • Возможность прикреплять файлы и изображения к ответам.
+    <br>
     • Интерфейс для добавления, редактирования и удаления автомобилей в каталоге.
+    <br>
     • Поля для заполнения: марка, модель, цена, категория (новый/с пробегом), описание, фото, тип кузова, статус «в наличии».
+    <br>
     • Возможность указать, доступен ли автомобиль для тест-драйва.
+    <br>
     • Редактор для всех текстовых сообщений бота: приветствие, тексты в разделах «О компании», «Контакты», автоответы, названия кнопок.
+    <br>
     • Управление списком услуг для записи на сервис.
+    <br>
     • Функционал для создания и отправки массовых сообщений всем пользователям бота.
+    <br>
     • Возможность прикрепить изображение и кнопки со ссылками.
+    <br>
     • Планирование отложенной отправки рассылки.
+    <br>
     • Список всех пользователей, которые взаимодействовали с ботом.
+    <br>
     • Просмотр истории заявок и диалогов конкретного пользователя.
 
 
