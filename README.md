@@ -58,10 +58,10 @@ This project empowers developers to create reliable, multilingual Telegram bots 
    cd tajmotors
 
 2. **Install dependencies:**
-    ```pip install -r requirements.txt
+    ``` __pip install -r requirements.txt__
 
 3. **Configure environment variables:**
-    ```Create a .env file and add your bot token and other settings as needed.
+    ``` __Create a .env file and add your bot token and other settings as needed.__
 
 ### Usage
 
@@ -77,7 +77,7 @@ This project empowers developers to create reliable, multilingual Telegram bots 
 ○ Automated tests: Add unit tests for handlers and functions as needed.
 
 ## Project Structure
-Tajmotors/
+Tajmotors/<br>
 ├── Registration_functions/  # Excel integration and user data management<br>
 │   └── functions.py<br>
 ├── config_reader.py   # Centralized configuration and localization<br>
