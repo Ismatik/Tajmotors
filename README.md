@@ -56,12 +56,20 @@ This project empowers developers to create reliable, multilingual Telegram bots 
    ```bash
    git clone https://github.com/Ismatik/tajmotors
    cd tajmotors
+   ```
 
 2. **Install dependencies:**
-    ``` __pip install -r requirements.txt__
+    ```
+    pip install -r requirements.txt
+    ```
 
 3. **Configure environment variables:**
-    ``` __Create a .env file and add your bot token and other settings as needed.__
+    Create a `.env` file and add your bot token and other settings as needed.
+   ```
+   BOT_TOKEN=your-telegram-bot-token
+   EXCEL_FILE=your-excel-file.xlsx
+   # Add other variables as needed
+   ```
 
 ### Usage
 
